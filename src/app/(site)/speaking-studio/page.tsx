@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/marketing/cta-band";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Speaking Studio & Simulation Center",
+  title: "Speaking Studio & Simulation Centre",
   description:
     "Record your presentations, receive a transcript and measured delivery metrics, and practise in realistic conference, media and Q&A simulations.",
   path: "/speaking-studio",
@@ -38,7 +38,7 @@ export default function SpeakingStudioPage() {
       <PageHero
         eyebrow="Speaking Studio"
         title="A private rehearsal room for your presentations."
-        lead="Record yourself, see exactly what you said, and understand how you said it. Then practise under pressure in the Simulation Center."
+        lead="Record yourself, see exactly what you said, and understand how you said it. Then practise under pressure in the Simulation Centre."
       />
 
       <Section tone="white">
@@ -98,7 +98,7 @@ export default function SpeakingStudioPage() {
         <Container className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <SectionHeader
             light
-            eyebrow="Simulation Center"
+            eyebrow="Simulation Centre"
             title="Pressure, rehearsed safely."
             lead="Multi-turn simulations by text or voice. The AI plays the chair, the journalist, the host or the sceptical colleague — and adapts to your answers."
           />

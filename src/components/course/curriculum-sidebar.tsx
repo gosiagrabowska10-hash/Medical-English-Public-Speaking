@@ -77,14 +77,14 @@ export function CurriculumSidebar({ modules, currentCode, enrolled, completed, t
   return (
     <>
       {/* Desktop: collapsible right column */}
-      <aside aria-label="Course contents" className={cn("hidden xl:block", collapsed ? "w-12" : "w-[380px]")}>
+      <aside aria-label="Course contents" className={cn("hidden h-full xl:block", collapsed ? "w-12" : "w-[380px]")}>
         <div className="sticky top-6">
           {collapsed ? (
             <Button variant="outline" size="icon" onClick={() => setCollapsed(false)} aria-label="Show course contents"><PanelRightOpen /></Button>
           ) : (
             <div className="max-h-[calc(100dvh-3rem)] overflow-y-auto rounded-sm bg-white shadow-hairline">
               <div className="flex items-center justify-between border-b border-stone p-5">
-                <Progress value={pct} label={`Program progress · ${completed}/${total} lessons`} className="mr-4" />
+                <Progress value={pct} label={`Programme progress · ${completed}/${total} lessons`} className="mr-4" />
                 <button type="button" onClick={() => setCollapsed(true)} className="rounded-xs p-1.5 text-ink-subtle hover:bg-stone hover:text-ink" aria-label="Hide course contents"><PanelRightClose className="size-4" /></button>
               </div>
               <Contents modules={modules} currentCode={currentCode} enrolled={enrolled} />
@@ -106,7 +106,7 @@ export function CurriculumSidebar({ modules, currentCode, enrolled, completed, t
                 <D.Title className="font-serif text-2xl text-midnight">Course contents</D.Title>
                 <D.Close asChild><Button variant="ghost" size="sm">Close</Button></D.Close>
               </div>
-              <D.Description className="sr-only">Modules and lessons of the program</D.Description>
+              <D.Description className="sr-only">Modules and lessons of the programme</D.Description>
               <div className="border-b border-stone p-5"><Progress value={pct} label={`${completed}/${total} lessons complete`} /></div>
               <div className="flex-1 overflow-y-auto"><Contents modules={modules} currentCode={currentCode} enrolled={enrolled} onNavigate={() => setMobileOpen(false)} /></div>
             </D.Content>

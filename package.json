@@ -19,7 +19,8 @@
     "test:course": "node tests/e2e/course-flow.cjs",
     "test:course-security": "node tests/e2e/course-security.cjs",
     "content:generate": "tsx scripts/generate-content-sql.ts",
-    "content:review": "tsx scripts/generate-lesson-review.ts"
+    "content:review": "tsx scripts/generate-lesson-review.ts",
+    "content:handouts": "tsx scripts/generate-handouts.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

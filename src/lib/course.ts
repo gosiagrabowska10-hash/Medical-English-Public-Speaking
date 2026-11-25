@@ -10,14 +10,12 @@ export type LessonRow = {
 export type ModuleRow = { id: string; number: number; slug: string; title: string; weeks_label: string; summary: string; outcomes: string[] };
 export type ModuleWithLessons = ModuleRow & { lessons: (LessonRow & { status: ProgressStatus })[] };
 
-export type LessonBody = {
-  intro: string; objectives: string[]; sections: { heading: string; paragraphs: string[] }[];
-  examples: { title: string; text: string }[]; demonstration: string; mistakes: string[]; reflection: string[];
-};
+import type { Assignment, Exercise, LessonBody } from "@/content/lesson-types";
+export type { LessonBody };
 export type LessonContent = {
   body: LessonBody;
-  exercise: { title: string; instructions: string; prompt: string; min_chars: number } | null;
-  assignment: { title: string; brief: string; min_words: number; required: boolean } | null;
+  exercise: Exercise | null;
+  assignment: Assignment | null;
   video_url: string | null; captions_url: string | null; video_note: string | null;
 };
 

@@ -16,6 +16,8 @@ Premium international platform teaching medical public speaking and professional
 - `docs/DESIGN_SYSTEM.md` — tokens and components (live at `/design-system`)
 - `docs/STUDENT_UI_DIRECTION.md` — approved student-platform visual direction (`/preview/lesson`, `/preview/studio`)
 - `docs/SUPABASE_SETUP.md` — connecting a hosted Supabase project (no secret keys required)
+- `docs/CONTENT_STANDARD.md` — approved educational content standard (lessons and workshops)
+- `docs/curriculum/` — lesson review documents (Markdown and PDF)
 - `docs/CONTENT_MANAGEMENT.md` — editing lessons, videos, quizzes and materials without a rebuild
 - `docs/TESTING.md` — how to run every test suite
 - `docs/STAGE_2_REPORT.md`, `docs/MILESTONE_1_REPORT.md` — test and status reports
@@ -58,6 +60,8 @@ Without Supabase variables the public website still runs; sign-in and registrati
 | `npm run test:course` | Stage 3 course experience in the browser (36 checks) |
 | `npm run test:course-security` | Stage 3 content and progress security via the API (26 checks) |
 | `npm run content:generate` | Regenerate the curriculum seed migration from `src/content` |
+| `npm run content:handouts` | Regenerate lesson handout PDFs |
+| `npm run content:review -- L01 L02 --v=2` | Build a lesson review document |
 
 ## Security principles
 - No secret keys in the repository; `.env*` files are git-ignored (only `.env.example` with empty placeholders is tracked).

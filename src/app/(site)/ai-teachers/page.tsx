@@ -24,7 +24,7 @@ export default function AiTeachersPage() {
       <PageHero
         eyebrow="AI Learning Faculty"
         title="Six teachers. Six distinct purposes."
-        lead="Each AI teacher has its own role, teaching style, objectives and exercises. Together they give you a place to practise every skill in the program — whenever your clinical schedule allows."
+        lead="Each AI teacher has its own role, teaching style, objectives and exercises. Together they give you a place to practise every skill in the programme — whenever your clinical schedule allows."
       />
       <Section tone="white" className="py-0 md:py-0 lg:py-0">
         <Container>

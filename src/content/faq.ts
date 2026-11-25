@@ -1,11 +1,11 @@
 export const faq = [
   {
     q: "What level of English do I need?",
-    a: "The program is designed for medical professionals who already use English professionally — reading literature, attending conferences or working with international colleagues — but who want to speak with more confidence and clarity. As a guide, an upper-intermediate level (around CEFR B2) is a comfortable starting point. The initial diagnostic assessment helps us tailor your learning path, and the focus is on intelligibility and communication, not on eliminating your accent.",
+    a: "The programme is designed for medical professionals who already use English professionally — reading literature, attending conferences or working with international colleagues — but who want to speak with more confidence and clarity. As a guide, an upper-intermediate level (around CEFR B2) is a comfortable starting point. The initial diagnostic assessment helps us tailor your learning path, and the focus is on intelligibility and communication, not on eliminating your accent.",
   },
   {
-    q: "How long does the program take, and how much time do I need each week?",
-    a: "The Professional Program runs over ten weeks. Most participants should plan for approximately three to five hours per week across lessons, speaking practice and assignments. Lessons are available online, so you can study around clinical schedules. Live elements, such as the group coaching session, are scheduled in advance.",
+    q: "How long does the programme take, and how much time do I need each week?",
+    a: "The Professional Programme runs over ten weeks. Most participants should plan for approximately three to five hours per week across lessons, speaking practice and assignments. Lessons are available online, so you can study around clinical schedules. Live elements, such as the group coaching session, are scheduled in advance.",
   },
   {
     q: "What exactly are the AI teachers?",
@@ -13,7 +13,7 @@ export const faq = [
   },
   {
     q: "What human feedback is included?",
-    a: "The standard program includes one live group coaching session with an Academy instructor and a human review of your final presentation against the published assessment rubric. Your final result is approved by an authorised Academy assessor — never by AI alone.",
+    a: "The standard programme includes one live group coaching session with an Academy instructor and a human review of your final presentation against the published assessment rubric. Your final result is approved by an authorised Academy assessor — never by AI alone.",
   },
   {
     q: "How am I assessed?",
@@ -25,11 +25,11 @@ export const faq = [
   },
   {
     q: "How long will I have access to the materials?",
-    a: "You will have access to the program for the ten-week duration of your cohort and for a period after completion so you can revisit lessons and practice tools. The exact access period is stated in your enrolment confirmation and in the Terms and Conditions before you pay.",
+    a: "You will have access to the programme for the ten-week duration of your cohort and for a period after completion so you can revisit lessons and practice tools. The exact access period is stated in your enrolment confirmation and in the Terms and Conditions before you pay.",
   },
   {
     q: "Should I use real patient cases in my presentations?",
-    a: "No. Please never upload identifiable patient information, images or confidential clinical data. The program teaches you how to build composite or fully anonymised case narratives that respect confidentiality, and all practice should use material you are permitted to share.",
+    a: "No. Please never upload identifiable patient information, images or confidential clinical data. The programme teaches you how to build composite or fully anonymised case narratives that respect confidentiality, and all practice should use material you are permitted to share.",
   },
   {
     q: "Is my voice recording private?",

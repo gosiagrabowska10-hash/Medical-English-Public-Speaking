@@ -10,7 +10,7 @@ export const site = {
   // Contact details are intentionally empty until the Academy provides verified information.
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   program: {
-    name: "Medical Public Speaking Professional Program",
+    name: "Medical Public Speaking Professional Programme",
     weeks: 10,
     modules: 12,
     lessons: 30,
@@ -37,7 +37,7 @@ export const footerNav = {
     { href: "/instructors", label: "Faculty" },
     { href: "/contact", label: "Contact" },
   ],
-  Program: [
+  Programme: [
     { href: "/curriculum", label: "Curriculum" },
     { href: "/ai-teachers", label: "AI Faculty" },
     { href: "/speaking-studio", label: "Speaking Studio" },

@@ -8,7 +8,7 @@ import { Checkbox, FieldError, Input, Label, Select, Textarea } from "@/componen
 
 const topics = [
   ["admissions", "Admissions and enrolment"],
-  ["program", "The program and curriculum"],
+  ["program", "The programme and curriculum"],
   ["founder", "The founder’s office"],
   ["faculty", "Teaching with the Academy"],
   ["partnerships", "Institutional partnerships"],

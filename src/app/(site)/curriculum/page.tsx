@@ -10,7 +10,7 @@ import { JsonLd, courseSchema, pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Curriculum — 12 Modules, 30 Lessons, 6 Workshops",
   description:
-    "The complete ten-week curriculum of the Medical Public Speaking Professional Program: confidence, spoken English, voice, structure, storytelling, conferences, difficult questions, media and a final medical keynote.",
+    "The complete ten-week curriculum of the Medical Public Speaking Professional Programme: confidence, spoken English, voice, structure, storytelling, conferences, difficult questions, media and a final medical keynote.",
   path: "/curriculum",
 });
 
@@ -37,7 +37,7 @@ export default function CurriculumPage() {
           <ModuleList />
         </Container>
       </Section>
-      <CtaBand title="Ready to begin the program?" />
+      <CtaBand title="Ready to begin the programme?" />
     </>
   );
 }

@@ -114,7 +114,7 @@ export default function DesignSystemPage() {
 
         <Block n={8} title="Progress cards & 18 · Progress bars">
           <div className="grid gap-5 md:grid-cols-3">
-            <ProgressCard title="Program completion" value={42} detail="Specimen value" />
+            <ProgressCard title="Programme completion" value={42} detail="Specimen value" />
             <Card className="space-y-6 p-6 md:col-span-2">
               <Progress value={68} label="Module 3 — Voice and Stage Presence" />
               <Progress value={20} label="Required assignments" tone="navy" />

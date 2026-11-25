@@ -31,7 +31,7 @@ async function Curriculum() {
     <div className="space-y-10">
       <header>
         <Eyebrow className="mb-4"><Rule />Academy Curriculum</Eyebrow>
-        <h1 className="font-serif text-h1 text-midnight">Medical Public Speaking Professional Program</h1>
+        <h1 className="font-serif text-h1 text-midnight">Medical Public Speaking Professional Programme</h1>
         <p className="mt-4 max-w-2xl text-lead text-ink-muted">Ten weeks · {modules.length} modules · {totals.lessons} lessons · {totals.workshops} practical workshops · approximately {Math.round(totals.minutes / 60)} hours of learning and practice.</p>
       </header>
 
@@ -51,7 +51,7 @@ async function Curriculum() {
           ) : (
             <>
               <p className="text-eyebrow font-semibold uppercase tracking-[0.18em] text-gold-light">Preview access</p>
-              <p className="mt-3 text-sm leading-relaxed text-ivory/70">You are not enrolled in a cohort yet. Lesson 1 is open as a preview; the full program unlocks when your enrolment is confirmed.</p>
+              <p className="mt-3 text-sm leading-relaxed text-ivory/70">You are not enrolled in a cohort yet. Lesson 1 is open as a preview; the full programme unlocks when your enrolment is confirmed.</p>
               <Button asChild variant="gold" className="mt-6 self-start"><Link href="/app/learn/L01">Open the preview lesson <ArrowRight /></Link></Button>
             </>
           )}

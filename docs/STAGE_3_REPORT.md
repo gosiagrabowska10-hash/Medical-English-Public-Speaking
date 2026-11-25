@@ -60,3 +60,11 @@ Security verified: answer keys never reach students; quiz scored on the server; 
 - **Content:** authoring of the remaining 26 lessons and 6 workshops; Academic Director review of the four authored lessons.
 - **Media:** instructor recordings with captions; final branded workbook PDFs (replace `public/*/sample`). Real materials should move to Supabase Storage with signed URLs.
 - **Later stages:** AI conversations and Speaking Studio recording (4), instructor review of assignments and live coaching (5), certificates (6), Stripe enrolment and content admin UI (7). "My Learning Path", "My Progress" and "Resources" remain marked "Soon".
+
+## Addendum — content standard v2 (2026-11-25)
+- L01, L02, L03 and L07 rewritten to the approved standard (1,253–1,432 words of teaching content, 3 examples, 10–11-phrase banks, 6-question quizzes with 3 scenario questions, model answers, assessment criteria, 15 real references across the four lessons). Review document: `docs/curriculum/lesson-review-L01-L02-L03-L07-v2.pdf`.
+- Lesson player renders evidence and recommendation boxes, labelled illustrative examples, phrase bank, mistakes with corrections, references, exercise steps, self-check, model answer (after saving) and assessment criteria. Screenshots: `docs/screenshots/stage-3/v2-*.jpg`.
+- Sample worksheets replaced by generated lesson handouts (`public/materials/lessons`).
+- British English: "Programme" and "Simulation Centre" throughout.
+- Fix: the course-contents sidebar now stays visible while scrolling long lessons.
+- Tests: course E2E 41/41, course security 26/26, all Stage 1–2 suites pass.

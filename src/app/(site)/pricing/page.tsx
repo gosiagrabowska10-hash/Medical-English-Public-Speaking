@@ -10,7 +10,7 @@ import { JsonLd, courseSchema, pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Tuition & Admissions",
   description:
-    "Tuition for the ten-week Medical Public Speaking Professional Program: PLN 1,490, including AI practice, speaking analysis, group coaching and a human-reviewed final presentation.",
+    "Tuition for the ten-week Medical Public Speaking Professional Programme: PLN 1,490, including AI practice, speaking analysis, group coaching and a human-reviewed final presentation.",
   path: "/pricing",
 });
 
@@ -27,8 +27,8 @@ export default function PricingPage() {
       <JsonLd data={courseSchema} />
       <PageHero
         eyebrow="Tuition & Admissions"
-        title="One program. Everything included."
-        lead="The Professional Program includes every lesson, workshop, AI practice tool, assessment and the human feedback described below. There are no additional course fees to complete the program."
+        title="One programme. Everything included."
+        lead="The Professional Programme includes every lesson, workshop, AI practice tool, assessment and the human feedback described below. There are no additional course fees to complete the programme."
       />
       <Section tone="stone" className="pt-12 md:pt-16">
         <Container>
@@ -65,7 +65,7 @@ export default function PricingPage() {
 
       <Section>
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <SectionHeader eyebrow="Questions" title="About tuition and the program." />
+          <SectionHeader eyebrow="Questions" title="About tuition and the programme." />
           <Accordion items={faq.map((f) => ({ q: f.q, a: f.a }))} />
         </Container>
       </Section>

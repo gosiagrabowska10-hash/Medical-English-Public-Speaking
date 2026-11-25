@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       <ul>
         <li><strong>Account data:</strong> title, name, email address, country, professional specialty or role, and password (stored only as a secure hash by our authentication provider).</li>
         <li><strong>Learning data:</strong> lesson progress, quiz answers, notes, assignments, assessment results and certificates.</li>
-        <li><strong>Recordings:</strong> audio and, where you choose, video recordings you make in the Speaking Studio, Simulation Center and assessments, together with transcripts and analysis derived from them.</li>
+        <li><strong>Recordings:</strong> audio and, where you choose, video recordings you make in the Speaking Studio, Simulation Centre and assessments, together with transcripts and analysis derived from them.</li>
         <li><strong>AI conversations:</strong> messages you exchange with AI teachers and simulations.</li>
         <li><strong>Payment data:</strong> order and payment status. Card details are processed by our payment provider and are never stored by the Academy.</li>
         <li><strong>Communications:</strong> messages you send us through the contact form or by email.</li>
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
 
       <h2>3. Why we use your data, and on what legal basis</h2>
       <ul>
-        <li>To provide the program you enrol in, including AI practice, human feedback, assessment and certification — <strong>performance of a contract</strong>.</li>
+        <li>To provide the programme you enrol in, including AI practice, human feedback, assessment and certification — <strong>performance of a contract</strong>.</li>
         <li>To record and analyse your speech — <strong>your explicit consent</strong>, which you give before any recording and can withdraw at any time.</li>
         <li>To process payments, keep accounting records and meet legal obligations — <strong>legal obligation</strong>.</li>
         <li>To keep the platform secure, prevent misuse and maintain audit logs — <strong>legitimate interests</strong>.</li>
@@ -41,10 +41,10 @@ export default function PrivacyPage() {
       <p>Some providers may process data outside the European Economic Area. Where this happens, we rely on appropriate safeguards such as the European Commission&rsquo;s Standard Contractual Clauses.</p>
 
       <h2>7. How long we keep data</h2>
-      <p>[Retention periods to be confirmed — for example: account and learning data for the duration of your access plus [period]; recordings until you delete them or [period] after program completion; certificate records for as long as verification is offered; payment records as required by tax law.]</p>
+      <p>[Retention periods to be confirmed — for example: account and learning data for the duration of your access plus [period]; recordings until you delete them or [period] after programme completion; certificate records for as long as verification is offered; payment records as required by tax law.]</p>
 
       <h2>8. Certificate verification</h2>
-      <p>Certificates can be verified online using their unique number. The verification page shows only the information necessary to confirm authenticity: the certificate holder&rsquo;s name as printed, the program, issue date and status. It does not show your contact details or results.</p>
+      <p>Certificates can be verified online using their unique number. The verification page shows only the information necessary to confirm authenticity: the certificate holder&rsquo;s name as printed, the programme, issue date and status. It does not show your contact details or results.</p>
 
       <h2>9. Your rights</h2>
       <p>You may request access to, correction, deletion or a copy of your personal data, object to or restrict certain processing, and withdraw consent at any time. You can delete recordings and request account deletion from your account settings, or by contacting us. You also have the right to lodge a complaint with a data protection supervisory authority.</p>

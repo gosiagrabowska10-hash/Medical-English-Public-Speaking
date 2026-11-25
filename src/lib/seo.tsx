@@ -54,7 +54,7 @@ export const courseSchema = {
   "@type": "Course",
   name: site.program.name,
   description:
-    "A ten-week online program in medical public speaking and professional English communication for non-native English-speaking doctors and medical professionals: 12 modules, 30 lessons, 6 practical workshops, AI-assisted speaking practice and human-reviewed final assessment.",
+    "A ten-week online programme in medical public speaking and professional English communication for non-native English-speaking doctors and medical professionals: 12 modules, 30 lessons, 6 practical workshops, AI-assisted speaking practice and human-reviewed final assessment.",
   provider: { "@type": "EducationalOrganization", name: site.name, url: site.url },
   inLanguage: "en",
   educationalCredentialAwarded: "Certificate of Completion (issued by the Academy)",

@@ -9,7 +9,7 @@ import { JsonLd, pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers about English level, program duration, AI teachers, human feedback, assessments, certificates and access for the Medical Public Speaking Professional Program.",
+    "Answers about English level, programme duration, AI teachers, human feedback, assessments, certificates and access for the Medical Public Speaking Professional Programme.",
   path: "/faq",
 });
 

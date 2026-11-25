@@ -1,5 +1,5 @@
 /**
- * Curriculum outline for the Medical Public Speaking Professional Program.
+ * Curriculum outline for the Medical Public Speaking Professional Programme.
  * This is the public syllabus (titles, summaries, outcomes). Full lesson
  * content (objectives, explanation, examples, exercises, quizzes, assignments)
  * is authored in Milestone 3 and must be approved by the Academic Director.
@@ -156,7 +156,7 @@ export const modules: Module[] = [
       code: "W3",
       title: "Workshop III — Conference Simulation",
       summary: "Deliver a timed research presentation to the AI Conference Audience and respond to a moderated question round.",
-      format: "Simulation Center",
+      format: "Simulation Centre",
     },
   },
   {
@@ -180,7 +180,7 @@ export const modules: Module[] = [
       code: "W4",
       title: "Workshop IV — Unexpected Questions",
       summary: "A rapid-fire question round with escalating difficulty, followed by structured feedback on clarity and composure.",
-      format: "Simulation Center",
+      format: "Simulation Centre",
     },
   },
   {
@@ -202,7 +202,7 @@ export const modules: Module[] = [
       code: "W5",
       title: "Workshop V — Media Interview Simulation",
       summary: "A recorded mock interview with the AI Media Interviewer, including a bridging exercise for difficult questions.",
-      format: "Simulation Center",
+      format: "Simulation Centre",
     },
   },
   {
@@ -239,7 +239,7 @@ export const modules: Module[] = [
     workshop: {
       code: "W6",
       title: "Workshop VI — Group Coaching and Dress Rehearsal",
-      summary: "The program’s live group coaching session with an Academy instructor, followed by a full rehearsal of your final keynote.",
+      summary: "The programme’s live group coaching session with an Academy instructor, followed by a full rehearsal of your final keynote.",
       format: "Live group session with a human instructor",
     },
   },

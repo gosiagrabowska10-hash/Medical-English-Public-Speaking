@@ -6,7 +6,7 @@ All course content lives in the database. Changes are visible to students on the
 |---|---|---|
 | Modules (title, weeks, summary, outcomes) | `modules` | |
 | Lessons & workshops (title, duration, week, order, preview, published) | `lessons` | `content_status`: `in_preparation` (outline, cannot be completed), `sample`, `ready` |
-| Written lesson, exercise, assignment, video | `lesson_content` | `body` JSON: intro, objectives, sections, examples, demonstration, mistakes, reflection · `exercise` JSON: title, instructions, prompt, min_chars · `assignment` JSON: title, brief, min_words, required |
+| Written lesson, exercise, assignment, video | `lesson_content` | `body` JSON: intro, objectives, sections (with optional evidence/recommendation callout and refs), examples (title, setting, text), phrase_bank, phrase_practice, demonstration, mistakes (mistake/correction), reflection, references · `exercise` JSON: title, instructions, steps, prompt, min_chars, model_answer, self_check · `assignment` JSON: title, brief, min_words, required, criteria. Full schema: `src/content/lesson-types.ts`; standard: `docs/CONTENT_STANDARD.md` |
 | Video | `lesson_content.video_url`, `captions_url` (WebVTT), `lessons.video_status` | Set `video_status = 'published'` only for real instructor recordings |
 | Quiz questions and answer keys | `quiz_questions` | Students never see `correct_index`; pass mark 70% |
 | Downloadable materials | `lesson_resources` | `is_sample = true` shows a "Sample" label |

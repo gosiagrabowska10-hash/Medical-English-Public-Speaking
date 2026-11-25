@@ -25,7 +25,7 @@ const pillars = [
   {
     n: "III",
     t: "Simulate",
-    d: "Skills are tested under realistic conditions in the Simulation Center: a conference Q&A, a journalist’s interview, a sceptical panel. Difficulty increases as you progress, so pressure is introduced gradually and safely.",
+    d: "Skills are tested under realistic conditions in the Simulation Centre: a conference Q&A, a journalist’s interview, a sceptical panel. Difficulty increases as you progress, so pressure is introduced gradually and safely.",
   },
   {
     n: "IV",
@@ -97,7 +97,7 @@ export default function MethodologyPage() {
           <SectionHeader
             eyebrow="Assessment"
             title="A published rubric. No hidden criteria."
-            lead="Your final 8–10-minute medical keynote and simulated Q&A are assessed against the same rubric you study throughout the program."
+            lead="Your final 8–10-minute medical keynote and simulated Q&A are assessed against the same rubric you study throughout the programme."
           />
           <table className="w-full self-end text-left">
             <caption className="sr-only">Final assessment rubric and weightings</caption>

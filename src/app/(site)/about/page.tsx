@@ -19,7 +19,7 @@ const principles = [
   { t: "Honest feedback", d: "AI measures what technology can measure reliably. Human instructors judge what requires professional judgement. We are explicit about which is which." },
   { t: "Scientific integrity", d: "Clear communication never comes at the expense of accuracy. We teach you to simplify without distorting evidence." },
   { t: "Confidentiality", d: "We teach ethical case narratives and never ask you to share identifiable patient information." },
-  { t: "Respect for expertise", d: "Our participants are experienced professionals. The program is designed to respect their time, knowledge and professional standing." },
+  { t: "Respect for expertise", d: "Our participants are experienced professionals. The programme is designed to respect their time, knowledge and professional standing." },
 ];
 
 export default function AboutPage() {
@@ -50,7 +50,7 @@ export default function AboutPage() {
             </p>
             <h2>How we teach</h2>
             <p>
-              The ten-week Professional Program combines structured lessons, practice with six specialised AI teachers, a recording and analysis studio, realistic simulations and human feedback at the most important milestones. You can read more about our approach in the <Link href="/methodology">Methodology</Link>.
+              The ten-week Professional Programme combines structured lessons, practice with six specialised AI teachers, a recording and analysis studio, realistic simulations and human feedback at the most important milestones. You can read more about our approach in the <Link href="/methodology">Methodology</Link>.
             </p>
           </div>
           <EditorialVisual variant="lectern" className="aspect-[4/5] w-full lg:sticky lg:top-28 lg:self-start" />
@@ -76,7 +76,7 @@ export default function AboutPage() {
           <SectionHeader
             eyebrow="Transparency"
             title="What our certificate is — and is not."
-            lead="Graduates who meet every published requirement receive an Academy Certificate of Completion with a unique number and online verification. It is issued by The Medical Speaking Academy. The Academy is not a university, and the program does not currently carry external accreditation or CME/CPD credit. If that changes, it will be stated here with documented authorisation."
+            lead="Graduates who meet every published requirement receive an Academy Certificate of Completion with a unique number and online verification. It is issued by The Medical Speaking Academy. The Academy is not a university, and the programme does not currently carry external accreditation or CME/CPD credit. If that changes, it will be stated here with documented authorisation."
           />
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Button asChild>

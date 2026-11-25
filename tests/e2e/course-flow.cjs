@@ -38,32 +38,40 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(await p.getByRole('button', { name: 'Mark lesson as complete' }).isDisabled(), 'lesson cannot be completed before requirements are met');
   ok(await p.getByRole('link', { name: /Start a conversation/ }).isVisible(), 'AI teacher card with conversation entry point');
 
+  ok(await p.getByRole('heading', { name: 'Phrase bank' }).isVisible() && (await p.getByText('Research evidence').count()) >= 1 && await p.getByRole('heading', { name: 'References' }).isVisible(),
+    'lesson shows phrase bank, labelled research evidence and references');
+  ok(await p.getByText(/Illustrative, composite examples/).isVisible(), 'examples are labelled as illustrative and composite');
+
   await p.getByRole('tab', { name: 'Exercise' }).click();
+  ok(await p.getByText('A model answer becomes available after you save your own response.').isVisible(), 'model answer is withheld until the student saves their own response');
   await p.fill('#exercise', 'Too short.'); await p.getByRole('button', { name: 'Save exercise' }).click();
   await p.getByText(/Response too short/).waitFor(); ok(true, 'exercise enforces minimum length on the server');
-  await p.fill('#exercise', 'At a cardiology meeting in Vienna I presented a case. My heart rate rose when the chair asked a question, I lost a word I know well and started speaking faster. In a ward round in English I felt calm until a senior colleague joined.');
+  await p.fill('#exercise', 'Situation 1: a cardiology meeting in Vienna, eight-minute case presentation. Trigger: the chair asked a fast question. My heart rate rose, I lost a word I know well and started speaking faster. Prepared phrase: Could I ask you to repeat the last part of your question? Situation 2: an English ward round; a senior colleague joined and I began reading my notes. Prepared phrase: Let me put that another way.');
   await p.getByRole('button', { name: 'Save exercise' }).click(); await p.getByText('Your exercise has been saved.').waitFor();
   ok(true, 'exercise saved');
+  await p.getByText('Compare with a model answer').waitFor(); await p.getByText('Compare with a model answer').click();
+  ok(await p.getByText(/Situation 1: a 7-minute oral presentation/).isVisible(), 'model answer revealed after saving, with self-check criteria');
 
   await p.getByRole('tab', { name: /Quiz/ }).click();
   const qs = p.locator('fieldset');
-  for (let i = 0; i < 4; i++) await qs.nth(i).locator('input[type=radio]').nth(3).check();
+  for (let i = 0; i < 6; i++) await qs.nth(i).locator('input[type=radio]').nth(3).check();
   await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText(/You scored/).waitFor();
   ok(await p.getByText(/The pass mark is 70%/).isVisible(), 'wrong answers are scored on the server and do not pass');
   await p.screenshot({ path: `${out}/s3-quiz-feedback.png`, fullPage: false });
   await p.getByRole('button', { name: 'Retake the quiz' }).click();
-  for (const [i, k] of [[0, 1], [1, 2], [2, 2], [3, 1]]) await qs.nth(i).locator('input[type=radio]').nth(k).check();
-  await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText('You scored 4 of 4. Quiz passed.').waitFor();
-  ok(true, 'correct answers pass the quiz (4/4) with explanations');
+  for (const [i, k] of [[0, 1], [1, 2], [2, 2], [3, 1], [4, 2], [5, 1]]) await qs.nth(i).locator('input[type=radio]').nth(k).check();
+  await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText('You scored 6 of 6. Quiz passed.').waitFor();
+  ok(true, 'correct answers pass the quiz (6/6) with explanations');
 
   await p.getByRole('tab', { name: /Materials/ }).click();
-  const [dl] = await Promise.all([p.waitForEvent('download'), p.getByRole('link', { name: /Speaking Profile Worksheet/ }).click()]);
-  ok((await dl.suggestedFilename()).endsWith('.pdf') && (await p.getByText('Sample', { exact: true }).count()) > 0, 'downloadable material is a real PDF and is labelled Sample');
+  const [dl] = await Promise.all([p.waitForEvent('download'), p.getByRole('link', { name: /L01 Lesson handout/ }).click()]);
+  ok((await dl.suggestedFilename()).endsWith('.pdf') && true, 'downloadable lesson handout is a real PDF');
 
   await p.getByRole('tab', { name: /Assignment/ }).click();
+  ok(await p.getByText('Assessment criteria').isVisible(), 'assignment shows transparent assessment criteria');
   await p.fill('#assignment', 'Only a few words here.'); await p.getByRole('button', { name: 'Submit assignment' }).click();
   await p.getByText(/Assignment too short/).waitFor(); ok(true, 'assignment enforces minimum word count on the server');
-  const essay = Array.from({ length: 160 }, (_, i) => ['I', 'present', 'cardiology', 'research', 'to', 'international', 'colleagues', 'and', 'want', 'to', 'speak', 'calmly'][i % 12]).join(' ');
+  const essay = Array.from({ length: 230 }, (_, i) => ['I', 'present', 'cardiology', 'research', 'to', 'international', 'colleagues', 'and', 'want', 'to', 'speak', 'calmly'][i % 12]).join(' ');
   await p.fill('#assignment', essay); await p.getByRole('button', { name: 'Submit assignment' }).click();
   await p.getByText('Your assignment has been submitted.').waitFor(); ok(true, 'assignment submitted');
 

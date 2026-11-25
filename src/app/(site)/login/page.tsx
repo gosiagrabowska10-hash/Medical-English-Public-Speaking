@@ -11,7 +11,7 @@ export default function LoginPage() {
   return (
     <AuthShell
       title="Welcome back."
-      lead="Sign in to continue your program."
+      lead="Sign in to continue your programme."
       footer={<>New to the Academy? <Link href="/register" className="font-medium text-midnight underline decoration-gold underline-offset-4">Apply to the Academy</Link></>}
     >
       <Suspense fallback={<div className="h-72" aria-hidden />}>

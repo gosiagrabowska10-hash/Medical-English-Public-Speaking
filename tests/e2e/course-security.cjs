@@ -35,7 +35,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   const { data: keys, error: ke } = await A.c.from('quiz_questions').select('correct_index');
   ok(!!ke || keys.length === 0, 'students cannot read quiz answer keys');
   const { data: pub } = await A.c.from('quiz_questions_public').select('*').eq('lesson_id', L01);
-  ok(pub.length === 4 && pub.every((q) => !('correct_index' in q) && !('explanation' in q)), 'public quiz view exposes questions without answers');
+  ok(pub.length === 6 && pub.every((q) => !('correct_index' in q) && !('explanation' in q)), 'public quiz view exposes questions without answers');
 
   // Self-enrolment and content editing
   const { error: se } = await A.c.from('enrollments').insert({ user_id: A.id });
@@ -52,7 +52,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(cl.completed === false && cl.missing.includes('quiz'), 'completion is refused while requirements are missing');
   const { error: fq } = await A.c.from('quiz_attempts').insert({ user_id: A.id, lesson_id: L01, answers: [1], score: 4, total: 4, passed: true });
   ok(!!fq, 'students cannot forge a passed quiz attempt');
-  const r = await A.c.rpc('submit_quiz', { _lesson: L01, _answers: [0, 0, 0, 0] });
+  const r = await A.c.rpc('submit_quiz', { _lesson: L01, _answers: [0, 0, 0, 0, 0, 0] });
   ok(r.data && r.data.passed === false && r.data.score === 0, 'quiz is scored on the server');
   const { error: sa } = await A.c.from('assignment_submissions').insert({ user_id: A.id, lesson_id: L01, body: 'x', status: 'approved' });
   ok(!!sa, 'students cannot insert or self-approve assignment submissions');
@@ -63,8 +63,8 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(c2.length === 36, 'enrolled student can read all published lesson content');
   const { data: in4 } = await A.c.rpc('complete_lesson', { _lesson: L04 });
   ok(in4.completed === false && in4.missing.includes('content_in_preparation'), 'lessons still in preparation cannot be completed');
-  await A.c.rpc('save_exercise', { _lesson: L07, _response: 'x'.repeat(200) });
-  await A.c.rpc('submit_assignment', { _lesson: L07, _body: Array(100).fill('word').join(' ') });
+  await A.c.rpc('save_exercise', { _lesson: L07, _response: 'x'.repeat(300) });
+  await A.c.rpc('submit_assignment', { _lesson: L07, _body: Array(220).fill('word').join(' ') });
   await B.c.rpc('start_lesson', { _lesson: L07 });
 
   // Isolation between students
@@ -84,7 +84,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await B.c.from('lessons').update({ summary: 'Edited by content editor' }).eq('id', L04);
   ok(sql(`select summary from public.lessons where id='${L04}'`) === 'Edited by content editor', 'content editors can edit lessons without redeploying');
   const { data: staffKeys } = await B.c.from('quiz_questions').select('correct_index').eq('lesson_id', L01);
-  ok(staffKeys.length === 4, 'content editors can manage quiz answer keys');
+  ok(staffKeys.length === 6, 'content editors can manage quiz answer keys');
   sql(`update public.lessons set summary = (select summary from public.lessons where code='L04') where id='${L04}'`);
 
   sql(`delete from auth.users where id in ('${A.id}','${B.id}')`);

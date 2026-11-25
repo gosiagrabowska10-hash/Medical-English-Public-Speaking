@@ -4,7 +4,7 @@ import { Wordmark } from "@/components/brand/wordmark";
 
 const nav = [
   [LayoutDashboard, "Dashboard"], [Route, "My Learning Path"], [BookOpen, "Curriculum"], [MessagesSquare, "AI Teachers"],
-  [Mic, "Speaking Studio"], [Theater, "Simulation Center"], [ClipboardList, "Assignments"], [TrendingUp, "My Progress"],
+  [Mic, "Speaking Studio"], [Theater, "Simulation Centre"], [ClipboardList, "Assignments"], [TrendingUp, "My Progress"],
   [LibraryBig, "Resources"], [CalendarDays, "Live Coaching"], [Award, "Certificates"], [Settings, "Settings"],
 ] as const;
 

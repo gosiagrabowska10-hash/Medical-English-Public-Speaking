@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
 export const inclusions = [
-  "Ten-week guided program with a structured weekly learning path",
+  "Ten-week guided programme with a structured weekly learning path",
   "12 modules, 30 core lessons and 6 practical workshops",
   "Unlimited practice with six specialised AI teachers (fair-use limits apply)",
   "Speaking Studio: record, review and analyse your presentations",
-  "Simulation Center: conferences, interviews, podcasts and difficult audiences",
+  "Simulation Centre: conferences, interviews, podcasts and difficult audiences",
   "Initial, intermediate and final assessments",
   "One live group coaching session with an Academy instructor",
   "Human review of your final presentation against the published rubric",
@@ -24,7 +24,7 @@ export function PricingCard() {
   return (
     <div className="grid overflow-hidden rounded-sm bg-white shadow-lifted lg:grid-cols-[1fr_1.3fr]">
       <div className="on-dark flex flex-col bg-midnight p-8 text-ivory md:p-12">
-        <p className="text-eyebrow font-semibold uppercase tracking-[var(--tracking-eyebrow)] text-gold-light">Professional Program</p>
+        <p className="text-eyebrow font-semibold uppercase tracking-[var(--tracking-eyebrow)] text-gold-light">Professional Programme</p>
         <h3 className="mt-4 font-serif text-4xl leading-tight">{site.program.name}</h3>
         <p className="mt-4 text-ivory/70">Ten weeks · Online · Taught in English</p>
         <div className="mt-10 border-t border-white/10 pt-8">

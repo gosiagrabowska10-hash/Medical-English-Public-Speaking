@@ -28,6 +28,13 @@ function Exercise({ page }: { page: LessonPage }) {
     <div className="max-w-2xl space-y-5">
       <div className="flex flex-wrap items-center gap-3"><h2 className="font-serif text-3xl text-midnight">{ex.title}</h2>{done && <Badge tone="success" dot>Saved</Badge>}</div>
       <p className="leading-relaxed text-ink-muted">{ex.instructions}</p>
+      {ex.steps && ex.steps.length > 0 && (
+        <ol className="space-y-2 rounded-sm bg-white p-5 text-[0.9375rem] leading-relaxed text-ink shadow-hairline">
+          {ex.steps.map((st, i) => (
+            <li key={i} className="flex gap-3"><span className="font-serif text-lg leading-6 text-gold-deep lining-nums">{i + 1}</span><span>{st}</span></li>
+          ))}
+        </ol>
+      )}
       <form
         onSubmit={(e) => { e.preventDefault(); start(async () => { const r = await saveExerciseAction(page.lesson.id, page.lesson.code, value); setMsg({ ok: r.ok, text: r.ok ? r.message ?? "Saved." : r.message }); if (r.ok) router.refresh(); }); }}
         className="space-y-4"
@@ -40,6 +47,26 @@ function Exercise({ page }: { page: LessonPage }) {
         {msg && <Status ok={msg.ok}>{msg.text}</Status>}
         <Button type="submit" disabled={pending}>{pending ? "Saving…" : done ? "Update exercise" : "Save exercise"}</Button>
       </form>
+      {ex.self_check && ex.self_check.length > 0 && (
+        <div className="rounded-sm bg-ivory-deep/70 p-5">
+          <p className="text-eyebrow font-semibold uppercase tracking-[0.16em] text-gold-deep">Self-check</p>
+          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink">
+            {ex.self_check.map((c) => <li key={c} className="flex gap-2.5"><CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-gold-deep" />{c}</li>)}
+          </ul>
+        </div>
+      )}
+      {ex.model_answer && (
+        done ? (
+          <details className="group rounded-sm bg-white shadow-hairline">
+            <summary className="cursor-pointer list-none p-5 font-medium text-midnight [&::-webkit-details-marker]:hidden">
+              Compare with a model answer <span className="text-sm font-normal text-ink-subtle">(fictional example)</span>
+            </summary>
+            <div className="whitespace-pre-line border-t border-stone p-5 text-[0.9375rem] leading-relaxed text-ink-muted">{ex.model_answer}</div>
+          </details>
+        ) : (
+          <p className="text-sm text-ink-subtle">A model answer becomes available after you save your own response.</p>
+        )
+      )}
     </div>
   );
 }
@@ -147,6 +174,19 @@ function Assignment({ page }: { page: LessonPage }) {
         {a.required && <Badge>Required</Badge>}
       </div>
       <p className="leading-relaxed text-ink-muted">{a.brief}</p>
+      {a.criteria && a.criteria.length > 0 && (
+        <div className="overflow-hidden rounded-sm bg-white shadow-hairline">
+          <p className="border-b border-stone px-5 py-3 text-eyebrow font-semibold uppercase tracking-[0.16em] text-gold-deep">Assessment criteria</p>
+          <dl className="divide-y divide-stone">
+            {a.criteria.map((c) => (
+              <div key={c.criterion} className="grid gap-1 px-5 py-3 text-sm sm:grid-cols-[180px_1fr] sm:gap-4">
+                <dt className="font-medium text-ink">{c.criterion}</dt>
+                <dd className="text-ink-muted">{c.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
       {page.submission?.feedback && <div className="rounded-sm bg-info-bg p-4 text-sm text-info"><strong className="font-medium">Instructor feedback: </strong>{page.submission.feedback}</div>}
       <form
         onSubmit={(e) => { e.preventDefault(); start(async () => { const r = await submitAssignmentAction(page.lesson.id, page.lesson.code, value); setMsg({ ok: r.ok, text: r.ok ? r.message ?? "Submitted." : r.message }); if (r.ok) router.refresh(); }); }}

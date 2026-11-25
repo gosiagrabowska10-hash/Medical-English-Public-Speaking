@@ -17,7 +17,7 @@ import { JsonLd, courseSchema, organizationSchema, pageMetadata } from "@/lib/se
 export const metadata = pageMetadata({
   title: "Medical Public Speaking & English Communication for Doctors",
   description:
-    "A ten-week international program helping non-native English-speaking doctors present research, speak at conferences and answer difficult questions with confidence. AI practice plus human feedback.",
+    "A ten-week international programme helping non-native English-speaking doctors present research, speak at conferences and answer difficult questions with confidence. AI practice plus human feedback.",
   path: "/",
 });
 
@@ -73,7 +73,7 @@ export default function HomePage() {
                 <Link href="/about">Explore the Academy</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/curriculum">Discover the Program</Link>
+                <Link href="/curriculum">Discover the Programme</Link>
               </Button>
             </div>
             <dl className="mt-16 grid max-w-xl grid-cols-2 gap-y-8 border-t border-stone-deep pt-8 sm:grid-cols-4">
@@ -130,7 +130,7 @@ export default function HomePage() {
             light
             eyebrow="The Transformation"
             title="From knowing your subject to commanding the room."
-            lead="The program is built around practical communication outcomes. Progress depends on your starting point and the practice you invest; we do not promise career or clinical results — we promise a rigorous method and honest feedback."
+            lead="The programme is built around practical communication outcomes. Progress depends on your starting point and the practice you invest; we do not promise career or clinical results — we promise a rigorous method and honest feedback."
           />
           <ul className="self-end border-t border-white/12">
             {outcomes.map((o) => (
@@ -170,8 +170,8 @@ export default function HomePage() {
           <EditorialVisual variant="grid" className="order-last aspect-[5/4] w-full lg:order-first" />
           <div>
             <SectionHeader
-              eyebrow="The Program"
-              title="A ten-week professional program."
+              eyebrow="The Programme"
+              title="A ten-week professional programme."
               lead="A structured weekly path from foundations to a final medical keynote. Each lesson combines explanation, examples, practical exercises, AI practice and a short knowledge check."
             />
             <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-stone-deep/70">
@@ -300,7 +300,7 @@ export default function HomePage() {
       {/* 11 — PRICING */}
       <Section tone="stone" id="pricing">
         <Container>
-          <SectionHeader align="center" eyebrow="Tuition" title="The Professional Program" lead="One comprehensive program, with everything you need to complete it included." className="mb-14" />
+          <SectionHeader align="center" eyebrow="Tuition" title="The Professional Programme" lead="One comprehensive programme, with everything you need to complete it included." className="mb-14" />
           <PricingCard />
         </Container>
       </Section>

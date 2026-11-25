@@ -6,14 +6,14 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Contact",
-  description: "Contact The Medical Speaking Academy about admissions, the program, partnerships, faculty opportunities or media enquiries.",
+  description: "Contact The Medical Speaking Academy about admissions, the programme, partnerships, faculty opportunities or media enquiries.",
   path: "/contact",
 });
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="We would be glad to hear from you." lead="Questions about admissions, the program, partnerships or media — send us a message and the right person will reply." />
+      <PageHero eyebrow="Contact" title="We would be glad to hear from you." lead="Questions about admissions, the programme, partnerships or media — send us a message and the right person will reply." />
       <Section tone="white">
         <Container className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           <div className="space-y-10">

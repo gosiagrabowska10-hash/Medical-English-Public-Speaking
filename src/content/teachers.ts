@@ -13,7 +13,7 @@ export const aiTeachers: AiTeacher[] = [
   {
     slug: "speaking-mentor",
     name: "Speaking Mentor",
-    role: "Your guide through the program",
+    role: "Your guide through the programme",
     focus: "Confidence, goal-setting and reflection",
     approach:
       "Calm and Socratic. Asks one question at a time, helps you reflect on each attempt, and connects every exercise to your personal goals.",

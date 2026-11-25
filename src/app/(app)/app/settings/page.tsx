@@ -63,7 +63,7 @@ async function Settings() {
       <Panel id="privacy" title="Privacy and consent" lead="You can change these choices at any time. Each change is recorded with its date.">
         <div className="divide-y divide-stone border-y border-stone">
           <ConsentToggle kind="recording" granted={given("recording")} title="Voice and video recording" description="Allows the Speaking Studio, simulations and assessments to record and analyse your speech. Required for practical exercises. Please never include identifiable patient information." />
-          <ConsentToggle kind="marketing_email" granted={given("marketing_email")} title="News and educational articles by email" description="Occasional emails about new articles, programs and events. Optional." />
+          <ConsentToggle kind="marketing_email" granted={given("marketing_email")} title="News and educational articles by email" description="Occasional emails about new articles, programmes and events. Optional." />
         </div>
         {accepted && <p className="mt-4 text-sm text-ink-subtle">Terms and Privacy Policy accepted on {new Date(accepted.created_at).toLocaleDateString("en-GB")}.</p>}
       </Panel>

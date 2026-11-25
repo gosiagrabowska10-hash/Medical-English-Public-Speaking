@@ -47,8 +47,8 @@ async function Dashboard() {
         <h1 className="font-serif text-h1 text-midnight">Welcome back, {salutation}.</h1>
         <p className="mt-4 max-w-2xl text-lead text-ink-muted">
           {remaining > 0
-            ? `Your account is ready. ${remaining === 1 ? "One step remains" : `${remaining} steps remain`} before your program begins.`
-            : "Your account is fully prepared. Your learning path will appear here when your program begins."}
+            ? `Your account is ready. ${remaining === 1 ? "One step remains" : `${remaining} steps remain`} before your programme begins.`
+            : "Your account is fully prepared. Your learning path will appear here when your programme begins."}
         </p>
       </header>
 
@@ -72,7 +72,7 @@ async function Dashboard() {
 
         <Card tone="dark" className="flex flex-col p-7 md:p-8">
           <BookOpen aria-hidden className="size-6 text-gold-light" strokeWidth={1.4} />
-          <h2 className="mt-5 font-serif text-2xl">Your program</h2>
+          <h2 className="mt-5 font-serif text-2xl">Your programme</h2>
           {course.enrolled ? (
             <>
               <div className="mt-4 [&_span]:text-ivory/80"><Progress value={course.totals.mandatory ? (course.totals.completed / course.totals.mandatory) * 100 : 0} label={`${course.totals.completed} of ${course.totals.mandatory} lessons and workshops completed`} /></div>
@@ -80,7 +80,7 @@ async function Dashboard() {
             </>
           ) : (
             <p className="mt-3 text-sm leading-relaxed text-ivory/70">
-              You are not enrolled in a cohort yet. Lesson 1 is open as a preview; the full ten-week program unlocks when your enrolment is confirmed.
+              You are not enrolled in a cohort yet. Lesson 1 is open as a preview; the full ten-week programme unlocks when your enrolment is confirmed.
             </p>
           )}
           <div className="mt-auto flex flex-wrap gap-3 pt-6">

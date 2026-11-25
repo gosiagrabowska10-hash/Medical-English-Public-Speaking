@@ -40,7 +40,7 @@ export function SiteFooter() {
         <div className="mt-20 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs leading-relaxed text-ivory/50 md:flex-row md:items-center md:justify-between">
           <p>© <CopyrightYear /> {site.name}. All rights reserved.</p>
           <p className="max-w-xl md:text-right">
-            The Academy issues its own Certificate of Completion. It is not a university, and the program does not currently carry external accreditation or CME/CPD credit.
+            The Academy issues its own Certificate of Completion. It is not a university, and the programme does not currently carry external accreditation or CME/CPD credit.
           </p>
         </div>
       </div>
