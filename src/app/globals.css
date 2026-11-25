@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ───────────────────────────────────────────────────────────
+   The Medical Speaking Academy — design tokens
+   See docs/DESIGN_SYSTEM.md
+   ─────────────────────────────────────────────────────────── */
+@theme {
+  /* Brand palette */
+  --color-midnight: #101b2d;
+  --color-navy: #18283c;
+  --color-navy-soft: #2a3b52;
+  --color-ivory: #f7f4ee;
+  --color-ivory-deep: #efeadf;
+  --color-white: #ffffff;
+  --color-gold: #b69a68;
+  --color-gold-light: #d6c39d;
+  --color-gold-deep: #7a6235; /* AA text on ivory/white */
+  --color-stone: #e9e7e1;
+  --color-stone-deep: #d5d1c7;
+  --color-ink: #101b2d;
+  --color-ink-muted: #4a5568;
+  --color-ink-subtle: #6b7280;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Semantic status (muted, institutional) */
+  --color-success: #2f6b4f;
+  --color-success-bg: #e6efe9;
+  --color-warning: #8a5a14;
+  --color-warning-bg: #f5ecdc;
+  --color-danger: #9b2c2c;
+  --color-danger-bg: #f6e4e2;
+  --color-info: #2b4c7e;
+  --color-info-bg: #e4eaf3;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Typography */
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-display: clamp(2.75rem, 1.6rem + 4.6vw, 5.5rem);
+  --text-display--line-height: 1.02;
+  --text-h1: clamp(2.375rem, 1.6rem + 3vw, 4rem);
+  --text-h1--line-height: 1.06;
+  --text-h2: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --text-h2--line-height: 1.1;
+  --text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+  --text-h3--line-height: 1.2;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.65;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+
+  --tracking-eyebrow: 0.22em;
+
+  /* Radius, shadow, motion */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --shadow-hairline: 0 0 0 1px rgb(16 27 45 / 0.06);
+  --shadow-soft: 0 1px 2px rgb(16 27 45 / 0.04), 0 8px 24px -12px rgb(16 27 45 / 0.12);
+  --shadow-lifted: 0 2px 4px rgb(16 27 45 / 0.04), 0 24px 48px -24px rgb(16 27 45 / 0.22);
+  --ease-refined: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --animate-fade-up: fade-up 0.7s var(--ease-refined) both;
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+  /* Cormorant defaults to old-style figures; use lining figures for numbers and statistics. */
+  .font-serif { font-variant-numeric: lining-nums proportional-nums; }
+  ::selection { background: var(--color-gold-light); color: var(--color-midnight); }
+  :focus-visible {
+    outline: 2px solid var(--color-gold-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible { outline-color: var(--color-gold-light); }
+}
+
+@layer components {
+  /* Long-form editorial text (legal, articles, lessons) */
+  .prose-academy { color: var(--color-ink-muted); font-size: 1.0625rem; line-height: 1.8; max-width: 68ch; }
+  .prose-academy > * + * { margin-top: 1.15em; }
+  .prose-academy h2 { font-family: var(--font-serif); color: var(--color-ink); font-size: 2rem; line-height: 1.15; font-weight: 500; margin-top: 2.2em; }
+  .prose-academy h3 { font-family: var(--font-sans); color: var(--color-ink); font-size: 1.0625rem; font-weight: 600; margin-top: 1.8em; }
+  .prose-academy strong { color: var(--color-ink); font-weight: 600; }
+  .prose-academy a { color: var(--color-gold-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-academy ul { list-style: none; padding-left: 0; }
+  .prose-academy ul > li { position: relative; padding-left: 1.5rem; }
+  .prose-academy ul > li + li { margin-top: 0.5em; }
+  .prose-academy ul > li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.75rem; height: 1px; background: var(--color-gold); }
+  .prose-academy blockquote { border-left: 1px solid var(--color-gold); padding-left: 1.5rem; font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.4; color: var(--color-ink); font-style: italic; }
 }
