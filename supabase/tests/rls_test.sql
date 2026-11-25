@@ -111,7 +111,7 @@ do $$ begin
 exception when insufficient_privilege then raise notice 'PASS: students cannot delete their deletion request record';
 end $$;
 update public.data_deletion_requests set status = 'completed';
-reset role; select pg_temp.check((select status = 'pending' from public.data_deletion_requests), 'student cannot mark their own request as processed');
+reset role; select pg_temp.check((select status = 'pending' from public.data_deletion_requests where user_id = '11111111-1111-1111-1111-111111111111'), 'student cannot mark their own request as processed');
 
 -- Student B cannot see A
 select pg_temp.act_as('22222222-2222-2222-2222-222222222222');

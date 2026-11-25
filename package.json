@@ -10,7 +10,12 @@
     "typecheck": "next typegen && tsc --noEmit",
     "db:start": "supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,storage-api,postgres-meta,supavisor",
     "db:reset": "supabase db reset",
-    "test:rls": "bash supabase/tests/run_local.sh"
+    "test:rls": "bash supabase/tests/run_local.sh",
+    "test:rls:supabase": "(echo 'begin;'; cat supabase/tests/rls_test.sql; echo 'rollback;') | psql \"$(npx supabase status -o env | grep '^DB_URL=' | cut -d= -f2- | tr -d '\\\"')\" -v ON_ERROR_STOP=1 -q -tA 2>&1 | grep -oE '(PASS|FAIL): .*|ERROR.*|ALL RLS TESTS COMPLETED'",
+    "test:e2e": "node tests/e2e/auth-flow.cjs",
+    "test:security": "node tests/e2e/api-security.cjs",
+    "test:site": "node tests/e2e/site-qa.cjs",
+    "check:secrets": "bash scripts/check-secrets.sh --history"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -33,6 +38,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "playwright": "^1.63.0",
     "supabase": "^3.4.0",
     "tailwindcss": "4.3.3",
     "typescript": "^5"
