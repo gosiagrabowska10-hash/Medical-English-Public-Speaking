@@ -15,7 +15,7 @@ export function AuthShell({ title, lead, children, footer }: { title: string; le
             <div role="status" className="mt-8 flex gap-3 rounded-sm bg-info-bg p-4 text-sm leading-relaxed text-info">
               <Info aria-hidden className="mt-0.5 size-4 shrink-0" />
               <p>
-                Student accounts are not open yet. Registration and sign-in will be enabled when the student platform launches. For admissions questions, please{" "}
+                Student accounts are not open yet: the account service has not been connected. Registration and sign-in will be enabled when the student platform launches. For admissions questions, please{" "}
                 <Link href="/contact?topic=admissions" className="underline underline-offset-2">contact us</Link>.
               </p>
             </div>
