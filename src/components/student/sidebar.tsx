@@ -15,7 +15,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <ul className="space-y-0.5">
       {studentNav.map(({ href, label, icon: Icon, stage }) => {
-        const active = href === "/app" ? pathname === "/app" : pathname.startsWith(href);
+        const active = href === "/app" ? pathname === "/app" : pathname.startsWith(href) || (href === "/app/curriculum" && pathname.startsWith("/app/learn"));
         if (stage) {
           return (
             <li key={href}>

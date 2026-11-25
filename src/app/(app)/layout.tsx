@@ -14,9 +14,13 @@ const footer = (
 export default function StudentLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh bg-ivory">
-      <StudentSidebar footer={footer} />
+      <Suspense fallback={<div aria-hidden className="sticky top-0 hidden h-dvh w-64 shrink-0 bg-midnight lg:block" />}>
+        <StudentSidebar footer={footer} />
+      </Suspense>
       <div className="min-w-0 flex-1">
-        <StudentMobileNav footer={footer} />
+        <Suspense fallback={<div aria-hidden className="h-16 bg-midnight lg:hidden" />}>
+          <StudentMobileNav footer={footer} />
+        </Suspense>
         <main id="main" className="mx-auto max-w-6xl p-5 md:p-10">{children}</main>
       </div>
     </div>

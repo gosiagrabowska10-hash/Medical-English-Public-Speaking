@@ -11,6 +11,8 @@ npm run test:rls                      # 33 checks on plain PostgreSQL 16 (option
 npm run test:e2e                      # 19 browser checks, real emails via Mailpit
 npm run test:security                 # 23 API-level attack checks
 npm run test:site                     # public site: 22 routes × 3 viewports, links, SEO, contact API
+npm run test:course                   # 36 browser checks of the course experience (Stage 3)
+npm run test:course-security          # 26 API-level checks of content and progress security (Stage 3)
 ```
 Credentials for the local stack are read at runtime from `npx supabase status`; none are stored in the repository. Test scripts refuse to run against a non-local Supabase.
 
@@ -23,3 +25,5 @@ Credentials for the local stack are read at runtime from `npx supabase status`; 
 | E2E account flows | 19 / 19 |
 | API security | 23 / 23 |
 | Stage 1 site regression | 0 problems |
+| Stage 3 course E2E | 36 / 36 |
+| Stage 3 course security | 26 / 26 |

@@ -6,7 +6,8 @@ Premium international platform teaching medical public speaking and professional
 |---|---|---|
 | 1 | Design system and public website | Approved |
 | 2 | Student accounts, authentication, Supabase database, RLS | Approved — see `docs/STAGE_2_REPORT.md` |
-| 3+ | Curriculum and lesson player, AI Faculty, Speaking Studio, coaching, exams, payments | Planned — `docs/IMPLEMENTATION_PLAN.md` |
+| 3 | Curriculum, course player, progress, quizzes, exercises, assignments | Delivered for review — see `docs/STAGE_3_REPORT.md` |
+| 4+ | AI Faculty conversations, Speaking Studio, coaching, exams, payments | Planned — `docs/IMPLEMENTATION_PLAN.md` |
 
 **Stack:** Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind CSS v4 · Radix primitives · Supabase (Auth, Postgres, RLS) · Playwright tests.
 
@@ -15,6 +16,7 @@ Premium international platform teaching medical public speaking and professional
 - `docs/DESIGN_SYSTEM.md` — tokens and components (live at `/design-system`)
 - `docs/STUDENT_UI_DIRECTION.md` — approved student-platform visual direction (`/preview/lesson`, `/preview/studio`)
 - `docs/SUPABASE_SETUP.md` — connecting a hosted Supabase project (no secret keys required)
+- `docs/CONTENT_MANAGEMENT.md` — editing lessons, videos, quizzes and materials without a rebuild
 - `docs/TESTING.md` — how to run every test suite
 - `docs/STAGE_2_REPORT.md`, `docs/MILESTONE_1_REPORT.md` — test and status reports
 
@@ -53,6 +55,9 @@ Without Supabase variables the public website still runs; sign-in and registrati
 | `npm run test:e2e` | Browser tests of all account flows (needs running app, `BASE_URL`) |
 | `npm run test:security` | API-level attack tests with student sessions |
 | `npm run test:site` | Public-site regression at 3 viewports |
+| `npm run test:course` | Stage 3 course experience in the browser (36 checks) |
+| `npm run test:course-security` | Stage 3 content and progress security via the API (26 checks) |
+| `npm run content:generate` | Regenerate the curriculum seed migration from `src/content` |
 
 ## Security principles
 - No secret keys in the repository; `.env*` files are git-ignored (only `.env.example` with empty placeholders is tracked).

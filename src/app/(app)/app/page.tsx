@@ -9,6 +9,8 @@ import { aiTeachers } from "@/content/teachers";
 import { TeacherGlyph } from "@/components/marketing/teacher-card";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { getCurriculum } from "@/lib/course";
+import { Progress } from "@/components/ui/progress";
 import Loading from "./loading";
 
 export const metadata = { title: "Dashboard" };
@@ -24,7 +26,9 @@ export default function DashboardPage() {
 async function Dashboard() {
   const user = await requireUser("/app");
   const supabase = (await createClient())!;
-  const { data: consents } = await supabase.from("current_consents").select("kind,granted");
+  const [{ data: consents }, course] = await Promise.all([supabase.from("current_consents").select("kind,granted"), getCurriculum()]);
+  const lessons = course.modules.flatMap((m) => m.lessons);
+  const next = lessons.find((l) => l.status === "in_progress") ?? lessons.find((l) => l.status === "not_started" && (course.enrolled || l.is_preview));
   const recordingConsent = consents?.some((c) => c.kind === "recording" && c.granted) ?? false;
   const profileComplete = Boolean(user.profile.country && user.profile.specialty);
   const salutation = user.profile.title === "Dr" || user.profile.title === "Prof." ? `${user.profile.title} ${user.profile.last_name}` : user.profile.first_name;
@@ -69,11 +73,19 @@ async function Dashboard() {
         <Card tone="dark" className="flex flex-col p-7 md:p-8">
           <BookOpen aria-hidden className="size-6 text-gold-light" strokeWidth={1.4} />
           <h2 className="mt-5 font-serif text-2xl">Your program</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ivory/70">
-            You are not enrolled in a cohort yet. Once enrolment is confirmed, your ten-week learning path, lessons and progress will appear here.
-          </p>
-          <div className="mt-auto pt-6">
-            <Button asChild variant="gold"><Link href="/curriculum">Review the curriculum <ArrowRight /></Link></Button>
+          {course.enrolled ? (
+            <>
+              <div className="mt-4 [&_span]:text-ivory/80"><Progress value={course.totals.mandatory ? (course.totals.completed / course.totals.mandatory) * 100 : 0} label={`${course.totals.completed} of ${course.totals.mandatory} lessons and workshops completed`} /></div>
+              {next && <p className="mt-4 text-sm text-ivory/70">Next: <span className="text-ivory">{next.code} · {next.title}</span></p>}
+            </>
+          ) : (
+            <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+              You are not enrolled in a cohort yet. Lesson 1 is open as a preview; the full ten-week program unlocks when your enrolment is confirmed.
+            </p>
+          )}
+          <div className="mt-auto flex flex-wrap gap-3 pt-6">
+            {next && <Button asChild variant="gold"><Link href={`/app/learn/${next.code}`}>{next.status === "in_progress" ? "Continue learning" : course.enrolled ? "Start learning" : "Open the preview lesson"} <ArrowRight /></Link></Button>}
+            <Button asChild variant="outline-light"><Link href="/app/curriculum">Curriculum</Link></Button>
           </div>
         </Card>
       </div>

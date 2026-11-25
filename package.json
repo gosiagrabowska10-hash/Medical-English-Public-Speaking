@@ -15,7 +15,10 @@
     "test:e2e": "node tests/e2e/auth-flow.cjs",
     "test:security": "node tests/e2e/api-security.cjs",
     "test:site": "node tests/e2e/site-qa.cjs",
-    "check:secrets": "bash scripts/check-secrets.sh --history"
+    "check:secrets": "bash scripts/check-secrets.sh --history",
+    "test:course": "node tests/e2e/course-flow.cjs",
+    "test:course-security": "node tests/e2e/course-security.cjs",
+    "content:generate": "tsx scripts/generate-content-sql.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -41,6 +44,7 @@
     "playwright": "^1.63.0",
     "supabase": "^3.4.0",
     "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

@@ -2,10 +2,13 @@
 
 No secret key is required for Stage 2. The app uses only the **Project URL** and the **publishable (anon) key**, which are designed to be public; every table is protected by Row Level Security and column privileges.
 
-## 1. Apply the database migration (no credentials needed)
-Supabase Dashboard → **SQL Editor** → New query → paste the full contents of
-`supabase/migrations/20261125000001_identity_and_governance.sql` → **Run**.
-Expected result: "Success. No rows returned".
+## 1. Apply the database migrations (no credentials needed)
+Supabase Dashboard → **SQL Editor** → New query → paste and **Run** each file, in this order:
+1. `supabase/migrations/20261125000001_identity_and_governance.sql` (Stage 2: accounts, roles, consent)
+2. `supabase/migrations/20261125000002_curriculum_and_progress.sql` (Stage 3: course structure, progress)
+3. `supabase/migrations/20261125000003_curriculum_content.sql` (Stage 3: 12 modules, 36 lessons/workshops)
+
+Expected result for each: "Success. No rows returned".
 
 (Alternative for developers: `npx supabase link --project-ref <ref>` then `npx supabase db push`; this asks for the database password locally — never share it.)
 

@@ -4,8 +4,8 @@ import { Award, BookOpen, CalendarDays, ClipboardList, LayoutDashboard, LibraryB
 export const studentNav: { href: string; label: string; icon: LucideIcon; stage?: number }[] = [
   { href: "/app", label: "Dashboard", icon: LayoutDashboard },
   { href: "/app/path", label: "My Learning Path", icon: Route, stage: 3 },
-  { href: "/app/curriculum", label: "Curriculum", icon: BookOpen, stage: 3 },
-  { href: "/app/teachers", label: "AI Teachers", icon: MessagesSquare, stage: 4 },
+  { href: "/app/curriculum", label: "Curriculum", icon: BookOpen },
+  { href: "/app/teachers", label: "AI Teachers", icon: MessagesSquare },
   { href: "/app/studio", label: "Speaking Studio", icon: Mic, stage: 4 },
   { href: "/app/simulations", label: "Simulation Center", icon: Theater, stage: 4 },
   { href: "/app/assignments", label: "Assignments", icon: ClipboardList, stage: 5 },
