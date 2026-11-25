@@ -18,7 +18,8 @@
     "check:secrets": "bash scripts/check-secrets.sh --history",
     "test:course": "node tests/e2e/course-flow.cjs",
     "test:course-security": "node tests/e2e/course-security.cjs",
-    "content:generate": "tsx scripts/generate-content-sql.ts"
+    "content:generate": "tsx scripts/generate-content-sql.ts",
+    "content:review": "tsx scripts/generate-lesson-review.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -41,6 +42,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "marked": "^18.3.0",
     "playwright": "^1.63.0",
     "supabase": "^3.4.0",
     "tailwindcss": "4.3.3",
