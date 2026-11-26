@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Label, Textarea, FieldHint } from "@/components/ui/form";
 import { saveExerciseAction, submitAssignmentAction, submitQuizAction, type QuizResult } from "@/lib/course-actions";
 import type { LessonPage } from "@/lib/course";
+import { PracticeRounds } from "./practice-rounds";
 import { cn } from "@/lib/utils";
 
 function Status({ ok, children }: { ok: boolean; children: React.ReactNode }) {
@@ -215,17 +216,21 @@ export function LessonTabs({ page, lessonContent }: { page: LessonPage; lessonCo
   const c = page.content!;
   const exDone = Boolean(page.progress?.exercise_done_at);
   const L = LABELS[page.lesson.kind];
+  const isWorkshop = page.lesson.kind === "workshop" && Boolean(c.body.workshop);
+  const roundsDone = ["round1", "round2", "round3"].every((k) => page.workshopSteps.some((r) => r.step_key === k && r.completed_at));
   return (
     <Tabs defaultValue="lesson">
       <TabsList aria-label={L.aria} className="flex-wrap gap-x-6 gap-y-1 overflow-visible sm:flex-nowrap sm:gap-8">
         <TabsTrigger value="lesson">{L.lesson}</TabsTrigger>
         {c.exercise && <TabsTrigger value="exercise">{L.exercise}{exDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
+        {isWorkshop && <TabsTrigger value="rounds">{L.exercise}{roundsDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
         {page.quiz.length > 0 && <TabsTrigger value="quiz">{L.quiz}{page.passedQuiz && <CheckCircle2 aria-label="passed" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
         <TabsTrigger value="materials">{L.materials}</TabsTrigger>
         {c.assignment && <TabsTrigger value="assignment">{L.assignment}{page.submission && <CheckCircle2 aria-label="submitted" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
       </TabsList>
       <TabsContent value="lesson">{lessonContent}</TabsContent>
       {c.exercise && <TabsContent value="exercise"><Exercise page={page} /></TabsContent>}
+      {isWorkshop && <TabsContent value="rounds"><PracticeRounds page={page} /></TabsContent>}
       {page.quiz.length > 0 && <TabsContent value="quiz"><Quiz page={page} /></TabsContent>}
       <TabsContent value="materials"><Materials page={page} /></TabsContent>
       {c.assignment && <TabsContent value="assignment"><Assignment page={page} /></TabsContent>}

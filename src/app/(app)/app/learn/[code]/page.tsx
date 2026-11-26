@@ -12,6 +12,7 @@ import { AiTeacherCard } from "@/components/course/ai-teacher-card";
 import { requireUser } from "@/lib/auth";
 import { getCurriculum, getLesson } from "@/lib/course";
 import { LessonText } from "@/components/course/lesson-text";
+import { WorkshopOverview } from "@/components/course/workshop-overview";
 import Loading from "../../loading";
 
 export const metadata = { title: "Lesson" };
@@ -78,7 +79,7 @@ async function Lesson({ params }: { params: PageProps<"/app/learn/[code]">["para
               kind={lesson.kind}
               inPreparation={lesson.content_status === "in_preparation"}
             />
-            <LessonTabs page={page} lessonContent={<LessonText body={page.content!.body} inPreparation={lesson.content_status === "in_preparation"} kind={lesson.kind} />} />
+            <LessonTabs page={page} lessonContent={<><LessonText body={page.content!.body} inPreparation={lesson.content_status === "in_preparation"} kind={lesson.kind} />{page.content!.body.workshop && <WorkshopOverview ws={page.content!.body.workshop} />}</>} />
             <CompletionPanel page={page} />
             <AiTeacherCard slug={lesson.ai_teacher} lessonTitle={lesson.title} />
           </>

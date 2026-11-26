@@ -79,6 +79,24 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await A.c.from('assignment_submissions').update({ status: 'approved' }).eq('user_id', A.id);
   ok(sql(`select status from public.assignment_submissions where user_id='${A.id}'`) === 'submitted', 'students cannot approve their own assignment');
 
+  // Workshop progress
+  const W1id = id('W1');
+  const { error: wl } = await A.c.rpc('save_workshop_step', { _lesson: W1id, _step: 'round1', _data: { a: 1 }, _complete: true });
+  ok(!!wl && /readiness/.test(wl.message), 'workshop steps stay locked until the readiness check is passed');
+  const { error: wd } = await A.c.from('workshop_progress').insert({ user_id: A.id, lesson_id: W1id, step_key: 'round1', completed_at: new Date().toISOString() });
+  ok(!!wd, 'students cannot write workshop progress directly');
+  await A.c.rpc('submit_quiz', { _lesson: W1id, _answers: [1, 1, 1, 1, 2] });
+  const { error: wbad } = await A.c.rpc('save_workshop_step', { _lesson: W1id, _step: 'round9', _data: {}, _complete: true });
+  ok(!!wbad, 'unknown workshop steps are rejected');
+  const { error: wok } = await A.c.rpc('save_workshop_step', { _lesson: W1id, _step: 'round1', _data: { comprehension: 'Fully correct' }, _complete: true });
+  ok(!wok, 'after the readiness check, a student can save a workshop step');
+  const { error: wnot } = await A.c.rpc('save_workshop_step', { _lesson: L07, _step: 'round1', _data: {}, _complete: true });
+  ok(!!wnot, 'workshop steps cannot be saved against a normal lesson');
+  const { data: bw } = await B.c.from('workshop_progress').select('user_id');
+  ok(bw.length === 0, "students cannot see other students' workshop progress");
+  const { data: wc } = await A.c.rpc('complete_lesson', { _lesson: W1id });
+  ok(wc.completed === false && wc.missing.includes('practice_rounds'), 'a workshop cannot be completed before all three practice rounds');
+
   // Staff
   sql(`insert into public.user_roles (user_id, role) values ('${B.id}', 'content_editor')`);
   await B.c.from('lessons').update({ summary: 'Edited by content editor' }).eq('id', L04);

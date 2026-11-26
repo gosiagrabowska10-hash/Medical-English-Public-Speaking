@@ -19,6 +19,7 @@ const workshopLabels: Record<string, string> = {
   exercise: "Log your practice rounds",
   quiz: "Pass the readiness check (70%)",
   assignment: "Submit the final task",
+  practice_rounds: "Complete all three practice rounds",
 };
 
 export function CompletionPanel({ page }: { page: LessonPage }) {
@@ -32,6 +33,7 @@ export function CompletionPanel({ page }: { page: LessonPage }) {
   const reqs = [
     ...(c.exercise ? ["exercise"] : []),
     ...(page.quiz.length ? ["quiz"] : []),
+    ...(page.lesson.kind === "workshop" && c.body.workshop ? ["practice_rounds"] : []),
     ...(c.assignment?.required ? ["assignment"] : []),
   ];
 

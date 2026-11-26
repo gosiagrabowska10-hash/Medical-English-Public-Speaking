@@ -7,6 +7,7 @@ Supabase Dashboard → **SQL Editor** → New query → paste and **Run** each f
 1. `supabase/migrations/20261125000001_identity_and_governance.sql` (Stage 2: accounts, roles, consent)
 2. `supabase/migrations/20261125000002_curriculum_and_progress.sql` (Stage 3: course structure, progress)
 3. `supabase/migrations/20261125000003_curriculum_content.sql` (Stage 3: 12 modules, 36 lessons/workshops)
+4. `supabase/migrations/20261126000004_workshop_progress.sql` (workshop practice rounds: save, pause and resume)
 
 Expected result for each: "Success. No rows returned".
 

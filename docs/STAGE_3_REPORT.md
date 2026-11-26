@@ -75,3 +75,8 @@ Security verified: answer keys never reach students; quiz scored on the server; 
 - **Workshop navigation implemented:** Briefing · Practice Rounds · Readiness Check · Workshop Pack · Final Task, with workshop wording in the completion panel and placeholders.
 - **W1 revised structure:** `docs/curriculum/workshop-W1-structure-v2.pdf` (facilitated and independent versions, intelligibility-based criteria with Beginning/Developing/Competent descriptors).
 - Tests: course E2E 43/43 (adds workshop navigation), course security 26/26, Stage 1–2 suites pass.
+
+## Addendum — Workshop I complete package (26 November 2026)
+- W1 written to the approved structure: briefing, 8 steps with facilitator guidance, 10 pressure cards, six-criteria rubric with examples, debrief, transfer plan and speaker card. Practice Rounds tab with save, pause, resume, a random pressure-card reveal and a progress table. Migration `20261126000004_workshop_progress.sql`.
+- Workshop Pack PDFs: participant workbook, assessment rubric, pressure cards and facilitator guide. Complete review document: `docs/curriculum/workshop-W1-complete.pdf`. Screenshots: `docs/screenshots/stage-3/w1-*.jpg`.
+- QA: course E2E 60/60, course security 33/33, consistency 34/34 (also in CI), all Stage 1–2 suites pass.

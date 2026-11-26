@@ -70,6 +70,7 @@ export type LessonPage = {
   passedQuiz: boolean;
   submission: { body: string; status: string; submitted_at: string; feedback: string | null } | null;
   missing: string[];
+  workshopSteps: { step_key: string; data: Record<string, unknown>; completed_at: string | null; updated_at: string }[];
 };
 
 export async function getLesson(code: string): Promise<LessonPage | null> {
@@ -84,11 +85,11 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
   ]);
   const base = { lesson: l, module: mod as ModuleRow, access: access === true, enrolled };
   if (access !== true) {
-    return { ...base, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [] };
+    return { ...base, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [], workshopSteps: [] };
   }
   // Opening a lesson marks it as started (idempotent, validated in the database).
   await supabase.rpc("start_lesson", { _lesson: l.id });
-  const [content, quiz, resources, progress, attempts, submission, missing] = await Promise.all([
+  const [content, quiz, resources, progress, attempts, submission, missing, wsteps] = await Promise.all([
     supabase.from("lesson_content").select("body,exercise,assignment,video_url,captions_url,video_note").eq("lesson_id", l.id).maybeSingle(),
     supabase.from("quiz_questions_public").select("id,position,prompt,options").eq("lesson_id", l.id).order("position"),
     supabase.from("lesson_resources").select("id,title,description,file_url,file_type,is_sample").eq("lesson_id", l.id).order("position"),
@@ -96,6 +97,9 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
     supabase.from("quiz_attempts").select("score,total,passed,created_at").eq("lesson_id", l.id).order("created_at", { ascending: false }),
     supabase.from("assignment_submissions").select("body,status,submitted_at,feedback").eq("lesson_id", l.id).maybeSingle(),
     supabase.rpc("lesson_requirements", { _lesson: l.id }),
+    l.kind === "workshop"
+      ? supabase.from("workshop_progress").select("step_key,data,completed_at,updated_at").eq("lesson_id", l.id)
+      : Promise.resolve({ data: [] as never[] }),
   ]);
   return {
     ...base,
@@ -108,6 +112,7 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
     submission: submission.data ?? null,
     // Fail closed: if requirements cannot be evaluated, treat the lesson as not completable.
     missing: missing.error ? ["unavailable"] : ((missing.data as string[]) ?? []),
+    workshopSteps: (wsteps.data ?? []) as LessonPage["workshopSteps"],
   };
 }
 

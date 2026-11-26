@@ -14,6 +14,7 @@ async function client() {
 const expired = { ok: false as const, message: "Your session has expired. Please sign in again." };
 const fail = (m: string | undefined) => {
   const msg = m ?? "";
+  if (/readiness check not passed/.test(msg)) return { ok: false as const, message: "Pass the Readiness Check to unlock the practice rounds." };
   if (/access denied/.test(msg)) return { ok: false as const, message: "You do not have access to this lesson." };
   const short = msg.match(/(response too short: .*|assignment too short: .*|please answer every question)/);
   if (short) return { ok: false as const, message: short[1].charAt(0).toUpperCase() + short[1].slice(1) + "." };
@@ -65,4 +66,12 @@ export async function completeLessonAction(lessonId: string, code: string): Prom
   const r = data as { completed: boolean; missing: string[] };
   refresh(code);
   return r.completed ? { ok: true, message: "Lesson completed." } : { ok: false, message: "Some requirements are still open.", };
+}
+
+export async function saveWorkshopStepAction(lessonId: string, code: string, step: string, data: Record<string, unknown>, complete: boolean): Promise<ActionResult> {
+  const s = await client(); if (!s) return expired;
+  const { error } = await s.rpc("save_workshop_step", { _lesson: lessonId, _step: step, _data: data, _complete: complete });
+  if (error) return fail(error.message);
+  refresh(code);
+  return { ok: true, message: complete ? "Step completed and saved." : "Progress saved." };
 }

@@ -37,7 +37,7 @@ for (const m of modules) {
       `  select id, ${q(it.code)}, '${it.kind}', ${q(slug)}, ${q(it.title)}, ${q(it.summary)}, ${s.minutes}, ${s.week}, ${i + 1}, ${!!s.preview}, '${s.video?.status ?? "not_recorded"}', '${s.status}', ${q(s.aiTeacher)} from public.modules where number = ${m.number}`,
       `  on conflict (code) do update set module_id = excluded.module_id, kind = excluded.kind, slug = excluded.slug, title = excluded.title, summary = excluded.summary, duration_minutes = excluded.duration_minutes, week = excluded.week, position = excluded.position, is_preview = excluded.is_preview, video_status = excluded.video_status, content_status = excluded.content_status, ai_teacher = excluded.ai_teacher;`,
     );
-    const body = s.body ?? { intro: it.summary, objectives: m.outcomes, sections: [], examples: [], demonstration: "", mistakes: [], reflection: [] };
+    const body = s.body ? { ...s.body, ...("workshop" in s ? { workshop: (s as { workshop: unknown }).workshop } : {}) } : { intro: it.summary, objectives: m.outcomes, sections: [], examples: [], demonstration: "", mistakes: [], reflection: [] };
     out.push(
       `insert into public.lesson_content (lesson_id, body, exercise, assignment, video_url, captions_url, video_note)`,
       `  select id, ${j(body)}, ${j(s.exercise)}, ${j(s.assignment)}, ${q(s.video?.url)}, ${q(s.video?.captions)}, ${q(s.video?.note)} from public.lessons where code = ${q(it.code)}`,

@@ -22,3 +22,6 @@ All course content lives in the database. Changes are visible to students on the
 insert into public.enrollments (user_id, cohort)
 select id, 'Cohort 1' from auth.users where email = 'student@example.com';
 ```
+
+## Workshops
+Workshop content uses the same tables. The structured workshop data (steps, timings, pressure cards, rubric, debrief questions and transfer plan) is stored in `lesson_content.body.workshop`, following the `WorkshopData` type in `src/content/lesson-types.ts`. Learners' practice-round logs are stored in `workshop_progress` and can only be written through `save_workshop_step()`, after the Readiness Check is passed. The Workshop Pack PDFs are generated from the same data: `npm run content:workshop -- W1`. Run `npm run check:consistency` after any change.

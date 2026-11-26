@@ -32,7 +32,7 @@ export function LessonText({ body, inPreparation, kind = "lesson" }: { body: Les
       <p className="!text-lead !text-ink">{body.intro}</p>
 
       <h2>Learning objectives</h2>
-      <p className="!mt-2 text-sm !text-ink-subtle">By the end of this lesson you will be able to:</p>
+      <p className="!mt-2 text-sm !text-ink-subtle">By the end of this {kind} you will be able to:</p>
       <ul>{body.objectives.map((o) => <li key={o}>{o}</li>)}</ul>
 
       {body.sections.map((s) => (
@@ -45,7 +45,7 @@ export function LessonText({ body, inPreparation, kind = "lesson" }: { body: Les
 
       {body.examples.length > 0 && (
         <section>
-          <h2>Professional examples</h2>
+          <h2>{kind === "workshop" ? "Model performances" : "Professional examples"}</h2>
           <p className="text-sm !text-ink-subtle">Illustrative, composite examples. Names, institutions and details are fictional; no patient information is used.</p>
           {body.examples.map((e) => (
             <div key={e.title} className="not-prose mt-5 rounded-sm bg-white p-6 shadow-hairline">
@@ -86,7 +86,7 @@ export function LessonText({ body, inPreparation, kind = "lesson" }: { body: Les
 
       {body.mistakes.length > 0 && (
         <section>
-          <h2>Common mistakes</h2>
+          <h2>{kind === "workshop" ? "Common practice traps" : "Common mistakes"}</h2>
           {typeof body.mistakes[0] === "string" ? (
             <ul>{body.mistakes.map((m) => <li key={String(m)}>{String(m)}</li>)}</ul>
           ) : (

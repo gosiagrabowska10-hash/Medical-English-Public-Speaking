@@ -27,6 +27,7 @@ export type LessonBody = {
   mistakes: ({ mistake: string; correction: string } | string)[];
   reflection: string[];
   references?: string[];
+  workshop?: WorkshopData;
 };
 
 export type Exercise = {
@@ -73,3 +74,62 @@ export function teachingWords(b: LessonBody): number {
   ].join(" ");
   return text.trim() ? text.trim().split(/\s+/).length : 0;
 }
+
+/* ───────────── Workshop structure (approved W1 template, 2026-11-26) ───────────── */
+
+export type WorkshopStepKey =
+  | "briefing" | "round1" | "stationA" | "round2" | "stationB" | "stationC" | "round3" | "debrief";
+
+export type WorkshopStep = {
+  key: WorkshopStepKey;
+  title: string;
+  kind: "briefing" | "round" | "station" | "debrief";
+  facilitatedMinutes: number;
+  selfPacedMinutes: [number, number];
+  purpose: string;
+  instructions: string[];        // learner instructions (both versions)
+  selfPacedNotes?: string[];     // extra guidance for the independent version
+  checklist?: string[];          // items the learner confirms (stations, debrief)
+  output: string;
+  facilitator: { setup: string; observe: string[]; difficulties: { issue: string; response: string }[] };
+  basedOn?: string[];            // lesson codes
+};
+
+export type PressureCard = {
+  code: string;
+  title: string;
+  situation: string;     // what happens
+  task: string;          // what the speaker must do
+  recovery: string;      // suggested phrase / strategy (shown after the round)
+  intensity: "standard" | "stretch";
+};
+
+export type RubricCriterion = {
+  number: number;
+  title: string;
+  question: string;
+  mandatory: boolean;
+  evidence: string;
+  levels: { beginning: string; developing: string; competent: string };
+  examples: { beginning: string; developing: string; competent: string };
+};
+
+export type WorkshopData = {
+  outcomes: { outcome: string; producedIn: string; evidence: string }[];
+  assessmentPrinciples: string[];
+  completionRule: string;
+  steps: WorkshopStep[];
+  readinessMinutes: { facilitated: number; selfPaced: [number, number] };
+  sessions: { title: string; steps: WorkshopStepKey[] }[];
+  roundFields: { key: string; label: string; help: string; type: "text" | "number" | "choice" | "textarea"; options?: string[] }[];
+  pressureCards: PressureCard[];
+  pressureGuidance: string[];
+  rubric: RubricCriterion[];
+  debriefQuestions: string[];
+  transferPlan: { heading: string; prompt: string }[];
+  practicePassage: { title: string; text: string; criticalNumbers: string[] };
+  termCard: { term: string; stress: string; ipa: string }[];
+  facilitatorGeneral: string[];
+};
+
+export type WorkshopSpec = LessonSpec & { workshop: WorkshopData };
