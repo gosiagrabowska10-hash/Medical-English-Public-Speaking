@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 type Item = {
   id: string; area: string; requirement: string; source: string; type: string; applies: string;
-  status: string; evidence: string; gaps: string; owner: string; action: string; external: string;
+  status: string; nature: string; evidence: string; gaps: string; owner: string; action: string; external: string;
 };
 const STATUSES = ["Compliant", "Partially compliant", "Not implemented", "Not applicable", "Requires legal review"];
 const LABEL: Record<string, string> = {
@@ -25,6 +25,8 @@ for (const i of reg.items) {
   if (ids.has(i.id)) errors.push(`${i.id}: duplicate id`);
   ids.add(i.id);
   if (!STATUSES.includes(i.status)) errors.push(`${i.id}: invalid status "${i.status}"`);
+  if (!i.nature) errors.push(`${i.id}: nature missing`);
+  if (i.status === "Compliant" && /^Legal/.test(i.nature) && i.external.startsWith("Yes")) errors.push(`${i.id}: a legal requirement needing external review cannot be Compliant before that review`);
   if ((i.status === "Compliant" || i.status === "Not applicable") && (!i.evidence || i.evidence === "—"))
     errors.push(`${i.id}: "${i.status}" requires evidence or a documented justification`);
 }
@@ -39,6 +41,8 @@ const md: string[] = [
   "",
   `**Assumptions:** ${reg.assumptions}`,
   "",
+  "> **How to read this register.** *Nature* separates technical controls, which are implemented and verified by automated tests, from legal, documentary and organisational requirements, which need decisions or professional verification. A technical control marked Compliant does not make the Academy legally compliant: **the Academy must not be described as legally compliant until the external specialists named in this register have reviewed the applicable requirements.**",
+  "",
   "> This register records the Academy's own assessment. It is not legal advice. A status of “Compliant” means that the control is implemented and that evidence is recorded here; it does not mean that a lawyer has confirmed compliance. Items marked “Requires legal review” or with external review “Yes” must be reviewed by a qualified lawyer, data-protection specialist or tax adviser before launch.",
   "",
   "## Summary by status",
@@ -49,9 +53,9 @@ const md: string[] = [
   "",
   "## Overview",
   "",
-  "| ID | Requirement | Type | Status | External review |",
+  "| ID | Requirement | Nature | Status | External review |",
   "|---|---|---|---|---|",
-  ...reg.items.map((i) => `| ${i.id} | ${cell(i.requirement)} | ${cell(i.type)} | ${LABEL[i.status] ?? i.status} | ${cell(i.external)} |`),
+  ...reg.items.map((i) => `| ${i.id} | ${cell(i.requirement)} | ${cell(i.nature)} | ${LABEL[i.status] ?? i.status} | ${cell(i.external)} |`),
   "",
   "## Register",
   "",
@@ -68,6 +72,7 @@ for (const a of areas) {
       `| Source | ${cell(i.source)} |`,
       `| Type | ${cell(i.type)} |`,
       `| Applicability | ${cell(i.applies)} |`,
+      `| Nature | ${cell(i.nature)} |`,
       `| **Status** | **${cell(LABEL[i.status] ?? i.status)}** |`,
       `| Evidence | ${cell(i.evidence)} |`,
       `| Gaps | ${cell(i.gaps)} |`,
@@ -80,9 +85,9 @@ for (const a of areas) {
 }
 writeFileSync(`${dir}/COMPLIANCE_REGISTER.md`, md.join("\n"));
 
-const head = ["ID", "Area", "Requirement", "Source", "Type", "Applicability", "Status", "Evidence", "Gaps", "Responsible role", "Corrective action", "External review needed"];
+const head = ["ID", "Area", "Requirement", "Source", "Type", "Applicability", "Nature", "Status", "Evidence", "Gaps", "Responsible role", "Corrective action", "External review needed"];
 const q = (s: string) => `"${s.replace(/"/g, '""')}"`;
 const csv = [head.map(q).join(","), ...reg.items.map((i) =>
-  [i.id, i.area, i.requirement, i.source, i.type, i.applies, LABEL[i.status] ?? i.status, i.evidence, i.gaps, i.owner, i.action, i.external].map(q).join(","))];
+  [i.id, i.area, i.requirement, i.source, i.type, i.applies, i.nature, LABEL[i.status] ?? i.status, i.evidence, i.gaps, i.owner, i.action, i.external].map(q).join(","))];
 writeFileSync(`${dir}/COMPLIANCE_REGISTER.csv`, "﻿" + csv.join("\r\n") + "\r\n");
 console.log(`Register: ${reg.items.length} items —`, counts.map(([s, n]) => `${s}: ${n}`).join(", "));

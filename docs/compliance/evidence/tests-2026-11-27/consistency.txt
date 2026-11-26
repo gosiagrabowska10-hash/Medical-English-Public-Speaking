@@ -1,0 +1,40 @@
+
+> medical-speaking-academy@0.1.0 check:consistency
+> tsx scripts/check-workshop-consistency.ts
+
+PASS L07 contains "look, pause, conclude" — Data-slide sequence (Station A, rubric)
+PASS L07 contains "thought group" — Thought groups and / // marking
+PASS L07 contains "one patient in seven" — Restating numbers in a concrete form
+PASS L07 contains "fifteen" — fifteen/fifty contrast
+PASS L08 contains "five steps" — Two-minute voice warm-up (Station B)
+PASS L08 contains "turn and look, turn back, then speak" — Microphone sequence (Station B, readiness check)
+PASS L08 contains "↘" — Falling-tone marking
+PASS L08 contains "back wall" — Projection target
+PASS L09 contains "neutral position" — Stance (Station C)
+PASS L09 contains "sections" — Sectioned eye contact (Station C)
+PASS L09 contains "into the lens" — Online eye contact
+PASS L09 contains "without sound" — Silent video audit
+PASS L02 contains "pause and breathe" — Three-step recovery, step 1
+PASS L02 contains "bridge back" — Three-step recovery, step 3
+PASS L01 contains "please stop me if anything is unclear" — Opening without apology (rubric 1)
+PASS term card "cardiomyopathy" IPA /ˌkɑː.di.əʊ.maɪˈɒp.ə.θi/ matches the verification log
+PASS term card "epidemiology" IPA /ˌep.ɪ.diː.miˈɒl.ə.dʒi/ matches the verification log
+PASS term card "anaesthesia" IPA /ˌæn.əsˈθiː.zi.ə/ matches the verification log
+PASS term card "haemorrhage" IPA /ˈhem.ər.ɪdʒ/ matches the verification log
+PASS term card "analysis" IPA /əˈnæl.ə.sɪs/ matches the verification log
+PASS term card "analyse" IPA /ˈæn.əl.aɪz/ matches the verification log
+PASS term card "significant" IPA /sɪɡˈnɪf.ɪ.kənt/ matches the verification log
+PASS term card "hypothesis" IPA /haɪˈpɒθ.ə.sɪs/ matches the verification log
+PASS term card "cohort" IPA /ˈkəʊ.hɔːt/ matches the verification log
+PASS term card "oesophagus" IPA /iˈsɒf.ə.ɡəs/ matches the verification log
+PASS term card "paediatric" IPA /ˌpiː.diˈæt.rɪk/ matches the verification log
+PASS term card "thirteen / thirty" IPA /θɜːˈtiːn/ · /ˈθɜː.ti/ matches the verification log
+PASS term card "fifteen / fifty" IPA /ˌfɪfˈtiːn/ · /ˈfɪf.ti/ matches the verification log
+PASS resource exists: /materials/workshops/W1-participant-workbook.pdf
+PASS resource exists: /materials/workshops/W1-assessment-rubric.pdf
+PASS resource exists: /materials/workshops/W1-pressure-cards.pdf
+PASS resource exists: /materials/workshops/W1-facilitator-guide.pdf
+PASS facilitated total = 120 minutes
+PASS self-paced total = 165–200 minutes (approved: about 2.5–3.5 hours)
+
+ALL CONSISTENCY CHECKS PASSED

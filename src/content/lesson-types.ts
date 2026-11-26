@@ -118,6 +118,8 @@ export type WorkshopData = {
   outcomes: { outcome: string; producedIn: string; evidence: string }[];
   assessmentPrinciples: string[];
   completionRule: string;
+  /** Rule for the instructor-confirmed Competent status (criteria numbered from 1). */
+  competence: { min: number; required: number[] };
   steps: WorkshopStep[];
   readinessMinutes: { facilitated: number; selfPaced: [number, number] };
   sessions: { title: string; steps: WorkshopStepKey[] }[];

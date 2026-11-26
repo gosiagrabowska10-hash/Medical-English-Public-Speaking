@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { integrations } from "@/lib/integrations";
+import { rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.email().max(200),
-  topic: z.enum(["admissions", "program", "founder", "faculty", "partnerships", "media", "other"]),
+  topic: z.enum(["admissions", "program", "founder", "faculty", "partnerships", "media", "accessibility", "privacy", "complaint", "other"]),
   message: z.string().trim().min(10).max(5000),
   consent: z.literal(true),
   // Honeypot: must stay empty.
@@ -14,6 +15,10 @@ const schema = z.object({
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 export async function POST(req: Request) {
+  // 5 messages per 10 minutes per client (hashed address); checked before any parsing.
+  if (!(await rateLimit("contact", req, 5, 600))) {
+    return Response.json({ ok: false, error: "rate_limited" }, { status: 429, headers: { "Retry-After": "600" } });
+  }
   let body: unknown;
   try {
     body = await req.json();

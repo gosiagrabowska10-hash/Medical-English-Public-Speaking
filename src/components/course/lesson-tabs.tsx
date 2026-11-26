@@ -72,6 +72,24 @@ function Exercise({ page }: { page: LessonPage }) {
   );
 }
 
+/**
+ * Display order of options, shuffled per question and per attempt so that the
+ * position of the correct answer cannot be guessed (W1 Quality Gate F3). Deterministic
+ * (seeded) so server and client render the same order; answers are always sent and
+ * scored by their original index.
+ */
+function optionOrder(seed: string, n: number) {
+  let h = 2166136261;
+  for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  const order = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0;
+    const j = h % (i + 1);
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
 function Quiz({ page }: { page: LessonPage }) {
   const router = useRouter();
   const [answers, setAnswers] = useState<(number | null)[]>(page.quiz.map(() => null));
@@ -106,13 +124,14 @@ function Quiz({ page }: { page: LessonPage }) {
               <legend className="sr-only">Question {i + 1}</legend>
               <p className="font-serif text-xl leading-snug text-midnight"><span className="mr-2 text-gold-deep lining-nums">{i + 1}.</span>{q.prompt}</p>
               <div className="mt-4 space-y-2">
-                {q.options.map((o, k) => {
+                {optionOrder(`${q.id}:${page.lastAttempt?.created_at ?? "first"}`, q.options.length).map((k) => {
+                  const o = q.options[k];
                   const chosen = answers[i] === k;
                   const isCorrect = f && f.correct_index === k;
                   return (
                     <label key={k} className={cn("flex cursor-pointer items-start gap-3 rounded-xs border p-3 text-sm transition-colors",
                       isCorrect ? "border-success bg-success-bg" : f && chosen && !f.correct ? "border-danger bg-danger-bg" : chosen ? "border-midnight" : "border-stone-deep hover:border-ink-subtle")}>
-                      <input type="radio" name={`q${i}`} checked={chosen} disabled={!!result} onChange={() => setAnswers((a) => a.map((x, j) => (j === i ? k : x)))} className="mt-0.5 accent-midnight" />
+                      <input type="radio" name={`q${i}`} data-option-index={k} checked={chosen} disabled={!!result} onChange={() => setAnswers((a) => a.map((x, j) => (j === i ? k : x)))} className="mt-0.5 accent-midnight" />
                       <span className="flex-1">{o}</span>
                     </label>
                   );

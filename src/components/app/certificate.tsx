@@ -5,7 +5,11 @@ import { site } from "@/lib/site";
  * Certificate of Completion layout (screen preview). The downloadable PDF
  * with QR verification is generated server-side in Milestone 6.
  */
-export function CertificateLayout({ name, date, number, signatory, specimen }: { name: string; date: string; number: string; signatory: string; specimen?: boolean }) {
+/**
+ * `competent` lists only workshops in which an Academy instructor has confirmed the
+ * Competent standard using the rubric. Self-assessed results are never printed.
+ */
+export function CertificateLayout({ name, date, number, signatory, specimen, competent = [] }: { name: string; date: string; number: string; signatory: string; specimen?: boolean; competent?: string[] }) {
   return (
     <div className="relative mx-auto aspect-[1.414/1] w-full max-w-4xl overflow-hidden bg-ivory p-[3%] shadow-lifted">
       <div className="relative flex size-full flex-col items-center border border-gold p-[1%]">
@@ -18,6 +22,11 @@ export function CertificateLayout({ name, date, number, signatory, specimen }: {
           <p className="mt-[3%] max-w-[80%] text-[clamp(0.5rem,1.15vw,0.85rem)] leading-relaxed text-ink-muted">
             has successfully completed the {site.program.name} at {site.name} and fulfilled the academy&rsquo;s published educational and practical assessment requirements.
           </p>
+          {competent.length > 0 && (
+            <p className="mt-[2%] max-w-[80%] text-[clamp(0.45rem,1vw,0.72rem)] leading-relaxed text-ink-muted">
+              Assessed as Competent by an Academy instructor in: {competent.join(" · ")}
+            </p>
+          )}
           <div className="mt-auto grid w-full grid-cols-3 items-end gap-4 text-[clamp(0.45rem,1vw,0.72rem)] text-ink-muted">
             <div className="text-left">
               <p className="border-t border-midnight/40 pt-1.5 font-medium text-ink">{signatory}</p>

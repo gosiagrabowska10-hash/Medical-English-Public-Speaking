@@ -13,6 +13,9 @@ const topics = [
   ["faculty", "Teaching with the Academy"],
   ["partnerships", "Institutional partnerships"],
   ["media", "Media enquiries"],
+  ["accessibility", "Accessibility and adjustments"],
+  ["privacy", "Privacy and data protection"],
+  ["complaint", "Complaint"],
   ["other", "Something else"],
 ] as const;
 
@@ -44,6 +47,8 @@ export function ContactForm() {
       if (res.ok && data.ok) return setState({ kind: "sent" });
       if (data.error === "not_configured")
         return setState({ kind: "error", message: "Online messages cannot be delivered yet because the Academy’s email service is still being set up. Your message has not been sent. Please try again later." });
+      if (data.error === "rate_limited")
+        return setState({ kind: "error", message: "You have sent several messages in a short time. Your message has not been sent; please wait about ten minutes and try again." });
       if (data.error === "validation")
         return setState({ kind: "error", message: "Please check the highlighted fields: a name, a valid email address, a message of at least 10 characters and your consent are required." });
       setState({ kind: "error", message: "Your message could not be sent. Please try again in a few minutes." });

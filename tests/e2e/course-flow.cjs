@@ -54,12 +54,14 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
 
   await p.getByRole('tab', { name: /Quiz/ }).click();
   const qs = p.locator('fieldset');
-  for (let i = 0; i < 6; i++) await qs.nth(i).locator('input[type=radio]').nth(3).check();
+  const firstIdx = await qs.evaluateAll((fs) => fs.map((f) => f.querySelector('input[type=radio]').dataset.optionIndex));
+  ok(firstIdx.some((x) => x !== '0'), 'quiz options are displayed in shuffled order (scored by original index): ' + firstIdx.join(','));
+  for (let i = 0; i < 6; i++) await qs.nth(i).locator('input[data-option-index="3"]').check();
   await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText(/You scored/).waitFor();
   ok(await p.getByText(/The pass mark is 70%/).isVisible(), 'wrong answers are scored on the server and do not pass');
   await p.screenshot({ path: `${out}/s3-quiz-feedback.png`, fullPage: false });
   await p.getByRole('button', { name: 'Retake the quiz' }).click();
-  for (const [i, k] of [[0, 1], [1, 2], [2, 2], [3, 1], [4, 2], [5, 1]]) await qs.nth(i).locator('input[type=radio]').nth(k).check();
+  for (const [i, k] of [[0, 1], [1, 2], [2, 2], [3, 1], [4, 2], [5, 1]]) await qs.nth(i).locator(`input[data-option-index="${k}"]`).check();
   await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText('You scored 6 of 6. Quiz passed.').waitFor();
   ok(true, 'correct answers pass the quiz (6/6) with explanations');
 
@@ -90,6 +92,9 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await p.goto(BASE + '/app/learn/L07'); await p.locator('video').waitFor();
   ok(await p.getByText('Sample video', { exact: true }).isVisible(), 'sample video is clearly labelled');
   ok((await p.locator('video track[kind=captions]').count()) === 1, 'captions track attached');
+  await p.getByText('Transcript', { exact: true }).click();
+  await p.getByRole('region', { name: /Transcript:/ }).getByText('A pause is not an absence of speech.').waitFor();
+  ok(true, 'a text transcript generated from the captions is available below the video');
   const tracks = await p.evaluate(async () => { const v = document.querySelector('video'); await new Promise((r) => (v.readyState >= 1 ? r() : v.addEventListener('loadedmetadata', r, { once: true }))); return { mode: v.textTracks[0]?.mode, dur: v.duration }; });
   ok(tracks.mode === 'showing' && tracks.dur > 30, 'video loads and captions are shown by default');
   await p.getByLabel('Playback speed').selectOption('1.25');
@@ -122,7 +127,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(await p.getByText('Pass the Readiness Check to unlock the practice rounds').isVisible(), 'practice rounds are locked until the readiness check is passed');
   await p.getByRole('tab', { name: 'Readiness Check' }).click();
   const rq = p.locator('fieldset');
-  for (const [i, k] of [[0, 1], [1, 1], [2, 1], [3, 1], [4, 2]]) await rq.nth(i).locator('input[type=radio]').nth(k).check();
+  for (const [i, k] of [[0, 1], [1, 3], [2, 0], [3, 2], [4, 3]]) await rq.nth(i).locator(`input[data-option-index="${k}"]`).check();
   await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText('You scored 5 of 5. Quiz passed.').waitFor();
   ok(true, 'readiness check passed (5/5)');
 

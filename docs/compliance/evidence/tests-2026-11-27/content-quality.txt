@@ -1,0 +1,12 @@
+
+> medical-speaking-academy@0.1.0 check:content
+> tsx scripts/check-content-quality.ts
+
+NOTE L01: source answer positions 1,2,2,1,2,1 (approved text unchanged; display order is shuffled)
+NOTE L02: source answer positions 1,1,0,1,2,1 (approved text unchanged; display order is shuffled)
+NOTE L03: source answer positions 2,1,2,1,1,2 (approved text unchanged; display order is shuffled)
+NOTE L07: source answer positions 0,1,1,1,1,2 (approved text unchanged; display order is shuffled)
+NOTE L08: source answer positions 1,2,2,1,1,2 (approved text unchanged; display order is shuffled)
+NOTE L09: source answer positions 1,1,1,2,1,1 (approved text unchanged; display order is shuffled)
+
+Content quality gate: 7 authored items, 173 checks passed, 0 failed

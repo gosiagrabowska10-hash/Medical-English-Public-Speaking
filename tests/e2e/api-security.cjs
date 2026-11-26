@@ -7,6 +7,7 @@ const { createClient } = require('@supabase/supabase-js');
 const { execFileSync } = require('child_process');
 
 const local = require('./local-supabase.cjs')();
+const { withMfa } = require('./helpers.cjs');
 const URL_ = local.url, KEY = local.key, MAIL = local.mailpit, DB_URL = local.dbUrl;
 if (!/127\.0\.0\.1|localhost/.test(URL_)) { console.error('Refusing to run against a non-local Supabase.'); process.exit(2); }
 
@@ -93,6 +94,9 @@ async function confirmedStudent(first) {
 
   // Staff access works only after the Owner role is granted (by an administrator in SQL)
   sql(`insert into public.user_roles (user_id, role) values ('${A.id}', 'academy_owner')`);
+  const { data: noMfa } = await A.c.from('profiles').select('id').in('id', [A.id, B.id]);
+  ok(noMfa.length === 1, 'Academy Owner without MFA cannot read student profiles');
+  await withMfa(A.c);
   const { data: allP } = await A.c.from('profiles').select('id').in('id', [A.id, B.id]);
   ok(allP.length === 2, 'Academy Owner can read student profiles');
   const { data: aud2 } = await A.c.from('audit_log').select('id').limit(1);

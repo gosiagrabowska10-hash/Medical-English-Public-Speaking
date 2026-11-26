@@ -18,6 +18,7 @@ const pages: { path: string; priority: number; freq: "weekly" | "monthly" | "yea
   { path: "/privacy", priority: 0.2, freq: "yearly" },
   { path: "/terms", priority: 0.2, freq: "yearly" },
   { path: "/cookies", priority: 0.2, freq: "yearly" },
+  { path: "/accessibility", priority: 0.2, freq: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

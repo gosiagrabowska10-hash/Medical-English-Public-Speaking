@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-26",
+ "asOf": "2026-11-27",
  "assumptions": "Operator established in Poland (pricing in PLN); adult learners (18+); consumers and professional buyers; EU and international sales; AI via third-party providers (planned, Phase 4); payments via Stripe (planned, Stage 7); hosting on Vercel and Supabase (planned). To be confirmed by the Academy.",
  "items": [
   {
@@ -14,7 +14,8 @@
    "gaps": "Bases not validated by a specialist; records of processing not written",
    "owner": "Data controller (Academy Owner) with DPO/privacy adviser",
    "action": "Validate bases; complete Record of Processing Activities",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-02",
@@ -23,12 +24,13 @@
    "source": "GDPR Art. 30",
    "type": "Legally mandatory",
    "applies": "Yes — processing is not occasional, so the under-250-employees exemption does not apply",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No RoPA",
+   "status": "Requires legal review",
+   "evidence": "Draft RoPA with 9 processing activities: docs/policies/RECORD_OF_PROCESSING.md",
+   "gaps": "Controller identity missing; legal bases and transfers not validated by a specialist",
    "owner": "Academy Owner / privacy adviser",
-   "action": "Prepare RoPA (purposes, categories, recipients, transfers, retention, security measures)",
-   "external": "Yes"
+   "action": "Specialist review; complete controller details; keep up to date",
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-03",
@@ -38,11 +40,12 @@
    "type": "Legally mandatory",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "/privacy page (draft) covers identity, purposes, recipients, transfers, rights, recordings",
+   "evidence": "/privacy (draft) updated 27 Nov 2026 to describe current processing accurately: no recordings or AI active, workshop logs, MFA, hashed rate-limit keys, complete export",
    "gaps": "Legal entity, contact, retention periods and processor list are placeholders; not legally reviewed",
    "owner": "Academy Owner",
    "action": "Complete placeholders; legal review; publish version history",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-04",
@@ -52,11 +55,12 @@
    "type": "Legally mandatory",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Self-service JSON export and deletion request (E2E tested); profile editing; RLS-protected",
-   "gaps": "No staff workflow or deadline tracking for deletion requests; export does not yet cover learning records (progress, quiz, submissions, workshop logs)",
+   "evidence": "Self-service export now covers every table holding learner data (profile, roles, consents, deletion requests, enrolments, progress, quizzes, Final Tasks, workshop logs, instructor assessments, MFA factors); automated test checks every table with a user_id column is exported and no other learner's data is included (tests/e2e/priority1.cjs); deletion request (E2E)",
+   "gaps": "No staff workflow or deadline tracking for completing deletion and access requests",
    "owner": "Student Support",
    "action": "Extend export to all learner data; build request-handling workflow with one-month response deadline",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "GDPR-05",
@@ -70,7 +74,8 @@
    "gaps": "No DPIA",
    "owner": "Academy Owner with privacy specialist",
    "action": "Carry out a DPIA before Phase 4 goes live",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-06",
@@ -80,11 +85,12 @@
    "type": "Legally mandatory",
    "applies": "Yes (Supabase, Vercel, email provider, AI provider, analytics; Stripe partly as an independent controller)",
    "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No DPAs signed (providers not yet contracted)",
+   "evidence": "Processor register drafted: docs/policies/PROCESSOR_REGISTER.md",
+   "gaps": "No provider contracted; DPAs not yet accepted",
    "owner": "Academy Owner",
    "action": "Accept and file each provider's DPA; keep a processor register",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-07",
@@ -98,7 +104,8 @@
    "gaps": "Transfer mechanisms per provider not documented (EU–US Data Privacy Framework certification or SCCs; transfer impact assessment)",
    "owner": "Privacy adviser",
    "action": "Document the mechanism for each provider; choose EU data regions where available",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-08",
@@ -107,12 +114,13 @@
    "source": "GDPR Art. 5(1)(e)",
    "type": "Legally mandatory",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "Retention periods are placeholders; no automated deletion",
+   "status": "Requires legal review",
+   "evidence": "Retention Schedule proposal: docs/policies/DATA_RETENTION_SCHEDULE.md; rate-limit counters deleted automatically after 2 days",
+   "gaps": "Periods not approved; scheduled deletion jobs not implemented",
    "owner": "Academy Owner",
    "action": "Adopt a Data Retention Schedule; implement scheduled deletion (recordings, inactive accounts, logs)",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-09",
@@ -121,12 +129,13 @@
    "source": "GDPR Art. 33–34",
    "type": "Legally mandatory",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No breach procedure, no breach register",
+   "status": "Partially compliant",
+   "evidence": "Incident and Data Breach Response Procedure drafted: docs/operations/INCIDENT_RESPONSE.md (72-hour UODO notification, learner notification, register fields)",
+   "gaps": "Contacts, breach register and tabletop exercise outstanding; specialist review",
    "owner": "Academy Owner / security lead",
    "action": "Adopt an Incident and Data Breach Response Procedure and a breach register",
-   "external": "No"
+   "external": "No",
+   "nature": "Organisational + legal"
   },
   {
    "id": "GDPR-10",
@@ -136,11 +145,12 @@
    "type": "Legally mandatory",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Data minimisation in profile (no date of birth or health data); RLS on all 15 tables; least privilege for anonymous users; no service-role key in the app; consent toggles off by default",
+   "evidence": "RLS on all 17 tables; per-user filtering of every learner query (fixes staff seeing others' rows in learner views); staff privileges require MFA; minimisation; consents off by default; hashed rate-limit keys",
    "gaps": "Teaching staff can read all learners' progress (not only assigned cohorts); no retention automation",
    "owner": "Technical lead",
    "action": "Restrict staff access to assigned cohorts; implement retention",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "GDPR-11",
@@ -150,11 +160,12 @@
    "type": "Legally mandatory",
    "applies": "Yes (assessment and certification)",
    "status": "Compliant",
-   "evidence": "Code review 26 Nov 2026: no AI or automated scoring exists; lesson completion depends only on the learner's own actions; no certificate issuance is implemented; the approved product rule requires human assessor approval for certificates",
+   "evidence": "No AI or automated assessment exists; Competent can only be set by a human assessor (database function, tested); certificate requires human approval",
    "gaps": "Must be maintained when AI feedback is introduced in Phase 4",
    "owner": "Academic Director",
    "action": "Keep AI output advisory; re-verify in the Phase 4 audit",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "GDPR-12",
@@ -168,7 +179,8 @@
    "gaps": "No documented DPO decision",
    "owner": "Academy Owner",
    "action": "Document the decision; consider an external privacy adviser",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-13",
@@ -182,7 +194,8 @@
    "gaps": "Learners may disclose their own health information (e.g. anxiety, stammering) in free text; no guidance at input points",
    "owner": "Academic Director",
    "action": "Add guidance at free-text inputs; never use voice for identification",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-14",
@@ -192,11 +205,12 @@
    "type": "Legally mandatory (for learners as data controllers of patient data) / platform safeguard",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Terms, Privacy Policy, FAQ, contact form, exercises and assignments include explicit warnings; examples are fictional and composite",
+   "evidence": "Warnings in Terms, Privacy Policy, FAQ, contact form, every exercise and the W1 Briefing (\"Record only yourself\"); recordings never uploaded; fictional examples",
    "gaps": "No technical detection; no process for removing content that is reported",
    "owner": "Student Support",
    "action": "Add a reporting and removal procedure; consider a warning at submission",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "GDPR-15",
@@ -210,7 +224,8 @@
    "gaps": "No explicit age or professional-status confirmation; Terms not reviewed",
    "owner": "Academy Owner",
    "action": "Add explicit age confirmation at sign-up and checkout",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "AI-01",
@@ -224,7 +239,8 @@
    "gaps": "Must be enforced in AI prompts, features and vendor selection (no 'nervousness' or 'confidence' detection from face or voice)",
    "owner": "Academic Director / technical lead",
    "action": "Include in Phase 4 acceptance criteria and test cases",
-   "external": "Yes — confirm interpretation of 'education institution'"
+   "external": "Yes — confirm interpretation of 'education institution'",
+   "nature": "Technical + legal"
   },
   {
    "id": "AI-02",
@@ -238,7 +254,8 @@
    "gaps": "No documented classification; dates of high-risk obligations to be verified (possible postponement under EU 'digital omnibus' proposals)",
    "owner": "Academy Owner with AI/legal specialist",
    "action": "Formal classification before Phase 4; if high-risk, implement Chapter III obligations or redesign",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "AI-03",
@@ -252,7 +269,8 @@
    "gaps": "In-product disclosure, AI labelling of generated voices and feedback not yet built (Phase 4)",
    "owner": "Technical lead",
    "action": "Build disclosure into every AI interaction; label AI-generated audio",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "AI-04",
@@ -266,7 +284,8 @@
    "gaps": "No AI literacy training record for instructors and assessors",
    "owner": "Academic Director",
    "action": "Create a short AI literacy module for staff; keep training records",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "AI-05",
@@ -276,11 +295,12 @@
    "type": "Legally mandatory",
    "applies": "Yes (Phase 4)",
    "status": "Partially compliant",
-   "evidence": "Privacy Policy draft states recordings are not used to train models",
+   "evidence": "Privacy Policy and Responsible AI Policy state no training on learner data; processor register requires contractual exclusion",
    "gaps": "Provider settings (training opt-out, retention) not configured or documented",
    "owner": "Technical lead",
    "action": "Choose providers and settings that exclude training; document in the processor register",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "AI-06",
@@ -290,11 +310,12 @@
    "type": "Recommended best practice / conditionally mandatory",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Approved principles (AI advisory only; human final assessment); public AI note",
+   "evidence": "Responsible AI Policy drafted (docs/policies/RESPONSIBLE_AI_POLICY.md); assessment statuses set only by humans with MFA (implemented and tested)",
    "gaps": "Not implemented in product",
    "owner": "Academic Director",
    "action": "Implement human review points and a limitation notice with every AI report",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "EP-01",
@@ -305,10 +326,11 @@
    "applies": "Yes",
    "status": "Partially compliant",
    "evidence": "Consent banner with equal 'Necessary only' and 'Accept all' options; analytics not loaded; settings can be reopened (E2E tested)",
-   "gaps": "Cookie Policy draft not reviewed; consent not recorded server-side; analytics integration (Stage 7) must read consent",
+   "gaps": "Cookie Policy draft not reviewed; analytics integration (Stage 7) must read consent",
    "owner": "Technical lead",
    "action": "Legal review of the policy; keep analytics consent-gated",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Technical + legal"
   },
   {
    "id": "MK-01",
@@ -322,7 +344,8 @@
    "gaps": "No sending system, unsubscribe link or double opt-in yet",
    "owner": "Academy Owner",
    "action": "Implement unsubscribe and consent check in the email system",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "CON-01",
@@ -336,7 +359,8 @@
    "gaps": "Legal entity, withdrawal information and model withdrawal form missing; checkout not built",
    "owner": "Academy Owner",
    "action": "Complete before taking payments; legal review",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-02",
@@ -350,7 +374,8 @@
    "gaps": "Mixed product (digital content, digital service, live coaching) needs a specific legal structure; refund policy undefined",
    "owner": "Academy Owner with consumer lawyer",
    "action": "Define withdrawal and refund rules; build consent checkbox in checkout",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-03",
@@ -364,7 +389,8 @@
    "gaps": "Terms do not address conformity, updates or remedies",
    "owner": "Consumer lawyer",
    "action": "Add conformity and remedies section",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-04",
@@ -378,7 +404,8 @@
    "gaps": "Re-verify every new page and any future discount display (30-day lowest-price rules)",
    "owner": "Academy Owner",
    "action": "Pre-publication marketing review checklist",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-05",
@@ -392,7 +419,8 @@
    "gaps": "Required elements (technical requirements, prohibited content, complaints procedure) incomplete; legal review",
    "owner": "Academy Owner",
    "action": "Complete and review",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-06",
@@ -401,12 +429,13 @@
    "source": "Polish Consumer Rights Act; Act on Providing Services by Electronic Means",
    "type": "Legally mandatory",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "Contact form exists",
-   "gaps": "No documented complaints procedure or response deadline",
+   "status": "Partially compliant",
+   "evidence": "Complaints procedure drafted (docs/policies/COMPLAINTS_PROCEDURE.md); contact-form topics \"Complaint\", \"Privacy\", \"Accessibility\"",
+   "gaps": "Response periods, contact details and out-of-court bodies to be confirmed by a lawyer",
    "owner": "Student Support",
    "action": "Adopt a Complaints and Contact Procedure",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "CON-07",
@@ -420,7 +449,8 @@
    "gaps": "Localised pricing (Stage 7) must respect the Regulation",
    "owner": "Academy Owner",
    "action": "Confirm before implementing localised prices",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "DSA-01",
@@ -434,7 +464,8 @@
    "gaps": "Points of contact and notice-and-action not formalised",
    "owner": "Academy Owner",
    "action": "Legal confirmation; if applicable, publish a single point of contact and a notice mechanism",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "ACC-01",
@@ -448,7 +479,8 @@
    "gaps": "Enterprise size and scope not confirmed",
    "owner": "Academy Owner",
    "action": "Confirm status; meet WCAG 2.2 AA regardless (Academy target)",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Technical + legal"
   },
   {
    "id": "ACC-02",
@@ -458,11 +490,12 @@
    "type": "Recommended best practice (legally required only if ACC-01 applies)",
    "applies": "Yes (Academy decision)",
    "status": "Partially compliant",
-   "evidence": "Automated axe-core audit of 33 views (evidence/axe-2026-11-26.json); skip link; keyboard-accessible menus and dialogs; captions on sample video",
-   "gaps": "Colour contrast (186 nodes), accessible-name mismatch on logo, one scrollable region without keyboard access; no manual screen-reader audit",
+   "evidence": "axe-core WCAG 2.0–2.2 A/AA gate: 0 violations on 35 views plus 4 staff/MFA/status views (evidence/axe-2026-11-27.json; tests/e2e/priority1.cjs); approved accessible palette (#646b77, #9e8356, #959dab); keyboard-scrollable regions; skip link first",
+   "gaps": "No manual audit with screen readers, zoom/reflow and speech input yet",
    "owner": "Technical lead",
-   "action": "Apply the contrast and label fixes (proposed); manual NVDA/VoiceOver audit",
-   "external": "Recommended (accessibility auditor)"
+   "action": "Independent manual WCAG 2.2 AA audit before launch",
+   "external": "Recommended (accessibility auditor)",
+   "nature": "Technical"
   },
   {
    "id": "ACC-03",
@@ -471,12 +504,13 @@
    "source": "WCAG 2.2; PDF/UA (ISO 14289)",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "pdfinfo: handouts and Workshop Pack report 'Tagged: no'",
-   "gaps": "PDFs untagged; no HTML alternative",
+   "status": "Partially compliant",
+   "evidence": "All learner PDFs regenerated as tagged PDFs with outline, document title and language (pdfinfo: Tagged yes); same content available as HTML in the platform",
+   "gaps": "Not validated against PDF/UA with a checker (e.g. PAC)",
    "owner": "Technical lead",
-   "action": "Generate tagged PDFs with document outline; provide accessible HTML versions",
-   "external": "No"
+   "action": "PDF/UA validation",
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "ACC-04",
@@ -485,12 +519,13 @@
    "source": "WCAG 2.2 SC 1.2.2, 1.2.3/1.2.5",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Partially compliant",
-   "evidence": "Player supports WebVTT captions (tested); sample video captioned",
-   "gaps": "No transcripts; instructor videos not yet produced (must be captioned before publication)",
+   "status": "Compliant",
+   "evidence": "Captions (WebVTT) on the only published video; transcript generated from the captions under every captioned video (tests/e2e/course-flow.cjs); content quality gate fails any video without a captions file (scripts/check-content-quality.ts)",
+   "gaps": "Instructor videos not yet produced: captions and transcript are a publication condition",
    "owner": "Content Editor",
-   "action": "Make captions and transcripts a publication requirement",
-   "external": "No"
+   "action": "Keep the gate in CI",
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "ACC-05",
@@ -499,12 +534,13 @@
    "source": "Equality and non-discrimination principles; WCAG",
    "type": "Recommended best practice",
    "applies": "Yes (W1 and Speaking Studio rely on voice)",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No adjustment policy for speech, hearing or other impairments",
+   "status": "Partially compliant",
+   "evidence": "Reasonable Adjustments Policy (draft); adjusted route in W1 Briefing, Workbook and Facilitator Guide; /accessibility page; contact topic; enforced for every workshop by the content quality gate",
+   "gaps": "Policy and replacement criteria need Academic Director approval",
    "owner": "Academic Director",
    "action": "Adopt a Reasonable Adjustments policy with alternative tasks and assessment",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "ACC-06",
@@ -513,12 +549,13 @@
    "source": "EAA (if applicable); best practice",
    "type": "Conditionally applicable / recommended",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No statement page",
+   "status": "Partially compliant",
+   "evidence": "Accessibility Statement published as draft at /accessibility (partially conformant, known limitations, adjustments, feedback route)",
+   "gaps": "Update after independent audit; enforcement body details pending legal review",
    "owner": "Academy Owner",
    "action": "Publish after remediation and manual audit",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + legal"
   },
   {
    "id": "IP-01",
@@ -532,7 +569,8 @@
    "gaps": "No contributor agreements or model releases",
    "owner": "Academy Owner",
    "action": "Written agreements before any recording",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "IP-02",
@@ -546,7 +584,8 @@
    "gaps": "No third-party notices page; LGPL and CC-BY attribution not documented",
    "owner": "Technical lead",
    "action": "Publish third-party notices",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "IP-03",
@@ -560,7 +599,8 @@
    "gaps": "References not yet verified against originals by the Academic Director",
    "owner": "Academic Director",
    "action": "Reference verification before launch",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "IP-04",
@@ -574,7 +614,8 @@
    "gaps": "Not legally reviewed",
    "owner": "Academy Owner",
    "action": "Legal review",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "SEC-01",
@@ -584,11 +625,12 @@
    "type": "Legally mandatory",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "RLS on all tables; 33+33 database and 23+33 API security tests; no secrets in repository (CI history scan); 0 known dependency vulnerabilities (npm audit, 26 Nov 2026)",
-   "gaps": "No HTTP security headers; no rate limiting on the contact API; no MFA for staff; no monitoring or backups configured",
+   "evidence": "See SEC-02 – SEC-12; Information Security Policy drafted (docs/policies/INFORMATION_SECURITY_POLICY.md)",
+   "gaps": "Cohort-scoped staff access, production backups and alerting, penetration test outstanding",
    "owner": "Technical lead",
    "action": "See security findings S1–S10",
-   "external": "Recommended (penetration test before launch)"
+   "external": "Recommended (penetration test before launch)",
+   "nature": "Technical"
   },
   {
    "id": "SEC-02",
@@ -602,7 +644,8 @@
    "gaps": "—",
    "owner": "Technical lead",
    "action": "Keep RLS tests mandatory for every migration",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-03",
@@ -616,7 +659,8 @@
    "gaps": "—",
    "owner": "Technical lead",
    "action": "Rotate keys on staff changes; keep scanner in CI",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-04",
@@ -625,12 +669,13 @@
    "source": "GDPR Art. 32(1)(c)",
    "type": "Legally mandatory (ability to restore)",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "Hosted database not connected; backup plan, retention and restore test undefined",
+   "status": "Partially compliant",
+   "evidence": "Backup and Recovery Procedure; automated backup + restore + row-count verification script, run 27 Nov 2026: PASS, 17 tables (evidence/backup-restore-2026-11-27.txt)",
+   "gaps": "Production backups/PITR not configured (hosted project not connected)",
    "owner": "Technical lead",
    "action": "Choose a Supabase plan with backups (consider point-in-time recovery); test restore quarterly",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical + organisational"
   },
   {
    "id": "SEC-05",
@@ -640,11 +685,12 @@
    "type": "Recommended best practice",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Audit log of key account and learning events (leadership-only, tamper-resistant)",
-   "gaps": "No error monitoring, alerting or security event review",
+   "evidence": "Server error events without personal data (src/instrumentation.ts); /api/health (tested); audit log now includes staff role grants/revocations (RLS test) and MFA events (E2E); Monitoring document",
+   "gaps": "Alert routing and uptime monitor to configure in production",
    "owner": "Technical lead",
    "action": "Add error monitoring (EU-hosted) and alerting",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-06",
@@ -658,7 +704,8 @@
    "gaps": "—",
    "owner": "Technical lead",
    "action": "Use Stripe Checkout (card data never touches the Academy); verified webhooks only",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-07",
@@ -667,12 +714,13 @@
    "source": "OWASP ASVS 14.4; GDPR Art. 32",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "curl -I on 26 Nov 2026: none of the headers present; X-Powered-By: Next.js exposed",
-   "gaps": "Clickjacking and injection hardening missing",
+   "status": "Partially compliant",
+   "evidence": "CSP, HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy, COOP on all routes; X-Powered-By removed (tests/e2e/priority1.cjs)",
+   "gaps": "CSP permits inline scripts ('unsafe-inline') because static pages cannot carry nonces",
    "owner": "Technical lead",
-   "action": "Add headers in next.config (CSP with nonces compatible with Supabase and future Stripe); poweredByHeader: false; test in CI",
-   "external": "No"
+   "action": "Move to nonce- or hash-based CSP when feasible",
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-08",
@@ -682,11 +730,12 @@
    "type": "Recommended best practice",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Supabase Auth applies its own rate limits to sign-up, sign-in and reset emails; contact API validates input (422 on invalid)",
-   "gaps": "20 rapid POSTs to /api/contact were all processed — no rate limit, no bot protection",
+   "evidence": "Contact form: 5 requests / 10 min per client, enforced in Postgres with salted-hash keys (no raw IPs) and memory fallback; RLS tests + E2E (6th request → 429); Supabase Auth rate limits for sign-up, sign-in and reset emails",
+   "gaps": "Production Auth rate-limit settings to be verified when hosted project is created",
    "owner": "Technical lead",
    "action": "Per-IP rate limit and a privacy-friendly challenge on the contact form before an email provider is connected",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-09",
@@ -695,12 +744,13 @@
    "source": "OWASP ASVS 2.8; GDPR Art. 32",
    "type": "Recommended best practice",
    "applies": "Yes (instructors, assessors, administrators)",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "Staff use password-only sign-in",
+   "status": "Compliant",
+   "evidence": "TOTP MFA; every staff role function requires an aal2 session (migration 0005); sign-in requires the second factor once enrolled; staff tools locked without MFA; verified by RLS tests (owner/instructor without MFA have no staff access) and E2E (tests/e2e/priority1.cjs, api-security, course-security)",
+   "gaps": "Recovery procedure for a lost authenticator to be documented for Student Support",
    "owner": "Technical lead",
-   "action": "Require TOTP MFA (Supabase Auth MFA, aal2 checked in RLS) for all staff roles",
-   "external": "No"
+   "action": "Document identity-verified MFA reset",
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-10",
@@ -714,7 +764,8 @@
    "gaps": "Design required before Phase 4",
    "owner": "Technical lead",
    "action": "Private bucket with per-user RLS, short-lived signed URLs, malware and type checks, automated deletion",
-   "external": "No"
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "SEC-11",
@@ -723,12 +774,13 @@
    "source": "GDPR Art. 32–33; best practice",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Not implemented",
-   "evidence": "—",
-   "gaps": "No roles, contacts, severity levels, key-rotation or communication plan",
+   "status": "Partially compliant",
+   "evidence": "docs/operations/INCIDENT_RESPONSE.md (severity, roles, containment incl. key rotation, recovery, review)",
+   "gaps": "Contacts, tabletop exercise",
    "owner": "Academy Owner / technical lead",
    "action": "Adopt the Incident and Data Breach Response Procedure; run a tabletop exercise before launch",
-   "external": "No"
+   "external": "No",
+   "nature": "Organisational"
   },
   {
    "id": "SEC-12",
@@ -737,12 +789,13 @@
    "source": "OWASP ASVS 14.2",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Partially compliant",
-   "evidence": "npm audit 26 Nov 2026: 0 vulnerabilities (production and development); lockfile committed; CI lint, typecheck and build",
-   "gaps": "No automated dependency updates or audit step in CI",
+   "status": "Compliant",
+   "evidence": "npm audit (high/critical, production) runs in CI on every push; Dependabot weekly version and security update PRs (.github/dependabot.yml); 0 known vulnerabilities on 27 Nov 2026",
+   "gaps": "—",
    "owner": "Technical lead",
-   "action": "Add npm audit and Dependabot (or equivalent) to CI",
-   "external": "No"
+   "action": "Fix high/critical advisories within 7 days",
+   "external": "No",
+   "nature": "Technical"
   },
   {
    "id": "EDU-01",
@@ -756,7 +809,8 @@
    "gaps": "Medical expert review and reference verification not yet performed; 28 items in preparation",
    "owner": "Academic Director",
    "action": "Adopt the Educational Quality Framework review workflow",
-   "external": "Recommended (independent medical educator)"
+   "external": "Recommended (independent medical educator)",
+   "nature": "Organisational"
   },
   {
    "id": "EDU-02",
@@ -766,11 +820,12 @@
    "type": "Recommended best practice",
    "applies": "Yes",
    "status": "Partially compliant",
-   "evidence": "Certificate wording and disclaimers approved; human approval required",
-   "gaps": "No published Certificate and Assessment Policy (appeals, revocation, verification privacy)",
+   "evidence": "Certificate and Assessment Policy drafted (two statuses, basis, reassessment, appeals, revocation); certificate layout lists only instructor-confirmed Competent workshops; Terms and FAQ updated",
+   "gaps": "Policy approval; appeal periods",
    "owner": "Academic Director",
    "action": "Publish the policy",
-   "external": "No"
+   "external": "No",
+   "nature": "Organisational"
   },
   {
    "id": "EDU-03",
@@ -779,12 +834,13 @@
    "source": "Academy Content Standard; consumer law (accurate information)",
    "type": "Recommended best practice",
    "applies": "Yes",
-   "status": "Partially compliant",
-   "evidence": "Platform enforces readiness check, three completed Practice Rounds and Final Task submission for W1 (database function lesson_requirements; E2E tested)",
-   "gaps": "W1 text states completion requires 'Competent in five of six criteria'; this is self-assessed and not enforced or verified by a human",
+   "status": "Compliant",
+   "evidence": "Two statuses implemented: Workshop Completed (activities + Final Task) and Competent (instructor with MFA, rubric rule enforced in the database, basis recorded); self-assessment labelled everywhere and never sets Competent; W1 text, Workbook, Rubric, Facilitator Guide, Terms, FAQ and certificate updated; tested (tests/e2e/priority1.cjs) and enforced for all workshops by scripts/check-content-quality.ts",
+   "gaps": "—",
    "owner": "Academic Director",
-   "action": "Distinguish 'Workshop completed' (activities) from 'Assessed as Competent' (instructor review, later stage) in text and UI — see W1 Quality Gate F1",
-   "external": "No"
+   "action": "Keep the content quality gate in CI",
+   "external": "No",
+   "nature": "Technical + organisational"
   },
   {
    "id": "EDU-04",
@@ -798,7 +854,8 @@
    "gaps": "No sign-off by a medical educator or a qualified English-language specialist recorded for any item",
    "owner": "Academic Director",
    "action": "Two-reviewer sign-off with a review log per lesson",
-   "external": "Recommended"
+   "external": "Recommended",
+   "nature": "Organisational"
   },
   {
    "id": "MED-01",
@@ -812,7 +869,8 @@
    "gaps": "Re-assess if any feature ever touches patient data or clinical decisions",
    "owner": "Academy Owner",
    "action": "Keep intended purpose statement",
-   "external": "No"
+   "external": "No",
+   "nature": "Legal / documentary"
   },
   {
    "id": "INT-01",
@@ -826,7 +884,8 @@
    "gaps": "—",
    "owner": "Academy Owner",
    "action": "Decide target markets; appoint representative if required",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "INT-02",
@@ -840,7 +899,8 @@
    "gaps": "—",
    "owner": "Academy Owner",
    "action": "Market-by-market review before marketing outside the EU",
-   "external": "Yes"
+   "external": "Yes",
+   "nature": "Legal / documentary"
   },
   {
    "id": "TAX-01",
@@ -854,7 +914,8 @@
    "gaps": "VAT treatment of the mixed product not determined",
    "owner": "Academy Owner with tax adviser",
    "action": "Tax opinion before Stage 7 (Stripe Tax configuration)",
-   "external": "Yes (tax adviser)"
+   "external": "Yes (tax adviser)",
+   "nature": "Legal / documentary"
   }
  ]
 }

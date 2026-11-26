@@ -67,7 +67,7 @@ async function Curriculum() {
               <Card className="overflow-hidden">
                 <details open={m.lessons.some((l) => l.code === next?.code)} className="group">
                   <summary className="flex cursor-pointer list-none items-center gap-5 p-6 hover:bg-ivory/50 md:p-7 [&::-webkit-details-marker]:hidden">
-                    <span className="font-serif text-4xl text-gold lining-nums">{String(m.number).padStart(2, "0")}</span>
+                    <span className="font-serif text-4xl text-gold-muted lining-nums">{String(m.number).padStart(2, "0")}</span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-serif text-2xl leading-tight text-midnight">{m.title}</span>
                       <span className="mt-1 flex flex-wrap gap-x-3 text-sm text-ink-subtle"><span>{m.weeks_label}</span><span>{m.lessons.length} items</span><span>{formatDuration(minutes)}</span></span>

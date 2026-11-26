@@ -28,16 +28,22 @@ const hi = ws.readinessMinutes.selfPaced[1] + ws.steps.reduce((n, s) => n + s.se
 const css = `@page{size:A4}*{box-sizing:border-box}body{font:9.8pt/1.55 Helvetica,Arial,sans-serif;color:#2b3442}
 .tag{font:600 7.5pt Helvetica;letter-spacing:.3em;color:#7A6235;text-transform:uppercase;margin:0}
 h1{font:400 26pt Georgia,serif;color:#101B2D;margin:6pt 0 2pt}h2{font:400 16pt Georgia,serif;color:#101B2D;margin:18pt 0 6pt;border-top:1px solid #B69A68;padding-top:8pt;break-after:avoid}
-h3{font:400 12.5pt Georgia,serif;color:#18283C;margin:12pt 0 4pt;break-after:avoid}.sub{color:#6b7280;margin:0 0 8pt}
+h3{font:400 12.5pt Georgia,serif;color:#18283C;margin:12pt 0 4pt;break-after:avoid}.sub{color:#646b77;margin:0 0 8pt}
 table{width:100%;border-collapse:collapse;font-size:8.8pt;margin:5pt 0;break-inside:auto}tr{break-inside:avoid}td,th{border-bottom:1px solid #e9e7e1;padding:5pt 5pt;vertical-align:top;text-align:left}
-th{font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:#6b7280}.box{border:1px solid #d5d1c7;border-radius:2px;min-height:60pt;margin:3pt 0 8pt}
+th{font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:#646b77}.box{border:1px solid #d5d1c7;border-radius:2px;min-height:60pt;margin:3pt 0 8pt}
 .rec{background:#F7F4EE;border-left:2px solid #B69A68;padding:6pt 9pt;margin:6pt 0}.ev{background:#eef2f8;border-left:2px solid #2b4c7e;padding:6pt 9pt;margin:6pt 0}
-.small{font-size:8pt;color:#6b7280}.page{break-before:page}ul,ol{margin:3pt 0;padding-left:15pt}li{margin:2pt 0}
+.small{font-size:8pt;color:#646b77}.page{break-before:page}ul,ol{margin:3pt 0;padding-left:15pt}li{margin:2pt 0}
 .card{border:1.5px solid #B69A68;border-radius:3px;padding:10pt 12pt;height:205pt;break-inside:avoid;position:relative}.cards{display:grid;grid-template-columns:1fr 1fr;gap:10pt}
 .card .c{font:600 7.5pt Helvetica;letter-spacing:.2em;color:#7A6235;text-transform:uppercase}.card h3{margin:6pt 0 6pt;font-size:15pt;border:0;padding:0}
 .lvl{table-layout:fixed}.lvl td,.lvl th{overflow-wrap:anywhere}.lvl td:first-child,.lvl th:first-child{width:14%}.lvl td:nth-child(2),.lvl th:nth-child(2){width:46%}.mand{color:#9b2c2c;font-weight:600}.ipa{font-family:'DejaVu Sans',Arial,sans-serif}
 .cover{background:#101B2D;color:#F7F4EE;padding:26pt 24pt;margin:-2pt 0 14pt}.cover h1{color:#F7F4EE}.cover .tag{color:#D6C39D}.cover .sub{color:#d5d1c7}`;
 const head = (doc: string) => `<div class="cover"><p class="tag">The Medical Speaking Academy · ${e(code)} · ${e(doc)}</p><h1>${e(title)}</h1><p class="sub">Module ${String(mod.number).padStart(2, "0")} · ${e(mod.title)} · Week ${w.week} · Facilitated ${facTotal} minutes · Independent about ${range(lo, hi)} minutes</p></div>`;
+const section = (h: string) => w.body!.sections.find((x) => x.heading === h);
+const sectionHtml = (h: string, tag = "h2") => { const x = section(h); return x ? `<${tag}>${e(x.heading)}</${tag}>${x.paragraphs.map((p) => `<p>${e(p)}</p>`).join("")}` : ""; };
+const statuses = `<h2>Two statuses: Workshop Completed and Competent</h2><table><tr><th>Status</th><th>What it means</th><th>Who decides</th></tr>
+<tr><td><b>Workshop Completed</b></td><td>Readiness Check passed, all three Practice Rounds logged and the written Final Task submitted.</td><td>The platform records it when the requirements are met.</td></tr>
+<tr><td><b>Competent</b></td><td>Competent in at least ${ws.competence.min} of the ${ws.rubric.length} criteria, including ${ws.competence.required.map((r) => `criterion ${r}`).join(" and ")}.</td><td>Only an instructor or assessor, who observes the Round 3 performance live and uses this rubric. Your self-assessment never sets this status.</td></tr></table>
+<p class="small">Certificates: the Certificate of Completion lists workshops you have completed and, separately, the workshops in which an instructor has confirmed you as Competent. Self-assessed results never appear on a certificate as an assessment.</p>`;
 const lines = (n: number) => `<div class="box" style="min-height:${n}pt"></div>`;
 
 /* ───────── Sections ───────── */
@@ -68,7 +74,7 @@ const warmup = `<ol><li>Release the shoulders and take three slow, low breaths.<
 /* ───────── Documents ───────── */
 const workbook = `${head("Participant Workbook")}
 <p>This workbook accompanies the platform. Everything you write here can also be logged in the <b>Practice Rounds</b> tab, where your progress is saved.</p>
-${objectives}${outcomes}${schedules}
+${objectives}${outcomes}${schedules}${statuses}${sectionHtml("Your recordings and your privacy")}${sectionHtml("If you need an adjustment")}
 <h2 class="page">Worksheet 1 · Your extract</h2><p>2–3 minutes from a talk you will give: the opening, the key result and the close. Use only material you are permitted to share; never include identifiable patient information.</p>
 <h3>Opening (context, purpose, route)</h3>${lines(80)}<h3>Key result (slide and sentence)</h3>${lines(80)}<h3>Close</h3>${lines(45)}
 <h3>Critical numbers (underline them in your script)</h3>${lines(30)}<h3>Two hardest technical terms</h3>${lines(30)}
@@ -94,12 +100,12 @@ ${objectives}${outcomes}${schedules}
 <h2>Workshop phrase bank</h2>${phraseBank}`;
 
 const rubricDoc = `${head("Assessment Rubric")}${principles}<h2>The six criteria</h2>${rubric}
-<h2>How the Final Task is assessed</h2><p>${e(w.assignment!.brief)}</p><p class="small">Assessment now: self-assessment in Practice Round 3. Planned: AI preliminary measurement of measured metrics only (Speaking Studio) and instructor review (human coaching stage). AI never makes the final judgement.</p>`;
+${statuses}<h2>The Final Task</h2><p>${e(w.assignment!.brief)}</p><h2>Using this rubric</h2><ul><li><b>Self-assessment:</b> you rate yourself in every Practice Round. This is a learning tool and is labelled as self-assessment everywhere in the platform.</li><li><b>Instructor assessment:</b> an instructor or assessor observes your Round 3 performance live (or watches you play your own recording during a live session) and records a level for each criterion with written feedback. Recordings are never uploaded.</li><li><b>Adjusted route:</b> if you use an agreed adjustment, the voice-dependent criteria may be replaced by equivalent criteria agreed with the Academic Director.</li><li><b>AI:</b> no AI is used in this workshop. If AI feedback is introduced in later stages, it will describe observable behaviour only and will never decide an assessment.</li></ul>`;
 
 const cardsDoc = `${head("Pressure Cards")}<h2>How the cards work</h2><ul>${ws.pressureGuidance.map((g) => `<li>${e(g)}</li>`).join("")}</ul><p>In the independent version the platform shows a random card between 45 and 90 seconds into Round 3. In the facilitated version the timekeeper draws a card face down and reveals it in the same window.</p>
 <h2 class="page">Cards (print and cut)</h2>${cardsHtml}<h2 class="page">Recovery strategies (read after the round)</h2>${recoveryKey}`;
 
-const facilitator = `${head("Facilitator Guide")}<h2>Before the session</h2><ul>${ws.facilitatorGeneral.map((g) => `<li>${e(g)}</li>`).join("")}</ul>${objectives}
+const facilitator = `${head("Facilitator Guide")}<h2>Before the session</h2><ul>${ws.facilitatorGeneral.map((g) => `<li>${e(g)}</li>`).join("")}</ul>${statuses}${sectionHtml("If you need an adjustment")}${objectives}
 <h2>120-minute agenda</h2><table><tr><th>Time</th><th>Component</th><th>Minutes</th></tr>${(() => { let t = 0; const rows = [`<tr><td>Before</td><td>Readiness Check (online, individually)</td><td>${ws.readinessMinutes.facilitated}</td></tr>`]; t = ws.readinessMinutes.facilitated; for (const s of ws.steps) { rows.push(`<tr><td>${t}–${t + s.facilitatedMinutes}</td><td>${e(s.title)}</td><td>${s.facilitatedMinutes}</td></tr>`); t += s.facilitatedMinutes; } return rows.join(""); })()}</table>
 <h2 class="page">Component guidance</h2>${ws.steps.map((s) => stepDetail(s.key, true)).join("")}
 <h2 class="page">Debrief questions</h2><ol>${ws.debriefQuestions.map((q) => `<li>${e(q)}</li>`).join("")}</ol>
@@ -133,9 +139,9 @@ const review = `<p class="tag">The Medical Speaking Academy · Curriculum review
     [`docs/curriculum/workshop-${code}-complete.pdf`, review, "Complete package"],
   ];
   for (const [file, html, label] of out) {
-    await page.setContent(`<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><style>${css}</style></head><body>${html}</body></html>`);
-    await page.pdf({ path: file, format: "A4", printBackground: true, displayHeaderFooter: true, headerTemplate: "<span></span>",
-      footerTemplate: `<div style="font:7px Helvetica;color:#6b7280;width:100%;text-align:center">The Medical Speaking Academy · ${code} ${label} · <span class="pageNumber"></span>/<span class="totalPages"></span></div>`,
+    await page.setContent(`<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>The Medical Speaking Academy · ${code} ${label}</title><style>${css}</style></head><body>${html}</body></html>`);
+    await page.pdf({ path: file, format: "A4", printBackground: true, tagged: true, outline: true, displayHeaderFooter: true, headerTemplate: "<span></span>",
+      footerTemplate: `<div style="font:7px Helvetica;color:#646b77;width:100%;text-align:center">The Medical Speaking Academy · ${code} ${label} · <span class="pageNumber"></span>/<span class="totalPages"></span></div>`,
       margin: { top: "15mm", bottom: "16mm", left: "15mm", right: "15mm" } });
     console.log("wrote", file);
   }

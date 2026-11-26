@@ -38,6 +38,7 @@ export default function TermsPage() {
 
       <h2>9. Assessment and certification</h2>
       <p>A Certificate of Completion is issued only when all published graduation requirements are met and an authorised Academy assessor approves the final assessment. The certificate is issued by the Academy. The Academy is not a university, and the programme does not currently carry external accreditation or CME/CPD credit. The Academy may revoke a certificate obtained through misrepresentation or academic misconduct.</p>
+      <p>Workshops have two separate statuses. <strong>Workshop Completed</strong> means that all required activities and the written Final Task have been completed. <strong>Competent</strong> means that an Academy instructor or assessor has observed the participant&rsquo;s performance and confirmed, using the published rubric, that the required standard has been met. Self-assessment is a learning tool and is never presented as an independent assessment. The certificate and its verification record list only instructor-confirmed Competent results as assessments. Participants may ask for a reassessment and may appeal an assessment under the Certificate and Assessment Policy.</p>
 
       <h2>10. Intellectual property</h2>
       <p>All programme content, including lessons, videos, workbooks and AI teacher configurations, is owned by or licensed to the Academy and is provided for your personal educational use only.</p>

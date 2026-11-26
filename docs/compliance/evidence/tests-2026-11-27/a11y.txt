@@ -1,0 +1,7 @@
+{
+  "pagesScanned": 35,
+  "firstTabStop": "Skip to content",
+  "totalViolations": 0,
+  "byRule": {}
+}
+A11Y GATE PASSED: 0 violations

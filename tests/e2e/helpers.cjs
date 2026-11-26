@@ -34,4 +34,26 @@ async function confirmedStudent(first, last = 'Test') {
 const sql = (q) => execFileSync('psql', [local().dbUrl, '-tAc', q], { encoding: 'utf8' }).trim();
 const anonClient = () => { const { url, key } = local(); return createClient(url, key, { auth: { persistSession: false } }); };
 
-module.exports = { mailLink, confirmedStudent, sql, anonClient };
+/** RFC 6238 TOTP (SHA-1, 30 s, 6 digits) from a base32 secret. */
+function totp(secret, at = Date.now()) {
+  const crypto = require('node:crypto');
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let bits = '';
+  for (const ch of secret.replace(/=+$/, '').toUpperCase()) bits += alphabet.indexOf(ch).toString(2).padStart(5, '0');
+  const key = Buffer.from(bits.match(/.{8}/g).map((b) => parseInt(b, 2)));
+  const ctr = Buffer.alloc(8); ctr.writeBigUInt64BE(BigInt(Math.floor(at / 30000)));
+  const h = crypto.createHmac('sha1', key).update(ctr).digest();
+  const o = h[h.length - 1] & 15;
+  return String(((h.readUInt32BE(o) & 0x7fffffff) % 1e6)).padStart(6, '0');
+}
+
+/** Staff privileges require an MFA-verified (aal2) session: enrol and verify a TOTP factor. */
+async function withMfa(c) {
+  const { data, error } = await c.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'Test ' + Date.now() });
+  if (error) throw error;
+  const { error: e2 } = await c.auth.mfa.challengeAndVerify({ factorId: data.id, code: totp(data.totp.secret) });
+  if (e2) throw e2;
+  return data.totp.secret;
+}
+
+module.exports = { mailLink, confirmedStudent, sql, anonClient, totp, withMfa };

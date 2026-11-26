@@ -38,5 +38,16 @@ export async function updateSession(request: NextRequest) {
     url.search = `?next=${encodeURIComponent(request.nextUrl.pathname)}`;
     return NextResponse.redirect(url);
   }
+
+  // Accounts with a verified authenticator must complete the second factor before using the app.
+  if (isPrivate && user) {
+    const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (aal?.nextLevel === "aal2" && aal.currentLevel !== "aal2") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/verify-mfa";
+      url.search = `?next=${encodeURIComponent(request.nextUrl.pathname)}`;
+      return NextResponse.redirect(url);
+    }
+  }
   return response;
 }

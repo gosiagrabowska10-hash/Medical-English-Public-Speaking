@@ -73,6 +73,8 @@ export async function loginAction(_: FormState, form: FormData): Promise<FormSta
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) return { status: "error", message: friendly(error.message) };
   await supabase.rpc("log_event", { _action: "auth.sign_in" });
+  const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (aal?.nextLevel === "aal2" && aal.currentLevel !== "aal2") redirect(`/verify-mfa?next=${encodeURIComponent(safeNext(form.get("next")))}`);
   redirect(safeNext(form.get("next")));
 }
 

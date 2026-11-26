@@ -1,0 +1,70 @@
+
+> medical-speaking-academy@0.1.0 test:course
+> node tests/e2e/course-flow.cjs
+
+PASS curriculum shows 12 modules, 30 lessons, 6 workshops, ~42 h from the database
+PASS all 12 modules listed
+PASS module containing the next lesson is expanded and the preview lesson is labelled
+PASS non-enrolled student sees no content of a locked lesson
+PASS lesson without a recording shows an honest notice (no fake video)
+PASS opening a lesson records it as in progress
+PASS written lesson content rendered from the database
+PASS tabs: Lesson, Exercise, Quiz, Materials, Assignment
+PASS lesson cannot be completed before requirements are met
+PASS AI teacher card with conversation entry point
+PASS lesson shows phrase bank, labelled research evidence and references
+PASS examples are labelled as illustrative and composite
+PASS model answer is withheld until the student saves their own response
+PASS exercise enforces minimum length on the server
+PASS exercise saved
+PASS model answer revealed after saving, with self-check criteria
+PASS quiz options are displayed in shuffled order (scored by original index): 3,2,2,3,0,1
+PASS wrong answers are scored on the server and do not pass
+PASS correct answers pass the quiz (6/6) with explanations
+PASS downloadable lesson handout is a real PDF
+PASS assignment shows transparent assessment criteria
+PASS assignment enforces minimum word count on the server
+PASS assignment submitted
+PASS completion unlocks after exercise, quiz and assignment
+PASS completion is stored in the database for this student
+PASS curriculum progress shows 1 of 36 after completing L01
+PASS sample video is clearly labelled
+PASS captions track attached
+PASS a text transcript generated from the captions is available below the video
+PASS video loads and captions are shown by default
+PASS playback speed control works
+PASS video position saved to the database
+PASS video resumes from the saved position
+PASS curriculum sidebar collapses
+PASS sidebar navigates between lessons
+PASS in-preparation lesson is labelled and cannot be completed
+PASS workshop navigation: Briefing|Practice Rounds|Readiness Check|Workshop Pack|Final Task
+PASS briefing shows both versions and model performances
+PASS practice rounds are locked until the readiness check is passed
+PASS readiness check passed (5/5)
+PASS self-paced version is organised in three sittings
+PASS progress is saved; resume points to Round 1 after reload
+PASS a draft round can be saved and resumed later
+PASS a round cannot be completed without the comprehension check and self-ratings
+PASS rate is calculated and labelled as diagnostic only
+PASS pressure timer explains the reveal window
+PASS a standard pressure card is revealed within 45–90 seconds
+PASS recovery strategy shown after the round
+PASS the pressure challenge can be repeated with a new card
+PASS progress table compares rounds 1–3 including the pressure card
+PASS final task shows the six assessment criteria
+PASS workshop completion unlocks after readiness check, three rounds and final task
+PASS workshop completion stored in the database
+PASS workshop pack lists four documents
+PASS all 10 lesson and workshop resources exist and are PDFs
+PASS AI teacher entry point opens the teacher profile (conversations: Stage 4)
+PASS dashboard shows real course progress (L01 and W1 completed)
+PASS laptop: lesson player has no horizontal overflow
+PASS laptop (1280px): every workshop tab is clickable, not covered by the course sidebar
+PASS tablet: lesson player has no horizontal overflow
+PASS tablet: course contents drawer navigates
+PASS mobile: lesson player has no horizontal overflow
+PASS mobile: course contents drawer navigates
+PASS no client-side errors
+
+64/64 passed

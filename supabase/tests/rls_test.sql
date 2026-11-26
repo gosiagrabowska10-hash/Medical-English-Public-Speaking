@@ -4,9 +4,9 @@
 \set QUIET on
 set client_min_messages = warning;
 
-create or replace function pg_temp.act_as(_uid uuid) returns void language plpgsql as $$
+create or replace function pg_temp.act_as(_uid uuid, _aal text default 'aal1') returns void language plpgsql as $$
 begin
-  perform set_config('request.jwt.claims', json_build_object('sub', _uid, 'role', 'authenticated')::text, false);
+  perform set_config('request.jwt.claims', json_build_object('sub', _uid, 'role', 'authenticated', 'aal', _aal)::text, false);
   execute 'set role authenticated';
 end $$;
 create or replace function pg_temp.check(_ok boolean, _name text) returns void language plpgsql as $$
@@ -118,19 +118,52 @@ select pg_temp.act_as('22222222-2222-2222-2222-222222222222');
 select pg_temp.check((select count(*) = 0 from public.data_deletion_requests), 'students cannot see other students'' deletion requests');
 select pg_temp.check((select count(*) = 0 from public.consents), 'students cannot see other students'' consents');
 
--- Owner
+-- Owner without MFA (aal1): staff privileges are not effective
 select pg_temp.act_as('99999999-9999-9999-9999-999999999999');
+select pg_temp.check((select count(*) = 1 from public.profiles), 'owner without MFA sees only their own profile');
+select pg_temp.check((select count(*) = 0 from public.audit_log), 'owner without MFA cannot read the audit log');
+do $$ begin
+  insert into public.user_roles (user_id, role, granted_by) values ('22222222-2222-2222-2222-222222222222', 'instructor', '99999999-9999-9999-9999-999999999999');
+  raise exception 'FAIL: role granted without MFA';
+exception when insufficient_privilege then raise notice 'PASS: owner without MFA cannot grant staff roles';
+end $$;
+
+-- Owner with MFA (aal2)
+select pg_temp.act_as('99999999-9999-9999-9999-999999999999', 'aal2');
 select pg_temp.check((select count(*) = 3 from public.profiles where id in ('11111111-1111-1111-1111-111111111111','22222222-2222-2222-2222-222222222222','99999999-9999-9999-9999-999999999999')), 'owner can read all profiles');
 select pg_temp.check((select count(*) >= 4 from public.audit_log), 'owner can read the audit log');
 insert into public.user_roles (user_id, role, granted_by) values ('22222222-2222-2222-2222-222222222222', 'instructor', '99999999-9999-9999-9999-999999999999');
 select pg_temp.check((select count(*) = 1 from public.user_roles where user_id = '22222222-2222-2222-2222-222222222222' and role = 'instructor'), 'owner can grant a staff role');
+select pg_temp.check((select count(*) = 1 from public.audit_log where action = 'role.granted' and entity_id = '22222222-2222-2222-2222-222222222222' and actor_id = '99999999-9999-9999-9999-999999999999'), 'granting a staff role is written to the audit log with the actor');
 delete from public.user_roles where user_id = '99999999-9999-9999-9999-999999999999' and role = 'academy_owner';
 reset role; select pg_temp.check((select count(*) = 1 from public.user_roles where user_id = '99999999-9999-9999-9999-999999999999' and role = 'academy_owner'), 'owner cannot remove their own owner role');
 
--- New instructor can read student profiles but not the audit log
+-- New instructor without MFA has no staff access
 select pg_temp.act_as('22222222-2222-2222-2222-222222222222');
+select pg_temp.check((select count(*) = 1 from public.profiles), 'instructor without MFA cannot read student profiles');
+select pg_temp.check(not public.is_teaching_staff(), 'instructor without MFA is not treated as teaching staff');
+
+-- New instructor with MFA can read student profiles but not the audit log
+select pg_temp.act_as('22222222-2222-2222-2222-222222222222', 'aal2');
 select pg_temp.check((select count(*) = 3 from public.profiles where id in ('11111111-1111-1111-1111-111111111111','22222222-2222-2222-2222-222222222222','99999999-9999-9999-9999-999999999999')), 'instructor can read student profiles');
 select pg_temp.check((select count(*) = 0 from public.audit_log), 'instructor cannot read the audit log');
+
+-- Rate limiting (anonymous caller; no direct table access)
+reset role;
+set role anon;
+select pg_temp.check(public.rate_limit_hit('contact:' || repeat('a', 64), 2, 60), 'rate limit: first request allowed');
+select pg_temp.check(public.rate_limit_hit('contact:' || repeat('a', 64), 2, 60), 'rate limit: second request allowed');
+select pg_temp.check(not public.rate_limit_hit('contact:' || repeat('a', 64), 2, 60), 'rate limit: third request in the window refused');
+do $$ begin
+  perform public.rate_limit_hit('raw ip 1.2.3.4', 2, 60);
+  raise exception 'FAIL: malformed bucket accepted';
+exception when invalid_parameter_value then raise notice 'PASS: rate limit buckets must be hashed keys';
+end $$;
+do $$ begin
+  perform count(*) from public.rate_limits;
+  raise exception 'FAIL: rate_limits readable';
+exception when insufficient_privilege then raise notice 'PASS: anonymous users cannot read rate-limit records';
+end $$;
 
 -- Deleting an auth user cascades
 reset role;

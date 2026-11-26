@@ -1,0 +1,54 @@
+
+> medical-speaking-academy@0.1.0 test:priority1
+> node tests/e2e/priority1.cjs
+
+PASS Content-Security-Policy set (frame-ancestors, object-src)
+PASS Strict-Transport-Security set
+PASS X-Frame-Options DENY and nosniff
+PASS Referrer-Policy and Permissions-Policy set
+PASS framework banner (X-Powered-By) removed
+PASS health check reports up/down only
+PASS security headers also on API routes
+PASS contact form limited to 5 per 10 minutes per client (503,503,503,503,503,429)
+PASS raw IP addresses are not stored in rate-limit records
+PASS instructor without MFA sees only their own profile (staff access locked)
+PASS instructor enrols a TOTP authenticator
+PASS session is MFA-verified (aal2)
+PASS instructor with MFA can read learner profiles
+PASS learner submits the written Final Task
+PASS Workshop Completed is reached by activities + Final Task (no instructor needed)
+PASS self-ratings of Competent do not create a Competent status
+PASS learners cannot record assessments
+PASS learners cannot insert assessments directly
+PASS instructors cannot assess without an MFA-verified session
+PASS staff cannot assess themselves
+PASS criterion 2 is required: five Competent without criterion 2 is not Competent
+PASS five Competent including criteria 2 and 4 confirms Competent
+PASS a level is required for every rubric criterion
+PASS learners cannot see other learners' assessments
+PASS assessments are written to the audit log
+PASS an account with an authenticator is asked for the code after the password
+PASS staff pages cannot be reached before the second factor
+PASS accessibility (axe, WCAG 2.2 AA): two-factor verification page
+PASS a wrong code is rejected
+PASS after MFA the instructor sees submitted Final Tasks
+PASS learner self-assessment is shown as context only
+PASS previous assessments are listed
+PASS accessibility (axe, WCAG 2.2 AA): staff assessment page
+PASS instructor records a rubric assessment through the platform
+PASS learner sees Competent confirmed by an instructor
+PASS self-assessment is explicitly not an independent assessment
+PASS learner sees the instructor feedback
+PASS accessibility (axe, WCAG 2.2 AA): workshop statuses after instructor assessment
+PASS learners cannot open staff tools
+PASS data export covers every table with learner data (missing: none)
+PASS export contains workshop logs, assessments and the Final Task
+PASS export contains no other learner's data
+PASS export is not cached
+PASS dashboard tells staff without MFA to set it up
+PASS staff tools are locked without MFA
+PASS accessibility (axe, WCAG 2.2 AA): two-factor set-up panel
+PASS staff member enables two-factor authentication in Account Settings
+PASS MFA enrolment is written to the audit log
+
+48/48 passed

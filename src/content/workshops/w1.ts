@@ -44,7 +44,8 @@ export const W1: WorkshopSpec = {
       {
         heading: "How you will be assessed",
         paragraphs: [
-          "Your final recording is assessed against six criteria: opening and audience orientation; pace and pausing for comprehension; emphasis and intonation; accuracy and intelligibility of numbers and terminology; voice and physical presence; and composure, recovery and self-analysis. Each has three levels — Beginning, Developing and Competent — described with concrete examples in the Workshop Pack. To complete the workshop you need Competent in at least five criteria, including pace and pausing (criterion 2) and numbers and terminology (criterion 4), which are the core intelligibility skills.",
+          "The workshop uses six criteria: opening and audience orientation; pace and pausing for comprehension; emphasis and intonation; accuracy and intelligibility of numbers and terminology; voice and physical presence; and composure, recovery and self-analysis. Each has three levels — Beginning, Developing and Competent — described with concrete examples in the Workshop Pack.",
+          "There are two separate statuses, and it is important not to confuse them. Workshop Completed means that you have done all the required activities — the Readiness Check, the three Practice Rounds with their logs and the stations — and submitted the written Final Task. Competent means that an instructor has observed your Round 3 performance and confirmed, using the rubric, that you meet the standard: Competent in at least five of the six criteria, including pace and pausing (criterion 2) and numbers and terminology (criterion 4), which are the core intelligibility skills. You rate yourself on the same criteria in every round. Your self-assessment is an essential learning tool, but it is your own judgement, not an independent assessment, and it never sets the Competent status.",
           "The criteria measure communication, not performance tricks. Your accent is never penalised when your speech is intelligible. Speaking rate is recorded as diagnostic information, not as a target: the question is whether a listener can follow and report your key message after one hearing. Fillers are judged by their effect, not counted against you. And natural, credible delivery is valued above visible technique; an exaggerated pause or a theatrical gesture that makes you sound less like yourself does not score higher.",
         ],
         callout: {
@@ -60,10 +61,26 @@ export const W1: WorkshopSpec = {
         ],
       },
       {
+        heading: "Your recordings and your privacy",
+        paragraphs: [
+          "You record each round on your own phone or computer. Your recordings stay on your device: the platform does not upload, store or analyse them, and no one at the Academy can see them unless you choose to play one during a live session. The platform stores only what you type into the round logs, your self-assessment and your Final Task, and you can download all of it from Account Settings at any time.",
+          "Record only yourself. Do not record patients, colleagues or anyone else without their agreement, and keep identifiable clinical information out of your extract and your recordings. In the facilitated version, each participant records on their own device, and recordings of other participants are never kept, shared or uploaded.",
+        ],
+      },
+      {
+        heading: "If you need an adjustment",
+        paragraphs: [
+          "The workshop assumes that you can speak aloud, listen to a recording and stand. If any of these is difficult for you — for example because of a speech, hearing, voice or mobility condition, or a temporary injury — you can use an adjusted route with the same learning outcomes. You do not need to explain your reasons in detail.",
+          "Common adjustments are: delivering the extract seated; using captions or a transcript of your own recording (most phones can produce one) instead of listening back; completing the comprehension check in writing with your listener; replacing the spoken pressure card with a written recovery plan; and extra time for any step. If your voice is not available to you, you can deliver the extract using text-to-speech or another communication aid; you are then assessed on structure, emphasis planning, slide design, numbers and terminology, recovery planning and self-analysis, and the voice-dependent criteria are replaced by equivalent planning criteria agreed with the Academic Director.",
+          "To arrange an adjustment, choose “Accessibility and adjustments” on the contact form or tell your facilitator. The Academy’s Reasonable Adjustments Policy explains how requests are handled and how your information is kept confidential.",
+        ],
+      },
+      {
         heading: "Pressure, practised safely",
         paragraphs: [
           "Round 3 adds a pressure card: a short, realistic disruption such as a chair’s one-minute signal, failed slides or a clarifying question about a number. You can read all the cards in the Workshop Pack in advance, so the only surprise is which card appears and when. The disruptions are professional situations that every experienced speaker meets, never personal challenges. You can choose standard cards only, or add stretch cards if you want a harder challenge, and you can repeat Round 3 with a new card as often as you wish.",
           "Practising under mild, controlled pressure prepares you for the moment when pressure is real. The goal is not to remove the disruption but to show that you can acknowledge it briefly, use a prepared phrase, and return to your message.",
+          "The pressure element is always your choice. If a spoken disruption is not right for you at the moment, you can complete Round 3 without a card and instead write a recovery plan for two cards of your choice; this still counts towards Workshop Completed.",
         ],
         callout: {
           kind: "recommendation",
@@ -131,7 +148,7 @@ export const W1: WorkshopSpec = {
       prompt: "Your extract contains the sentence “Admissions fell by fifteen per cent.” Which delivery best protects the number?",
       options: [
         "Say it quickly so the audience does not lose interest",
-        "Pause before it, say “fifteen per cent” slowly, and restate it as roughly one patient in seven",
+        "Pause before it, say “fifteen per cent” slowly, and restate it as “about one in seven”",
         "Round it to fifty per cent to simplify",
         "Leave the number to the slide and do not say it",
       ],
@@ -140,31 +157,31 @@ export const W1: WorkshopSpec = {
     },
     {
       prompt: "Which tone should your key result usually end with?",
-      options: ["A rise, to invite questions", "A clear fall, to show the statement is complete", "A level tone", "A rise on every word"],
-      correct: 1,
+      options: ["A rise, to invite questions", "A level tone", "A rise on every word", "A clear fall, to show the statement is complete"],
+      correct: 3,
       explanation: "In standard British English a clear fall signals that a statement is complete and that you stand behind it (L08).",
     },
     {
       scenario: true,
       prompt: "You need to point to a detail on your slide while using a fixed lectern microphone. What is the best sequence?",
       options: [
-        "Explain while looking at the screen",
         "Turn and look in silence, turn back to the audience, then speak",
+        "Explain while looking at the screen",
         "Walk to the screen with the microphone",
         "Use the laser pointer in quick circles while speaking",
       ],
-      correct: 1,
+      correct: 0,
       explanation: "Speaking only when facing the audience keeps your voice in range and gives listeners time to look (L08, L09).",
     },
     {
       prompt: "In this workshop, how is speaking rate used?",
       options: [
         "As a pass/fail target of 140 words per minute",
-        "As diagnostic information alongside the listener comprehension check",
         "It is not measured at all",
+        "As diagnostic information alongside the listener comprehension check",
         "As the main criterion for the final assessment",
       ],
-      correct: 1,
+      correct: 2,
       explanation: "Rate helps diagnose problems such as acceleration under pressure; intelligibility is judged by whether the listener understands.",
     },
     {
@@ -173,17 +190,17 @@ export const W1: WorkshopSpec = {
       options: [
         "Apologise and wait in silence until they return",
         "Speed up to finish before anyone notices",
-        "Acknowledge it briefly, describe the result in words and continue",
         "Ask the audience to read the handout",
+        "Acknowledge it briefly, describe the result in words and continue",
       ],
-      correct: 2,
+      correct: 3,
       explanation: "A brief acknowledgement and a prepared phrase keep you in control of the message (L02 recovery; W1 phrase bank).",
     },
   ],
   assignment: {
     title: "Final Task — performance analysis and transfer plan",
     brief:
-      "Write an analysis of 250–400 words of your Round 3 performance, using the measurements and comprehension-check results you logged in the three Practice Rounds. Include: (1) the main differences between Rounds 1, 2 and 3, with evidence; (2) two strengths to keep and two priorities to work on; (3) how you handled the pressure card and what you would do next time; and (4) your transfer plan for a named upcoming presentation: three commitments, your warm-up, your recovery phrase and the date. Assess yourself on the six rubric criteria in Practice Round 3 before you submit. Keep your Round 3 recording: you will be able to submit it for analysis and instructor review when the Speaking Studio and instructor review open in later stages of the programme.",
+      "Write an analysis of 250–400 words of your Round 3 performance, using the measurements and comprehension-check results you logged in the three Practice Rounds. Include: (1) the main differences between Rounds 1, 2 and 3, with evidence; (2) two strengths to keep and two priorities to work on; (3) how you handled the pressure card and what you would do next time; and (4) your transfer plan for a named upcoming presentation: three commitments, your warm-up, your recovery phrase and the date. Assess yourself on the six rubric criteria in Practice Round 3 before you submit. If you used the delayed self-check instead of a listener, say so: a self-check is weaker evidence than a listener’s report, so interpret your comprehension results cautiously. Submitting the Final Task completes the workshop (Workshop Completed). The Competent status is separate: it is confirmed only by an instructor who observes your Round 3 performance live, in a facilitated workshop or a coaching session. Keep your Round 3 recording on your own device; you may choose to play it during a live session, but it is never uploaded to the platform.",
     min_words: 250,
     required: true,
     criteria: [
@@ -217,7 +234,8 @@ export const W1: WorkshopSpec = {
       "Audience-centred. For every criterion the question is: does this help this audience understand and trust the message?",
     ],
     completionRule:
-      "Competent in at least five of the six criteria, including criterion 2 (pace and pausing for comprehension) and criterion 4 (numbers and terminology). If this is not yet reached, repeat Round 3 with a new pressure card; there is no limit on attempts.",
+      "Workshop Completed: Readiness Check passed, all three Practice Rounds logged and the written Final Task submitted. Competent (confirmed by an instructor using this rubric, never by self-assessment): Competent in at least five of the six criteria, including criterion 2 (pace and pausing for comprehension) and criterion 4 (numbers and terminology). If Competent is not yet reached, repeat Round 3 with a new pressure card and ask for reassessment; there is no limit on attempts.",
+    competence: { min: 5, required: [2, 4] },
     readinessMinutes: { facilitated: 10, selfPaced: [10, 15] },
     sessions: [
       { title: "Sitting 1 — Baseline and pace", steps: ["briefing", "round1", "stationA"] },
@@ -251,7 +269,7 @@ export const W1: WorkshopSpec = {
         key: "round1", title: "Round 1 — Baseline recording", kind: "round", facilitatedMinutes: 15, selfPacedMinutes: [20, 25],
         purpose: "Capture how you deliver the extract today, before any practice in this workshop.",
         instructions: [
-          "Stand, start the recording and deliver the extract once, as you would at a meeting. Do not re-record: the first take is your baseline.",
+          "Stand, start the recording on your own device and deliver the extract once, as you would at a meeting. Do not re-record: the first take is your baseline. Your recording stays on your device; the platform stores only what you type in the log.",
           "Comprehension check: your listener hears the extract once and writes down the key message and any numbers they heard.",
           "Time your key-result segment and count its words (the platform calculates words per minute as diagnostic information).",
           "Note whether you paused before and after the key result, and where any fillers clustered.",
@@ -261,7 +279,7 @@ export const W1: WorkshopSpec = {
         output: "Recording 1 and its log",
         basedOn: ["L07"],
         facilitator: {
-          setup: "Timekeeper starts and stops the recording; listener has paper for the comprehension check. Rotate until all three participants have recorded.",
+          setup: "Each speaker records on their own device; the timekeeper may start and stop it only with the speaker’s agreement. Listener has paper for the comprehension check. Rotate until all three participants have recorded.",
           observe: ["Did the listener report the key message and numbers correctly?", "Where did the speaker accelerate?", "Was there any apology or throat-clearing at the start?"],
           difficulties: [
             { issue: "Speaker wants to start again after a mistake", response: "Ask them to continue. The baseline must be a real first take." },
@@ -559,11 +577,13 @@ export const W1: WorkshopSpec = {
     facilitatorGeneral: [
       "Group size: three participants per group (speaker, timekeeper, listener); rotate roles every round. With an even number, a group of four adds an observer.",
       "Room: space to stand, a screen or a laptop for slides, and the furthest seat available for Station B.",
-      "Psychological safety: state at the start that Round 1 is diagnostic, recordings stay with the participant, and accent is never assessed.",
+      "Psychological safety: state at the start that Round 1 is diagnostic, recordings stay with the participant, and accent is never assessed. Pressure cards are optional; a participant can use the written recovery-plan alternative.",
+      "Recording ground rules (read aloud at the start): each person records only on their own device; no one records another participant without their agreement; recordings of others are not kept, shared or uploaded; feedback given in the group stays in the group.",
+      "Adjustments: ask privately at the start whether anyone needs an adjustment (seated delivery, written comprehension check, captions instead of listening back, written alternative to pressure cards, extra time, or delivery with a communication aid). Use the adjusted route described in the Briefing; agree any replacement criteria with the Academic Director.",
       "Feedback: always one specific strength, one time-referenced observation and one suggestion, using the phrase bank.",
       "Timing: keep to the agenda; if a group runs late, shorten Station A practice rather than the recording rounds.",
       "Pressure cards: draw face down and reveal between 45 and 90 seconds after the speaker starts; standard cards by default; offer a repeat.",
-      "Assessment: use the rubric descriptors and examples; record evidence (comprehension check, moments in the recording), not impressions.",
+      "Assessment: participants rate themselves; that is self-assessment only. If you are an instructor or assessor confirming the Competent status, observe the participant’s Round 3 live, use the rubric descriptors and examples, record evidence (comprehension check, specific moments), not impressions, and enter the result in the platform’s assessment tool with written feedback.",
     ],
   },
 };

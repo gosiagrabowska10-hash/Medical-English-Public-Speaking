@@ -1,0 +1,49 @@
+
+> medical-speaking-academy@0.1.0 test:rls
+> bash supabase/tests/run_local.sh
+
+PASS: trigger creates a profile for every new user
+PASS: profile is populated from sign-up metadata
+PASS: invalid title from metadata is discarded
+PASS: new user receives the student role
+PASS: terms and privacy consent recorded when accepted
+PASS: no consent recorded when not accepted
+PASS: anonymous visitors cannot read profiles
+PASS: anonymous visitors cannot write to the audit log
+PASS: student sees only their own profile
+PASS: student cannot update another profile
+PASS: student can update own profile
+PASS: student cannot change protected profile columns
+PASS: student cannot grant themselves a staff role
+PASS: student cannot read the audit log
+PASS: log_event records the real caller as actor
+PASS: audit log cannot be written directly
+PASS: student can record a consent; current view returns it
+PASS: student cannot record consent for another user
+PASS: consent history cannot be edited by students
+PASS: consent history cannot be deleted by students
+PASS: student can request deletion of their data
+PASS: only one open deletion request per user
+PASS: students cannot delete their deletion request record
+PASS: student cannot mark their own request as processed
+PASS: students cannot see other students' deletion requests
+PASS: students cannot see other students' consents
+PASS: owner without MFA sees only their own profile
+PASS: owner without MFA cannot read the audit log
+PASS: owner without MFA cannot grant staff roles
+PASS: owner can read all profiles
+PASS: owner can read the audit log
+PASS: owner can grant a staff role
+PASS: granting a staff role is written to the audit log with the actor
+PASS: owner cannot remove their own owner role
+PASS: instructor without MFA cannot read student profiles
+PASS: instructor without MFA is not treated as teaching staff
+PASS: instructor can read student profiles
+PASS: instructor cannot read the audit log
+PASS: rate limit: first request allowed
+PASS: rate limit: second request allowed
+PASS: rate limit: third request in the window refused
+PASS: rate limit buckets must be hashed keys
+PASS: anonymous users cannot read rate-limit records
+PASS: deleting an account removes its profile and consents
+ALL RLS TESTS COMPLETED

@@ -1,0 +1,55 @@
+
+> medical-speaking-academy@0.1.0 test:site
+> node tests/e2e/site-qa.cjs
+
+1440 / 200 overflow=0 h1=1 descLen=198 robots=-  
+   title: Medical Public Speaking & English Communication for Doctors | The Medical Speaking Academy | canonical: http://localhost:3100/
+1440 /about 200 overflow=0 h1=1 descLen=199 robots=-  
+   title: About the Academy | The Medical Speaking Academy | canonical: http://localhost:3100/about
+1440 /methodology 200 overflow=0 h1=1 descLen=172 robots=-  
+   title: Methodology | The Medical Speaking Academy | canonical: http://localhost:3100/methodology
+1440 /curriculum 200 overflow=0 h1=1 descLen=216 robots=-  
+   title: Curriculum — 12 Modules, 30 Lessons, 6 Workshops | The Medical Speaking Academy | canonical: http://localhost:3100/curriculum
+1440 /ai-teachers 200 overflow=0 h1=1 descLen=182 robots=-  
+   title: The AI Learning Faculty | The Medical Speaking Academy | canonical: http://localhost:3100/ai-teachers
+1440 /speaking-studio 200 overflow=0 h1=1 descLen=143 robots=-  
+   title: Speaking Studio & Simulation Centre | The Medical Speaking Academy | canonical: http://localhost:3100/speaking-studio
+1440 /pricing 200 overflow=0 h1=1 descLen=181 robots=-  
+   title: Tuition & Admissions | The Medical Speaking Academy | canonical: http://localhost:3100/pricing
+1440 /instructors 200 overflow=0 h1=1 descLen=152 robots=-  
+   title: Faculty | The Medical Speaking Academy | canonical: http://localhost:3100/instructors
+1440 /founder 200 overflow=0 h1=1 descLen=140 robots=-  
+   title: The Founder | The Medical Speaking Academy | canonical: http://localhost:3100/founder
+1440 /faq 200 overflow=0 h1=1 descLen=170 robots=-  
+   title: Frequently Asked Questions | The Medical Speaking Academy | canonical: http://localhost:3100/faq
+1440 /blog 200 overflow=0 h1=1 descLen=153 robots=-  
+   title: Journal — Medical Public Speaking Insights | The Medical Speaking Academy | canonical: http://localhost:3100/blog
+1440 /blog/how-to-present-research-at-an-international-medical-conference 200 overflow=0 h1=1 descLen=134 robots=-  
+   title: How to Present Your Research at an International Medical Conference | The Medical Speaking Academy | canonical: http://localhost:3100/blog/how-to-present-research-at-an-international-medical-conference
+1440 /contact 200 overflow=0 h1=1 descLen=125 robots=-  
+   title: Contact | The Medical Speaking Academy | canonical: http://localhost:3100/contact
+1440 /login 200 overflow=0 h1=1 descLen=57 robots=noindex, nofollow  
+   title: Sign in | The Medical Speaking Academy | canonical: http://localhost:3100/login
+1440 /register 200 overflow=0 h1=1 descLen=61 robots=noindex, nofollow  
+   title: Apply to the Academy | The Medical Speaking Academy | canonical: http://localhost:3100/register
+1440 /privacy 200 overflow=0 h1=1 descLen=113 robots=-  
+   title: Privacy Policy | The Medical Speaking Academy | canonical: http://localhost:3100/privacy
+1440 /terms 200 overflow=0 h1=1 descLen=89 robots=-  
+   title: Terms & Conditions | The Medical Speaking Academy | canonical: http://localhost:3100/terms
+1440 /cookies 200 overflow=0 h1=1 descLen=107 robots=-  
+   title: Cookie Policy | The Medical Speaking Academy | canonical: http://localhost:3100/cookies
+1440 /design-system 200 overflow=0 h1=1 descLen=26 robots=noindex, nofollow  
+   title: Design System | The Medical Speaking Academy | canonical: http://localhost:3100/design-system
+1440 /forgot-password 200 overflow=0 h1=1 descLen=30 robots=noindex, nofollow  
+   title: Reset your password | The Medical Speaking Academy | canonical: http://localhost:3100/forgot-password
+1440 /reset-password 200 overflow=0 h1=1 descLen=36 robots=noindex, nofollow  
+   title: Choose a new password | The Medical Speaking Academy | canonical: http://localhost:3100/reset-password
+1440 /auth/check-email 200 overflow=0 h1=1 descLen=52 robots=noindex, nofollow  
+   title: Confirm your email | The Medical Speaking Academy | canonical: http://localhost:3100/auth/check-email
+links checked: 22
+/sitemap.xml 200 application/xml
+/robots.txt 200 text/plain
+/opengraph-image 200 image/png
+contact valid -> 503 {"ok":false,"error":"not_configured"}
+contact invalid -> 422 {"ok":false,"error":"validation","issues":["name","email","topic","message","consent"]}
+SITE QA: NO PROBLEMS FOUND

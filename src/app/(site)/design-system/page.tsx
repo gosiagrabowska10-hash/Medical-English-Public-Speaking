@@ -143,7 +143,7 @@ export default function DesignSystemPage() {
         </Block>
 
         <Block n={13} title="Certificate layout">
-          <CertificateLayout name="Dr Specimen Name" date="1 February 2027" number="MSA-0000-0000" signatory="[Authorised signatory]" specimen />
+          <CertificateLayout name="Dr Specimen Name" date="1 February 2027" number="MSA-0000-0000" signatory="[Authorised signatory]" competent={["Workshop I — Voice and Presence Lab"]} specimen />
         </Block>
 
         <Block n={14} title="Modal windows & 17 · Dropdowns">

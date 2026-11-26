@@ -48,7 +48,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
 export function StudentSidebar({ footer }: { footer: React.ReactNode }) {
   return (
     <aside className="on-dark sticky top-0 hidden h-dvh w-64 shrink-0 flex-col bg-midnight text-ivory lg:flex">
-      <div className="px-6 py-6"><Link href="/app" aria-label="Dashboard"><Wordmark light /></Link></div>
+      <div className="px-6 py-6"><Link href="/app"><Wordmark light /><span className="sr-only"> — dashboard</span></Link></div>
       <nav aria-label="Student" className="flex-1 overflow-y-auto px-3"><NavList /></nav>
       <div className="border-t border-white/10 p-4">{footer}</div>
     </aside>
@@ -59,7 +59,7 @@ export function StudentMobileNav({ footer }: { footer: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="on-dark flex h-16 items-center justify-between bg-midnight px-4 text-ivory lg:hidden">
-      <Link href="/app" aria-label="Dashboard"><Wordmark light /></Link>
+      <Link href="/app"><Wordmark light /><span className="sr-only"> — dashboard</span></Link>
       <D.Root open={open} onOpenChange={setOpen}>
         <D.Trigger asChild><Button variant="outline-light" size="icon" className="border-0" aria-label="Open menu"><Menu className="size-5!" /></Button></D.Trigger>
         <D.Portal>

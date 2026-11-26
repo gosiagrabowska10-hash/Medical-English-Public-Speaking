@@ -21,7 +21,7 @@ export const faq = [
   },
   {
     q: "What certificate will I receive?",
-    a: "Participants who meet all published graduation requirements receive an Academy Certificate of Completion with a unique certificate number and an online verification page. The certificate is issued by The Medical Speaking Academy. It is not a university qualification and does not currently carry external accreditation or CME/CPD credit.",
+    a: "Participants who meet all published graduation requirements receive an Academy Certificate of Completion with a unique certificate number and an online verification page. The certificate is issued by The Medical Speaking Academy. It is not a university qualification and does not currently carry external accreditation or CME/CPD credit. For each workshop the certificate distinguishes between completing the workshop and being assessed as Competent: only an Academy instructor, using the published rubric, can confirm the Competent standard. Your own self-assessment is never shown as an assessment.",
   },
   {
     q: "How long will I have access to the materials?",

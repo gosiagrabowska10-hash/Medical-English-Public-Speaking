@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { CheckCircle2, Circle } from "lucide-react";
+import { CheckCircle2, Circle, Clock3, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { completeLessonAction } from "@/lib/course-actions";
 import type { LessonPage } from "@/lib/course";
@@ -21,6 +21,44 @@ const workshopLabels: Record<string, string> = {
   assignment: "Submit the final task",
   practice_rounds: "Complete all three practice rounds",
 };
+
+const BASIS: Record<string, string> = {
+  live_session: "observed live in a facilitated workshop or coaching session",
+  recording_shown_live: "your Round 3 recording, played by you during a live session (not uploaded or stored)",
+};
+
+/** Workshops have two separate statuses; self-assessment never sets the second one. */
+function WorkshopStatuses({ page, done }: { page: LessonPage; done: boolean }) {
+  const a = page.assessment;
+  const rubric = page.content?.body.workshop?.rubric ?? [];
+  return (
+    <div className="mt-6 space-y-4 border-t border-stone pt-5">
+      <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-subtle">Your workshop statuses</h3>
+      <div className="flex gap-3 text-sm">
+        {done ? <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-success" /> : <Circle aria-hidden className="mt-0.5 size-4 shrink-0 text-stone-deep" />}
+        <p><span className="font-semibold text-midnight">Workshop Completed</span> — {done ? "achieved" : "not yet"}<br /><span className="text-ink-muted">All required activities done and the written Final Task submitted.</span></p>
+      </div>
+      <div className="flex gap-3 text-sm">
+        {a?.competent ? <UserCheck aria-hidden className="mt-0.5 size-4 shrink-0 text-success" /> : <Clock3 aria-hidden className="mt-0.5 size-4 shrink-0 text-gold-deep" />}
+        <div>
+          <p>
+            <span className="font-semibold text-midnight">Competent</span> — {a ? (a.competent ? `confirmed by an instructor on ${new Date(a.assessed_at).toLocaleDateString("en-GB")}` : "not yet confirmed: see your instructor’s feedback") : "awaiting instructor assessment"}
+            <br /><span className="text-ink-muted">Confirmed only by an instructor using the assessment rubric{a ? `, based on ${BASIS[a.basis]}` : ""}. Your own self-assessment helps you prepare but is not an independent assessment.</span>
+          </p>
+          {a && (
+            <div className="mt-3 rounded-sm bg-ivory p-4">
+              <ul className="space-y-1 text-[0.8125rem] text-ink-muted">
+                {rubric.map((r, i) => <li key={r.title}><span className="text-midnight">{r.title}</span>: {a.levels[i] ? a.levels[i][0].toUpperCase() + a.levels[i].slice(1) : "—"}</li>)}
+              </ul>
+              <p className="mt-3 text-sm text-ink"><span className="font-semibold">Instructor feedback:</span> {a.comment}</p>
+            </div>
+          )}
+          {!a && <p className="mt-2 text-[0.8125rem] text-ink-subtle">Assessment takes place when an instructor observes your Round 3 performance live. Recordings are never uploaded to the platform at this stage.</p>}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function CompletionPanel({ page }: { page: LessonPage }) {
   const router = useRouter();
@@ -47,7 +85,7 @@ export function CompletionPanel({ page }: { page: LessonPage }) {
 
   return (
     <section aria-labelledby="completion-h" className="rounded-sm bg-white p-6 shadow-hairline md:p-7">
-      <h2 id="completion-h" className="font-serif text-2xl text-midnight">{done ? (noun === "workshop" ? "Workshop completed" : "Lesson completed") : "Completion requirements"}</h2>
+      <h2 id="completion-h" className="font-serif text-2xl text-midnight">{done ? (noun === "workshop" ? "Workshop Completed" : "Lesson completed") : "Completion requirements"}</h2>
       <ul className="mt-4 space-y-2.5">
         {reqs.map((r) => {
           const met = !page.missing.includes(r);
@@ -76,6 +114,7 @@ export function CompletionPanel({ page }: { page: LessonPage }) {
           {msg && <p role="alert" className="mt-3 text-sm text-danger">{msg}</p>}
         </>
       )}
+      {noun === "workshop" && <WorkshopStatuses page={page} done={done} />}
     </section>
   );
 }

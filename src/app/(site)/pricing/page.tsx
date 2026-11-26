@@ -52,7 +52,7 @@ export default function PricingPage() {
           <ol className="border-t border-stone-deep">
             {steps.map(([t, d], i) => (
               <li key={t} className="flex gap-6 border-b border-stone-deep py-7">
-                <span className="font-serif text-3xl leading-none text-gold">{i + 1}</span>
+                <span className="font-serif text-3xl leading-none text-gold-muted">{i + 1}</span>
                 <span>
                   <span className="block font-serif text-2xl text-midnight">{t}</span>
                   <span className="mt-2 block leading-relaxed text-ink-muted">{d}</span>

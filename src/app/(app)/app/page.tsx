@@ -26,7 +26,7 @@ export default function DashboardPage() {
 async function Dashboard() {
   const user = await requireUser("/app");
   const supabase = (await createClient())!;
-  const [{ data: consents }, course] = await Promise.all([supabase.from("current_consents").select("kind,granted"), getCurriculum()]);
+  const [{ data: consents }, course] = await Promise.all([supabase.from("current_consents").select("kind,granted").eq("user_id", user.id), getCurriculum()]);
   const lessons = course.modules.flatMap((m) => m.lessons);
   const next = lessons.find((l) => l.status === "in_progress") ?? lessons.find((l) => l.status === "not_started" && (course.enrolled || l.is_preview));
   const recordingConsent = consents?.some((c) => c.kind === "recording" && c.granted) ?? false;
@@ -51,6 +51,24 @@ async function Dashboard() {
             : "Your account is fully prepared. Your learning path will appear here when your programme begins."}
         </p>
       </header>
+
+      {user.isStaff && (
+        <Card className="on-dark border-0 bg-midnight p-7 text-ivory md:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 className="font-serif text-2xl">Staff tools</h2>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-ivory/75">
+                {user.aal === "aal2"
+                  ? "Your session is verified with two-factor authentication. Learner data and staff tools are available."
+                  : "Staff access to learner data requires two-factor authentication. Set it up in Account Settings, then sign in again with your code."}
+              </p>
+            </div>
+            <Button asChild variant={user.aal === "aal2" ? "gold" : "outline-light"}>
+              <Link href={user.aal === "aal2" ? "/app/staff/assessments" : "/app/settings#security"}>{user.aal === "aal2" ? "Workshop assessments" : "Set up two-factor authentication"}</Link>
+            </Button>
+          </div>
+        </Card>
+      )}
 
       <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
         <Card className="p-7 md:p-8">

@@ -1,0 +1,9 @@
+1/4 Backup → backups/20261126T211537Z.dump
+    size: 304K
+2/4 Restore into throwaway database restore_check_20261126t211537z
+    restore warnings: 2
+3/4 Compare row counts of every public table
+    source:   assignment_submissions=0,audit_log=100,consents=9,data_deletion_requests=2,enrollments=0,lesson_content=36,lesson_progress=0,lesson_resources=10,lessons=36,modules=12,profiles=3,quiz_attempts=0,quiz_questions=41,rate_limits=7,user_roles=4,workshop_assessments=0,workshop_progress=0
+    restored: assignment_submissions=0,audit_log=100,consents=9,data_deletion_requests=2,enrollments=0,lesson_content=36,lesson_progress=0,lesson_resources=10,lessons=36,modules=12,profiles=3,quiz_attempts=0,quiz_questions=41,rate_limits=7,user_roles=4,workshop_assessments=0,workshop_progress=0
+4/4 Clean up throwaway database
+PASS: backup restored and verified (backups/20261126T211537Z.dump)

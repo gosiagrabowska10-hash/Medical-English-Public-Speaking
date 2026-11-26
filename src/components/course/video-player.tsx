@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Clapperboard, Gauge } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { saveVideoPositionAction } from "@/lib/course-actions";
+import { Transcript } from "./transcript";
 
 const speeds = [0.75, 1, 1.25, 1.5];
 
@@ -92,7 +93,7 @@ export function VideoPlayer({
         )}
       </div>
       <figcaption className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-3 text-xs text-ivory/70">
-        <span>{resumed ? `Resumed at ${Math.floor(startAt / 60)}:${String(startAt % 60).padStart(2, "0")} · ` : ""}{captions ? "English captions available" : "No captions"}</span>
+        <span>{resumed ? `Resumed at ${Math.floor(startAt / 60)}:${String(startAt % 60).padStart(2, "0")} · ` : ""}{captions ? "English captions and transcript available" : "No captions"}</span>
         <label className="flex items-center gap-2">
           <Gauge aria-hidden className="size-3.5" />
           <span className="sr-only">Playback speed</span>
@@ -106,6 +107,7 @@ export function VideoPlayer({
           </select>
         </label>
       </figcaption>
+      {captions && <Transcript captions={captions} title={title} />}
       {note && <p className="border-t border-white/10 bg-warning-bg px-5 py-2.5 text-xs text-warning">{note}</p>}
     </figure>
   );

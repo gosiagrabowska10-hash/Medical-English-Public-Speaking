@@ -19,7 +19,7 @@ pre{background:#F7F4EE;border-left:2px solid #B69A68;padding:8pt 10pt;font-size:
 code{font-size:8.6pt;color:#7A6235}strong{color:#101B2D}em{color:#4a5568}hr{border:0;border-top:1px solid #e9e7e1;margin:12pt 0}
 blockquote{border-left:2px solid #B69A68;margin:8pt 0;padding:2pt 10pt;background:#F7F4EE}.tag{font:600 7.5pt Helvetica;letter-spacing:.28em;color:#7A6235;text-transform:uppercase}`;
 (async () => {
-  const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><style>${css}</style></head><body><p class="tag">The Medical Speaking Academy · ${tag}</p>${marked.parse(readFileSync(src, "utf8"))}</body></html>`;
+  const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>${src.split("/").pop()!.replace(/\.md$/, "").replace(/_/g, " ")} — The Medical Speaking Academy</title><style>${css}</style></head><body><p class="tag">The Medical Speaking Academy · ${tag}</p>${marked.parse(readFileSync(src, "utf8"))}</body></html>`;
   const b = await chromium.launch(); const p = await b.newPage();
   await p.setContent(html);
   await p.pdf({ path: out, format: "A4", printBackground: true, tagged: true, outline: true, displayHeaderFooter: true, headerTemplate: "<span></span>",

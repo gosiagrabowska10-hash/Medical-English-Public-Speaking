@@ -149,7 +149,7 @@ function RoundForm({ page, step, ws, row, onSaved, criteria }: { page: LessonPag
         ))}
       </div>
       <fieldset className="rounded-sm bg-ivory/70 p-5">
-        <legend className="px-1 text-sm font-medium text-ink">Self-rating on the six criteria</legend>
+        <legend className="px-1 text-sm font-medium text-ink">Self-assessment on the six criteria <span className="font-normal text-ink-subtle">— your own judgement, not an instructor assessment</span></legend>
         <div className="mt-2 grid gap-3 sm:grid-cols-2">
           {criteria.map((c, i) => (
             <div key={c}>
@@ -287,7 +287,7 @@ export function PracticeRounds({ page }: { page: LessonPage }) {
 
       <section aria-labelledby="progress-h">
         <h2 id="progress-h" className="font-serif text-2xl text-midnight">Your progress across the three rounds</h2>
-        <div className="mt-3 overflow-x-auto rounded-sm bg-white shadow-hairline">
+        <div className="mt-3 overflow-x-auto rounded-sm bg-white shadow-hairline" tabIndex={0} role="region" aria-labelledby="progress-h">
           <table className="w-full min-w-[560px] text-left text-sm">
             <caption className="sr-only">Comparison of practice rounds</caption>
             <thead><tr className="border-b border-stone text-xs uppercase tracking-[0.12em] text-ink-subtle"><th scope="col" className="p-3 font-semibold">Measure</th>{rounds.map((r, i) => <th key={r.k} scope="col" className="p-3 font-semibold">Round {i + 1}</th>)}</tr></thead>
@@ -298,7 +298,7 @@ export function PracticeRounds({ page }: { page: LessonPage }) {
                 ["Pauses around key result", (d: Record<string, unknown>) => String(d.pauses ?? "—")],
                 ["Effect of fillers", (d: Record<string, unknown>) => String(d.fillers ?? "—")],
                 ["Key-segment rate (diagnostic)", (d: Record<string, unknown>) => { const r = wpm(d); return r ? `${r} wpm` : "—"; }],
-                ["Criteria rated Competent", (d: Record<string, unknown>) => { const r = (d.ratings as Record<string, string>) ?? {}; const n = Object.values(r).filter((v) => v === "Competent").length; return Object.keys(r).length ? `${n} of 6` : "—"; }],
+                ["Self-rated Competent (not verified)", (d: Record<string, unknown>) => { const r = (d.ratings as Record<string, string>) ?? {}; const n = Object.values(r).filter((v) => v === "Competent").length; return Object.keys(r).length ? `${n} of 6` : "—"; }],
                 ["Pressure card", (d: Record<string, unknown>) => String(d.card ?? "—")],
               ].map(([label, fn]) => (
                 <tr key={label as string}><th scope="row" className="p-3 font-medium text-ink">{label as string}</th>{rounds.map((r) => <td key={r.k} className="p-3 text-ink-muted">{r.row ? (fn as (d: Record<string, unknown>) => string)(r.row.data) : "—"}</td>)}</tr>

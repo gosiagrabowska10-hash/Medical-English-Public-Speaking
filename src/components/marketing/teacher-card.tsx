@@ -26,7 +26,7 @@ export function TeacherCard({ t, index, dark }: { t: AiTeacher; index: number; d
     <Card tone={dark ? "dark" : "paper"} className="flex h-full flex-col p-7 md:p-8">
       <div className="flex items-start justify-between">
         <TeacherGlyph slug={t.slug} className={dark ? "text-gold-light" : "text-midnight"} />
-        <span className={cn("font-serif text-lg", dark ? "text-ivory/40" : "text-ink-subtle")}>{String(index + 1).padStart(2, "0")}</span>
+        <span className={cn("font-serif text-lg", dark ? "text-mist" : "text-ink-subtle")}>{String(index + 1).padStart(2, "0")}</span>
       </div>
       <p className={cn("mt-8 text-eyebrow font-semibold uppercase tracking-[0.18em]", dark ? "text-gold-light" : "text-gold-deep")}>{t.role}</p>
       <h3 className={cn("mt-2 font-serif text-[1.75rem] leading-tight", dark ? "text-ivory" : "text-midnight")}>AI {t.name}</h3>

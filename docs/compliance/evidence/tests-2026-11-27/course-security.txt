@@ -1,0 +1,40 @@
+
+> medical-speaking-academy@0.1.0 test:course-security
+> node tests/e2e/course-security.cjs
+
+PASS anonymous visitors can read the public syllabus (36 items)
+PASS anonymous visitors cannot read lesson content
+PASS anonymous visitors cannot read quiz questions
+PASS anonymous visitors cannot edit lessons
+PASS non-enrolled student can read only the preview lesson content
+PASS non-enrolled student cannot start a locked lesson
+PASS non-enrolled student cannot take a locked quiz
+PASS students cannot read quiz answer keys
+PASS public quiz view exposes questions without answers
+PASS students cannot enrol themselves
+PASS students cannot change lesson settings (e.g. make a lesson free)
+PASS students cannot edit lesson content
+PASS students cannot write progress rows directly
+PASS completion is refused while requirements are missing
+PASS students cannot forge a passed quiz attempt
+PASS quiz is scored on the server
+PASS students cannot insert or self-approve assignment submissions
+PASS enrolled student can read all published lesson content
+PASS lessons still in preparation cannot be completed
+PASS students cannot see other students' progress
+PASS students cannot see other students' assignments
+PASS students cannot see other students' quiz attempts
+PASS students cannot review or approve other students' assignments
+PASS students cannot approve their own assignment
+PASS workshop steps stay locked until the readiness check is passed
+PASS students cannot write workshop progress directly
+PASS unknown workshop steps are rejected
+PASS after the readiness check, a student can save a workshop step
+PASS workshop steps cannot be saved against a normal lesson
+PASS students cannot see other students' workshop progress
+PASS a workshop cannot be completed before all three practice rounds
+PASS content editors cannot edit lessons without MFA
+PASS content editors can edit lessons without redeploying
+PASS content editors can manage quiz answer keys
+
+34/34 passed

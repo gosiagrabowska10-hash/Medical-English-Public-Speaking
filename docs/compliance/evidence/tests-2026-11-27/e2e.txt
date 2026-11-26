@@ -1,0 +1,25 @@
+
+> medical-speaking-academy@0.1.0 test:e2e
+> node tests/e2e/auth-flow.cjs
+
+PASS registration is enabled when Supabase is configured
+PASS server-side validation shows field errors
+PASS registration redirects to "confirm your email"
+PASS unconfirmed account cannot sign in
+PASS confirmation link signs in and dashboard greets from DB ("Welcome back, Dr Nowak.")
+PASS getting-started checklist reflects real data
+PASS profile changes persist in the database
+PASS recording consent is stored and shown after reload
+PASS consent can be withdrawn
+PASS data export contains profile, account and consent history
+PASS deletion requires typed confirmation
+PASS deletion request stored; duplicate requests prevented in UI
+PASS after sign-out the student area redirects to login
+PASS wrong password shows a clear error
+PASS password reset link lets the user set a new password
+PASS user can sign in with the new password
+PASS confirm route rejects invalid codes and external redirects
+PASS mobile student navigation works without horizontal overflow
+PASS no client-side errors
+
+19/19 passed

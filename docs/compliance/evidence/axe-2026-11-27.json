@@ -1,0 +1,219 @@
+{
+  "date": "2026-11-26T21:24:04.686Z",
+  "pagesScanned": 35,
+  "firstTabStop": "Skip to content",
+  "totalViolations": 0,
+  "byRule": {},
+  "perPage": [
+    {
+      "page": "/",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/about",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/methodology",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/curriculum",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/ai-teachers",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/speaking-studio",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/pricing",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/instructors",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/founder",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/faq",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/blog",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/blog/how-to-present-research-at-an-international-medical-conference",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/contact",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/login",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/register",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/forgot-password",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/privacy",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/terms",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/cookies",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/accessibility",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/verify-mfa",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "cookie banner",
+      "violations": 0,
+      "incomplete": 0,
+      "detail": []
+    },
+    {
+      "page": "/app",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/app/curriculum",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/app/settings",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/app/teachers",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/app/teachers/voice-coach",
+      "violations": 0,
+      "incomplete": 1,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/L01",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/L07",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/L08",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/W1",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/W1 · Practice Rounds",
+      "violations": 0,
+      "incomplete": 4,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/W1 · Readiness Check",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/W1 · Workshop Pack",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    },
+    {
+      "page": "/app/learn/W1 · Final Task",
+      "violations": 0,
+      "incomplete": 2,
+      "detail": []
+    }
+  ]
+}

@@ -27,6 +27,16 @@ async function db() {
   return supabase;
 }
 
+/**
+ * Staff with MFA can read every learner's rows under RLS, so per-learner queries
+ * must always filter by the signed-in user's id explicitly.
+ */
+async function me(supabase: Awaited<ReturnType<typeof db>>) {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not signed in");
+  return user.id;
+}
+
 export async function isEnrolled() {
   const supabase = await db();
   const { data } = await supabase.rpc("is_enrolled");
@@ -36,10 +46,11 @@ export async function isEnrolled() {
 /** Full syllabus with the signed-in student's progress (RLS returns only their own rows). */
 export async function getCurriculum(): Promise<{ modules: ModuleWithLessons[]; enrolled: boolean; totals: { minutes: number; lessons: number; workshops: number; completed: number; mandatory: number } }> {
   const supabase = await db();
+  const uid = await me(supabase);
   const [{ data: mods, error: e1 }, { data: lessons, error: e2 }, { data: progress }, enrolled] = await Promise.all([
     supabase.from("modules").select("id,number,slug,title,weeks_label,summary,outcomes").order("number"),
     supabase.from("lessons").select(LESSON_COLS).order("position"),
-    supabase.from("lesson_progress").select("lesson_id,status"),
+    supabase.from("lesson_progress").select("lesson_id,status").eq("user_id", uid),
     isEnrolled(),
   ]);
   if (e1 || e2) throw new Error("The curriculum could not be loaded.");
@@ -71,6 +82,8 @@ export type LessonPage = {
   submission: { body: string; status: string; submitted_at: string; feedback: string | null } | null;
   missing: string[];
   workshopSteps: { step_key: string; data: Record<string, unknown>; completed_at: string | null; updated_at: string }[];
+  /** Latest instructor assessment (workshops). Self-assessment is never stored here. */
+  assessment: { competent: boolean; levels: ("beginning" | "developing" | "competent")[]; comment: string; basis: "live_session" | "recording_shown_live"; assessed_at: string } | null;
 };
 
 export async function getLesson(code: string): Promise<LessonPage | null> {
@@ -85,20 +98,24 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
   ]);
   const base = { lesson: l, module: mod as ModuleRow, access: access === true, enrolled };
   if (access !== true) {
-    return { ...base, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [], workshopSteps: [] };
+    return { ...base, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [], workshopSteps: [], assessment: null };
   }
   // Opening a lesson marks it as started (idempotent, validated in the database).
   await supabase.rpc("start_lesson", { _lesson: l.id });
-  const [content, quiz, resources, progress, attempts, submission, missing, wsteps] = await Promise.all([
+  const uid = await me(supabase);
+  const [content, quiz, resources, progress, attempts, submission, missing, wsteps, assess] = await Promise.all([
     supabase.from("lesson_content").select("body,exercise,assignment,video_url,captions_url,video_note").eq("lesson_id", l.id).maybeSingle(),
     supabase.from("quiz_questions_public").select("id,position,prompt,options").eq("lesson_id", l.id).order("position"),
     supabase.from("lesson_resources").select("id,title,description,file_url,file_type,is_sample").eq("lesson_id", l.id).order("position"),
-    supabase.from("lesson_progress").select("status,video_position_s,exercise_response,exercise_done_at,completed_at").eq("lesson_id", l.id).maybeSingle(),
-    supabase.from("quiz_attempts").select("score,total,passed,created_at").eq("lesson_id", l.id).order("created_at", { ascending: false }),
-    supabase.from("assignment_submissions").select("body,status,submitted_at,feedback").eq("lesson_id", l.id).maybeSingle(),
+    supabase.from("lesson_progress").select("status,video_position_s,exercise_response,exercise_done_at,completed_at").eq("lesson_id", l.id).eq("user_id", uid).maybeSingle(),
+    supabase.from("quiz_attempts").select("score,total,passed,created_at").eq("lesson_id", l.id).eq("user_id", uid).order("created_at", { ascending: false }),
+    supabase.from("assignment_submissions").select("body,status,submitted_at,feedback").eq("lesson_id", l.id).eq("user_id", uid).maybeSingle(),
     supabase.rpc("lesson_requirements", { _lesson: l.id }),
     l.kind === "workshop"
-      ? supabase.from("workshop_progress").select("step_key,data,completed_at,updated_at").eq("lesson_id", l.id)
+      ? supabase.from("workshop_progress").select("step_key,data,completed_at,updated_at").eq("lesson_id", l.id).eq("user_id", uid)
+      : Promise.resolve({ data: [] as never[] }),
+    l.kind === "workshop"
+      ? supabase.from("workshop_assessments").select("competent,levels,comment,basis,assessed_at").eq("lesson_id", l.id).eq("user_id", uid).order("assessed_at", { ascending: false }).limit(1)
       : Promise.resolve({ data: [] as never[] }),
   ]);
   return {
@@ -113,6 +130,7 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
     // Fail closed: if requirements cannot be evaluated, treat the lesson as not completable.
     missing: missing.error ? ["unavailable"] : ((missing.data as string[]) ?? []),
     workshopSteps: (wsteps.data ?? []) as LessonPage["workshopSteps"],
+    assessment: ((assess.data ?? [])[0] as LessonPage["assessment"]) ?? null,
   };
 }
 

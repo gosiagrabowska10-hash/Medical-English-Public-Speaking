@@ -7,5 +7,5 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   // Only routes that need the session: the student app, auth pages and callbacks.
-  matcher: ["/app/:path*", "/app", "/login", "/register", "/forgot-password", "/reset-password", "/auth/:path*"],
+  matcher: ["/app/:path*", "/app", "/login", "/register", "/forgot-password", "/reset-password", "/auth/:path*", "/verify-mfa"],
 };

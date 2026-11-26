@@ -1,0 +1,30 @@
+
+> medical-speaking-academy@0.1.0 test:security
+> node tests/e2e/api-security.cjs
+
+PASS student lists profiles: sees only their own
+PASS student cannot fetch another student's profile by id
+PASS student cannot read other students' consents
+PASS consent view does not leak other students' consents
+PASS student cannot read other students' deletion requests
+PASS student sees only their own role
+PASS student cannot modify another student's profile
+PASS student cannot record consent on behalf of another student
+PASS student cannot file a deletion request for another student
+PASS student cannot grant themselves the Academy Owner role
+PASS student cannot grant roles to others
+PASS student cannot read the audit log
+PASS student cannot write audit entries directly
+PASS student cannot mark deletion requests as processed
+PASS student session cannot use Supabase admin APIs
+PASS student cannot change protected profile columns
+PASS audit events are attributed to the real caller
+PASS anonymous visitors cannot read profiles
+PASS anonymous visitors cannot write to the audit log
+PASS anonymous visitors cannot call role functions
+PASS Academy Owner without MFA cannot read student profiles
+PASS Academy Owner can read student profiles
+PASS Academy Owner can read the audit log
+PASS a student remains restricted while staff roles exist
+
+24/24 passed

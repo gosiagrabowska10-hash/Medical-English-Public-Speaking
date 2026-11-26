@@ -8,7 +8,7 @@ export function ModuleList({ detailed = true }: { detailed?: boolean }) {
       {modules.map((m) => (
         <li key={m.number} id={m.slug} className="grid scroll-mt-28 gap-6 border-b border-stone-deep py-10 md:grid-cols-[120px_1fr] md:gap-10 lg:grid-cols-[160px_1fr_1fr]">
           <div className="flex items-baseline gap-4 md:block">
-            <span className="font-serif text-5xl leading-none text-gold md:text-6xl">{String(m.number).padStart(2, "0")}</span>
+            <span className="font-serif text-5xl leading-none text-gold-muted md:text-6xl">{String(m.number).padStart(2, "0")}</span>
             <p className="text-eyebrow font-semibold uppercase tracking-[0.18em] text-ink-subtle md:mt-4">{m.weeks}</p>
           </div>
           <div>
@@ -65,7 +65,7 @@ export function ModuleIndex() {
     <ol className="grid gap-px overflow-hidden rounded-sm bg-stone-deep/70 sm:grid-cols-2 lg:grid-cols-3">
       {modules.map((m) => (
         <li key={m.number} className="flex gap-5 bg-ivory p-6 md:p-7">
-          <span className="font-serif text-3xl leading-none text-gold">{String(m.number).padStart(2, "0")}</span>
+          <span className="font-serif text-3xl leading-none text-gold-muted">{String(m.number).padStart(2, "0")}</span>
           <span>
             <span className="block font-serif text-xl leading-snug text-midnight">{m.title}</span>
             <span className="mt-1.5 block text-xs uppercase tracking-[0.16em] text-ink-subtle">

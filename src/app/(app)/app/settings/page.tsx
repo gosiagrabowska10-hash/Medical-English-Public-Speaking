@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Eyebrow, Rule } from "@/components/ui/typography";
 import { ConsentToggle, DeletionRequest, ProfileForm } from "@/components/student/settings-forms";
+import { MfaPanel } from "@/components/student/mfa-panel";
+import { formatDate } from "@/lib/format";
 import { requireUser } from "@/lib/auth";
 import { signOutAction } from "@/lib/auth-actions";
 import { createClient } from "@/lib/supabase/server";
@@ -39,10 +41,12 @@ function Panel({ id, title, lead, children }: { id: string; title: string; lead?
 async function Settings() {
   const user = await requireUser("/app/settings");
   const supabase = (await createClient())!;
-  const [{ data: consents }, { data: deletion }] = await Promise.all([
-    supabase.from("current_consents").select("kind,granted,created_at"),
-    supabase.from("data_deletion_requests").select("status,created_at").in("status", ["pending", "in_progress"]).maybeSingle(),
+  const [{ data: consents }, { data: deletion }, { data: mfa }] = await Promise.all([
+    supabase.from("current_consents").select("kind,granted,created_at").eq("user_id", user.id),
+    supabase.from("data_deletion_requests").select("status,created_at").eq("user_id", user.id).in("status", ["pending", "in_progress"]).maybeSingle(),
+    supabase.auth.mfa.listFactors(),
   ]);
+  const factors = (mfa?.totp ?? []).map((f) => ({ id: f.id, name: f.friendly_name ?? "Authenticator app", created: formatDate(f.created_at) }));
   const given = (k: string) => consents?.some((c) => c.kind === k && c.granted) ?? false;
   const accepted = consents?.find((c) => c.kind === "terms");
 
@@ -58,6 +62,9 @@ async function Settings() {
           <form action={signOutAction}><Button type="submit" variant="ghost"><LogOut /> Sign out</Button></form>
         </div>
         <p className="mt-4 text-sm text-ink-subtle">To change your password we send a secure link to your email address.</p>
+        <div className="mt-8 border-t border-stone pt-7">
+          <MfaPanel factors={factors} isStaff={user.isStaff} aal={user.aal} />
+        </div>
       </Panel>
 
       <Panel id="privacy" title="Privacy and consent" lead="You can change these choices at any time. Each change is recorded with its date.">

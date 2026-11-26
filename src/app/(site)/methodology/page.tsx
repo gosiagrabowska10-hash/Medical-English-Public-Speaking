@@ -53,7 +53,7 @@ export default function MethodologyPage() {
           <ol className="border-t border-stone-deep">
             {pillars.map((p) => (
               <li key={p.t} className="grid gap-4 border-b border-stone-deep py-12 md:grid-cols-[120px_280px_1fr] md:gap-10">
-                <span className="font-serif text-5xl text-gold">{p.n}</span>
+                <span className="font-serif text-5xl text-gold-muted">{p.n}</span>
                 <h2 className="font-serif text-4xl text-midnight">{p.t}</h2>
                 <p className="max-w-2xl text-lead leading-relaxed text-ink-muted">{p.d}</p>
               </li>

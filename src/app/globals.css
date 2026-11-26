@@ -14,12 +14,14 @@
   --color-white: #ffffff;
   --color-gold: #b69a68;
   --color-gold-light: #d6c39d;
-  --color-gold-deep: #7a6235; /* AA text on ivory/white */
+  --color-gold-deep: #7a6235; /* AA text on ivory/white (small text) */
+  --color-gold-muted: #9e8356; /* large numerals on light backgrounds: 3.28:1 ivory, 3.6:1 white (AA large text) */
+  --color-mist: #959dab; /* index numbers on navy: 5.46:1 */
   --color-stone: #e9e7e1;
   --color-stone-deep: #d5d1c7;
   --color-ink: #101b2d;
   --color-ink-muted: #4a5568;
-  --color-ink-subtle: #6b7280;
+  --color-ink-subtle: #646b77; /* 4.89:1 on ivory, 5.37:1 on white (WCAG AA) */
 
   /* Semantic status (muted, institutional) */
   --color-success: #2f6b4f;

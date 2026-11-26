@@ -19,7 +19,9 @@ export function Wordmark({
     return (
       <span className={cn("inline-flex flex-col items-center text-center leading-none", ink, className)}>
         <span className={cn("text-[0.625rem] font-semibold uppercase tracking-[0.42em]", light ? "text-gold-light" : "text-gold-deep")}>The</span>
+        <span className="sr-only"> </span>
         <span className="mt-2 font-serif text-[1.75rem] font-medium tracking-[0.04em]">MEDICAL SPEAKING</span>
+        <span className="sr-only"> </span>
         <span className="mt-2 flex items-center gap-3">
           <span aria-hidden className="h-px w-8 bg-gold" />
           <span className="text-[0.625rem] font-semibold uppercase tracking-[0.42em]">Academy</span>
@@ -33,6 +35,7 @@ export function Wordmark({
       <Monogram light={light} className="size-9" />
       <span className="flex flex-col leading-none">
         <span className="font-serif text-[1.1875rem] font-medium tracking-[0.03em]">The Medical Speaking</span>
+        <span className="sr-only"> </span>
         <span className={cn("mt-1 text-[0.5625rem] font-semibold uppercase tracking-[0.38em]", light ? "text-gold-light" : "text-gold-deep")}>Academy</span>
       </span>
     </span>

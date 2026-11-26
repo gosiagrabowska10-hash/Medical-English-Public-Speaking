@@ -33,8 +33,9 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
-        <Link href="/" aria-label="The Medical Speaking Academy — home" className="shrink-0">
+        <Link href="/" className="shrink-0">
           <Wordmark />
+          <span className="sr-only"> — home</span>
         </Link>
 
         <nav aria-label="Main" className="hidden xl:block">

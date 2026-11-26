@@ -2,7 +2,7 @@
  * Stage 3 security: course content, answer keys and learning records,
  * attacked directly through the Supabase API. Run: npm run test:course-security
  */
-const { confirmedStudent, sql, anonClient } = require('./helpers.cjs');
+const { confirmedStudent, sql, anonClient, withMfa } = require('./helpers.cjs');
 let n = 0, fails = 0;
 const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++; console.log('FAIL', name); } };
 
@@ -85,7 +85,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(!!wl && /readiness/.test(wl.message), 'workshop steps stay locked until the readiness check is passed');
   const { error: wd } = await A.c.from('workshop_progress').insert({ user_id: A.id, lesson_id: W1id, step_key: 'round1', completed_at: new Date().toISOString() });
   ok(!!wd, 'students cannot write workshop progress directly');
-  await A.c.rpc('submit_quiz', { _lesson: W1id, _answers: [1, 1, 1, 1, 2] });
+  await A.c.rpc('submit_quiz', { _lesson: W1id, _answers: [1, 3, 0, 2, 3] });
   const { error: wbad } = await A.c.rpc('save_workshop_step', { _lesson: W1id, _step: 'round9', _data: {}, _complete: true });
   ok(!!wbad, 'unknown workshop steps are rejected');
   const { error: wok } = await A.c.rpc('save_workshop_step', { _lesson: W1id, _step: 'round1', _data: { comprehension: 'Fully correct' }, _complete: true });
@@ -99,6 +99,9 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
 
   // Staff
   sql(`insert into public.user_roles (user_id, role) values ('${B.id}', 'content_editor')`);
+  await B.c.from('lessons').update({ summary: 'Edit without MFA' }).eq('id', L04);
+  ok(sql(`select summary from public.lessons where id='${L04}'`) !== 'Edit without MFA', 'content editors cannot edit lessons without MFA');
+  await withMfa(B.c);
   await B.c.from('lessons').update({ summary: 'Edited by content editor' }).eq('id', L04);
   ok(sql(`select summary from public.lessons where id='${L04}'`) === 'Edited by content editor', 'content editors can edit lessons without redeploying');
   const { data: staffKeys } = await B.c.from('quiz_questions').select('correct_index').eq('lesson_id', L01);

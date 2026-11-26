@@ -8,6 +8,9 @@ Supabase Dashboard → **SQL Editor** → New query → paste and **Run** each f
 2. `supabase/migrations/20261125000002_curriculum_and_progress.sql` (Stage 3: course structure, progress)
 3. `supabase/migrations/20261125000003_curriculum_content.sql` (Stage 3: 12 modules, 36 lessons/workshops)
 4. `supabase/migrations/20261126000004_workshop_progress.sql` (workshop practice rounds: save, pause and resume)
+5. `supabase/migrations/20261127000005_mfa_assessment_ratelimit.sql` (staff MFA enforcement, instructor-confirmed workshop assessments, rate limiting, role-change audit)
+
+**Two-factor authentication (required for staff):** in the Supabase dashboard, Authentication → Multi-Factor, make sure **TOTP (authenticator app)** enrolment and verification are enabled (they are on by default on hosted projects; locally they are enabled in `supabase/config.jsonc`). Staff roles have no effect until the staff member has enrolled an authenticator and signed in with it.
 
 Expected result for each: "Success. No rows returned".
 
