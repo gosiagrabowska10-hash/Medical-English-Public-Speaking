@@ -1,0 +1,246 @@
+{
+  "pagesScanned": 33,
+  "firstTabStop": "Skip to content",
+  "totalViolations": 219,
+  "byRule": {
+    "color-contrast": {
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "pages": [
+        "/",
+        "/methodology",
+        "/curriculum",
+        "/blog",
+        "/blog/how-to-present-research-at-an-international-medical-conference",
+        "/register",
+        "/privacy",
+        "/terms",
+        "/cookies",
+        "/app/curriculum",
+        "/app/learn/L01",
+        "/app/learn/L07",
+        "/app/learn/L08",
+        "/app/learn/W1",
+        "/app/learn/W1 · Practice Rounds",
+        "/app/learn/W1 · Readiness Check",
+        "/app/learn/W1 · Workshop Pack",
+        "/app/learn/W1 · Final Task"
+      ],
+      "nodes": 186
+    },
+    "label-content-name-mismatch": {
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "pages": [
+        "/",
+        "/about",
+        "/methodology",
+        "/curriculum",
+        "/ai-teachers",
+        "/speaking-studio",
+        "/pricing",
+        "/instructors",
+        "/founder",
+        "/faq",
+        "/blog",
+        "/blog/how-to-present-research-at-an-international-medical-conference",
+        "/contact",
+        "/login",
+        "/register",
+        "/forgot-password",
+        "/privacy",
+        "/terms",
+        "/cookies",
+        "/app",
+        "/app/curriculum",
+        "/app/settings",
+        "/app/teachers",
+        "/app/teachers/voice-coach",
+        "/app/learn/L01",
+        "/app/learn/L07",
+        "/app/learn/L08",
+        "/app/learn/W1",
+        "/app/learn/W1 · Practice Rounds",
+        "/app/learn/W1 · Readiness Check",
+        "/app/learn/W1 · Workshop Pack",
+        "/app/learn/W1 · Final Task"
+      ],
+      "nodes": 32
+    },
+    "scrollable-region-focusable": {
+      "impact": "serious",
+      "help": "Scrollable region must have keyboard access",
+      "pages": [
+        "/app/learn/W1 · Practice Rounds"
+      ],
+      "nodes": 1
+    }
+  },
+  "perPage": [
+    {
+      "page": "/",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/about",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/methodology",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/curriculum",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/ai-teachers",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/speaking-studio",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/pricing",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/instructors",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/founder",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/faq",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/blog",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/blog/how-to-present-research-at-an-international-medical-conference",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/contact",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/login",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/register",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/forgot-password",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/privacy",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/terms",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/cookies",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "cookie banner",
+      "violations": 0,
+      "incomplete": 0
+    },
+    {
+      "page": "/app",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/app/curriculum",
+      "violations": 2,
+      "incomplete": 1
+    },
+    {
+      "page": "/app/settings",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/app/teachers",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/app/teachers/voice-coach",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "page": "/app/learn/L01",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/L07",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/L08",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/W1",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/W1 · Practice Rounds",
+      "violations": 3,
+      "incomplete": 4
+    },
+    {
+      "page": "/app/learn/W1 · Readiness Check",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/W1 · Workshop Pack",
+      "violations": 2,
+      "incomplete": 2
+    },
+    {
+      "page": "/app/learn/W1 · Final Task",
+      "violations": 2,
+      "incomplete": 2
+    }
+  ]
+}

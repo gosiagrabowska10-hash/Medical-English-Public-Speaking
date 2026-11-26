@@ -220,7 +220,7 @@ export function LessonTabs({ page, lessonContent }: { page: LessonPage; lessonCo
   const roundsDone = ["round1", "round2", "round3"].every((k) => page.workshopSteps.some((r) => r.step_key === k && r.completed_at));
   return (
     <Tabs defaultValue="lesson">
-      <TabsList aria-label={L.aria} className="flex-wrap gap-x-6 gap-y-1 overflow-visible sm:flex-nowrap sm:gap-8">
+      <TabsList aria-label={L.aria} className="flex-wrap gap-x-6 gap-y-1 overflow-visible 2xl:flex-nowrap 2xl:gap-8">
         <TabsTrigger value="lesson">{L.lesson}</TabsTrigger>
         {c.exercise && <TabsTrigger value="exercise">{L.exercise}{exDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
         {isWorkshop && <TabsTrigger value="rounds">{L.exercise}{roundsDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}

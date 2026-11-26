@@ -27,3 +27,11 @@ Credentials for the local stack are read at runtime from `npx supabase status`; 
 | Stage 1 site regression | 0 problems |
 | Stage 3 course E2E | 36 / 36 |
 | Stage 3 course security | 26 / 26 |
+
+## Accessibility audit (axe-core)
+
+`BASE_URL=http://localhost:3100 npm run test:a11y` scans 33 views (public pages, cookie banner, signed-in pages and the four Workshop I tabs) with axe-core against WCAG 2.0–2.2 A/AA rules, checks that the first Tab stop is the skip link, and prints a JSON summary. The audit of 26 November 2026 is stored in `docs/compliance/evidence/`. Automated checks do not replace a manual screen-reader audit.
+
+## Compliance register
+
+`npx tsx scripts/build-compliance-register.ts` regenerates `docs/compliance/COMPLIANCE_REGISTER.md` and `.csv` from `register.json` and fails if an item uses a status outside the five permitted statuses, or is marked Compliant or Not applicable without evidence.

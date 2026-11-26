@@ -7,7 +7,7 @@ let problems = 0;
 (async () => {
   const b = await chromium.launch();
   const links = new Set();
-  for (const w of [390, 820, 1440]) {
+  for (const w of [390, 820, 1280, 1440]) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 } });
     await ctx.addInitScript(() => localStorage.setItem('msa-cookie-consent', JSON.stringify({necessary:true,analytics:false,marketing:false,version:1})));
     for (const path of pages) {

@@ -200,11 +200,16 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await p.goto(BASE + '/app'); await p.getByText(/2 of 36 lessons and workshops completed/).waitFor(); ok(true, 'dashboard shows real course progress (L01 and W1 completed)');
 
   // Responsive
-  for (const [w, h, name] of [[820, 1180, 'tablet'], [390, 844, 'mobile']]) {
+  for (const [w, h, name] of [[1280, 800, 'laptop'], [820, 1180, 'tablet'], [390, 844, 'mobile']]) {
     const m = await ctx.newPage(); await m.setViewportSize({ width: w, height: h });
     await m.goto(BASE + '/app/learn/L07'); await m.locator('video').waitFor();
     ok(await m.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${name}: lesson player has no horizontal overflow`);
     await m.screenshot({ path: `${out}/s3-lesson-${name}.png`, fullPage: false });
+    if (name === 'laptop') {
+      await m.goto(BASE + '/app/learn/W1'); await m.getByRole('tab', { name: /Final Task/ }).click({ timeout: 5000 });
+      ok(true, 'laptop (1280px): every workshop tab is clickable, not covered by the course sidebar');
+      continue;
+    }
     await m.getByRole('button', { name: /Course contents/ }).click();
     await m.getByRole('dialog').getByRole('link', { name: /L09/ }).first().waitFor();
     await m.screenshot({ path: `${out}/s3-contents-${name}.png`, fullPage: false });

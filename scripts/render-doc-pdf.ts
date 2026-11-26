@@ -1,12 +1,14 @@
 /**
  * Renders a Markdown document to a branded A4 PDF.
- *   npx tsx scripts/render-doc-pdf.ts docs/curriculum/workshop-W1-structure.md
+ *   npx tsx scripts/render-doc-pdf.ts docs/curriculum/workshop-W1-structure.md [--tag="Compliance audit"]
+ * Output is a tagged PDF with a document outline (accessibility).
  */
 import { readFileSync } from "node:fs";
 import { marked } from "marked";
 import { chromium } from "playwright";
 
 const src = process.argv[2];
+const tag = (process.argv.find((a) => a.startsWith("--tag=")) ?? "--tag=Curriculum review").slice(6);
 if (!src) throw new Error("Usage: render-doc-pdf <file.md>");
 const out = src.replace(/\.md$/, ".pdf");
 const css = `body{font:10.3pt/1.58 Helvetica,Arial,sans-serif;color:#2b3442}
@@ -17,10 +19,10 @@ pre{background:#F7F4EE;border-left:2px solid #B69A68;padding:8pt 10pt;font-size:
 code{font-size:8.6pt;color:#7A6235}strong{color:#101B2D}em{color:#4a5568}hr{border:0;border-top:1px solid #e9e7e1;margin:12pt 0}
 blockquote{border-left:2px solid #B69A68;margin:8pt 0;padding:2pt 10pt;background:#F7F4EE}.tag{font:600 7.5pt Helvetica;letter-spacing:.28em;color:#7A6235;text-transform:uppercase}`;
 (async () => {
-  const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><style>${css}</style></head><body><p class="tag">The Medical Speaking Academy · Curriculum review</p>${marked.parse(readFileSync(src, "utf8"))}</body></html>`;
+  const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><style>${css}</style></head><body><p class="tag">The Medical Speaking Academy · ${tag}</p>${marked.parse(readFileSync(src, "utf8"))}</body></html>`;
   const b = await chromium.launch(); const p = await b.newPage();
   await p.setContent(html);
-  await p.pdf({ path: out, format: "A4", printBackground: true, displayHeaderFooter: true, headerTemplate: "<span></span>",
+  await p.pdf({ path: out, format: "A4", printBackground: true, tagged: true, outline: true, displayHeaderFooter: true, headerTemplate: "<span></span>",
     footerTemplate: `<div style="font:7px Helvetica;color:#6b7280;width:100%;text-align:center">The Medical Speaking Academy · <span class="pageNumber"></span>/<span class="totalPages"></span></div>`,
     margin: { top: "17mm", bottom: "17mm", left: "16mm", right: "16mm" } });
   await b.close(); console.log("wrote", out);
