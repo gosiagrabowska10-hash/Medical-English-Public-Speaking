@@ -18,7 +18,8 @@ mkdir -p backups && chmod 700 backups
 OUT="backups/${STAMP}.dump"
 
 run() { if [ -n "$CONTAINER" ]; then docker exec -i "$CONTAINER" "$@"; else "$@"; fi; }
-SRC="${DB_URL:-postgresql://postgres:postgres@localhost:5432/postgres}"
+# Local default: socket connection inside the database container (no password needed).
+SRC="${DB_URL:-postgresql:///postgres?user=postgres}"
 SCRATCH_DB="restore_check_${STAMP,,}"
 
 echo "1/4 Backup → $OUT"
@@ -26,9 +27,9 @@ run pg_dump --format=custom --no-owner --schema=public --schema=auth "$SRC" > "$
 echo "    size: $(du -h "$OUT" | cut -f1)"
 
 echo "2/4 Restore into throwaway database $SCRATCH_DB"
-ADMIN="${SRC%/*}/postgres"
+ADMIN="${SRC%/*}/postgres"; ADMIN="${ADMIN%%\?*}"; [[ "$SRC" == *"?"* ]] && ADMIN="$ADMIN?${SRC#*\?}"
 run psql "$ADMIN" -q -c "create database $SCRATCH_DB" >/dev/null
-DST="${SRC%/*}/$SCRATCH_DB"
+DST="${SRC%/*}/$SCRATCH_DB"; DST="${DST%%\?*}"; [[ "$SRC" == *"?"* ]] && DST="$DST?${SRC#*\?}"
 # Roles and extensions referenced by the dump exist on the same server; errors about
 # pre-existing objects are reported but do not stop the restore.
 run pg_restore --no-owner --no-privileges --dbname="$DST" < "$OUT" 2> /tmp/restore-$STAMP.log || true
