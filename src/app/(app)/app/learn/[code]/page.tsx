@@ -75,8 +75,10 @@ async function Lesson({ params }: { params: PageProps<"/app/learn/[code]">["para
               status={lesson.video_status}
               note={page.content?.video_note ?? null}
               startAt={page.progress?.video_position_s ?? 0}
+              kind={lesson.kind}
+              inPreparation={lesson.content_status === "in_preparation"}
             />
-            <LessonTabs page={page} lessonContent={<LessonText body={page.content!.body} inPreparation={lesson.content_status === "in_preparation"} />} />
+            <LessonTabs page={page} lessonContent={<LessonText body={page.content!.body} inPreparation={lesson.content_status === "in_preparation"} kind={lesson.kind} />} />
             <CompletionPanel page={page} />
             <AiTeacherCard slug={lesson.ai_teacher} lessonTitle={lesson.title} />
           </>

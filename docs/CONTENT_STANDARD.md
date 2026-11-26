@@ -29,6 +29,13 @@ A separate practice-oriented structure: briefing, realistic scenarios, timed pra
 - Where evidence is nuanced or contested, say so.
 - No clinical advice; medical examples illustrate communication only.
 
+## Pronunciation
+- IPA only where it adds learning value (confusable medical or presentation terms). Intonation is marked with arrows (↘ ↗).
+- Every published transcription and stress pattern is verified against Cambridge Dictionary and Oxford Learner's Dictionaries (British entries) and logged in `docs/curriculum/pronunciation-verification.md`.
+
+## Assessment principles
+- Accent is never penalised when speech is intelligible. Pace is judged by comprehension, not by a words-per-minute target. Fillers are judged in context. Natural, credible, audience-centred delivery is rewarded over technique display.
+
 ## Language
 - British English throughout ("Programme", "Simulation Centre", recognise, practise/practice, anaesthetist, paediatric); internationally understandable medical and professional English.
 - Spoken-style English in examples and phrase banks; clear written style in teaching text.

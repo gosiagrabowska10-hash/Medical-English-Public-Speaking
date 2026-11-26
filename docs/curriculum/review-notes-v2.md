@@ -1,5 +1,7 @@
 # Revised Lessons for Review: L01, L02, L03 and L07 (version 2)
 
+> **Correction, 26 November 2026:** in L07 the stress patterns of *cardiomyopathy* and *epidemiology* have been corrected and verified IPA added (see `pronunciation-verification.md`). The teaching-content count for L07 is now 1,357 words. Nothing else has changed since you approved these lessons.
+
 **Purpose.** These are the four lessons rewritten to the content standard you approved. Once you approve them, they will be the educational templates for the remaining 26 lessons. As before, this document is generated from the same source that feeds the platform, so you are reading exactly what students will see. Correct quiz answers are marked with ✓; students never see them before answering.
 
 ---

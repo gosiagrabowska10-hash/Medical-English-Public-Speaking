@@ -112,6 +112,12 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await p.goto(BASE + '/app/learn/L04'); await p.getByText('Outline only.').waitFor();
   ok(await p.getByText('This lesson cannot be completed yet because its full content is still in preparation.').isVisible(), 'in-preparation lesson is labelled and cannot be completed');
 
+  // Workshop navigation
+  await p.goto(BASE + '/app/learn/W1'); await p.getByRole('tablist', { name: 'Workshop sections' }).waitFor();
+  const wtabs = (await p.getByRole('tab').allTextContents()).join('|');
+  ok(wtabs.startsWith('Briefing') && wtabs.includes('Workshop Pack') && !wtabs.includes('Lesson'), 'workshops use workshop navigation labels (' + wtabs + ')');
+  ok(await p.getByText('This workshop cannot be completed yet because its full content is still in preparation.').isVisible(), 'workshop in preparation is labelled and cannot be completed');
+
   // AI teacher entry point
   await p.goto(BASE + '/app/learn/L07'); await p.getByRole('link', { name: /Start a conversation/ }).click();
   await p.waitForURL('**/app/teachers/voice-coach**'); await p.getByText(/No conversation is simulated here/).waitFor(); ok(true, 'AI teacher entry point opens the teacher profile (conversations: Stage 4)');

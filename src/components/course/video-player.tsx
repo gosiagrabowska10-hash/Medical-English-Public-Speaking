@@ -13,10 +13,11 @@ const speeds = [0.75, 1, 1.25, 1.5];
  * Never shows a fake video: lessons without a recording show a clear notice.
  */
 export function VideoPlayer({
-  lessonId, title, src, captions, status, note, startAt,
+  lessonId, title, src, captions, status, note, startAt, kind = "lesson", inPreparation = false,
 }: {
   lessonId: string; title: string; src: string | null; captions: string | null;
   status: "not_recorded" | "sample" | "published"; note: string | null; startAt: number;
+  kind?: "lesson" | "workshop"; inPreparation?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const lastSaved = useRef(startAt);
@@ -57,7 +58,13 @@ export function VideoPlayer({
         <div className="relative flex aspect-video flex-col items-center justify-center gap-4 bg-[radial-gradient(ellipse_at_30%_80%,#2A3B52,#101B2D_70%)] px-6 text-center">
           <Clapperboard aria-hidden className="size-10 text-gold-light" strokeWidth={1.2} />
           <p className="font-serif text-2xl text-ivory">Instructor recording in production</p>
-          <p className="max-w-md text-sm text-ivory/60">The video for this lesson has not been recorded yet. The written lesson, exercise and quiz below are available now.</p>
+          <p className="max-w-md text-sm text-ivory/60">
+            {inPreparation
+              ? `The video and the full content of this ${kind} are in preparation. The outline below shows what it will cover.`
+              : kind === "workshop"
+                ? "The briefing video for this workshop has not been recorded yet. The briefing, practice rounds and final task below are available now."
+                : "The video for this lesson has not been recorded yet. The written lesson, exercise and quiz below are available now."}
+          </p>
         </div>
         <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-ivory/60">{title}</figcaption>
       </figure>

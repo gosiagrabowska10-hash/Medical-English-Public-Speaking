@@ -13,8 +13,7 @@ import { teachingWords, type LessonSpec } from "../src/content/lesson-types";
 const args = process.argv.slice(2);
 const version = args.find((a) => a.startsWith("--v="))?.slice(4) ?? "";
 const codes = args.filter((a) => !a.startsWith("--"));
-const introFile = `docs/curriculum/review-notes${version ? "-v" + version : ""}.md`;
-const words = (s: string) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+const introFile = args.find((a) => a.startsWith("--notes="))?.slice(8) ?? `docs/curriculum/review-notes${version ? "-v" + version : ""}.md`;
 const letters = "ABCDEF";
 
 function render(s: LessonSpec): string {

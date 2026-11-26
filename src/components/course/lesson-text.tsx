@@ -19,12 +19,14 @@ function CalloutBox({ c }: { c: Callout }) {
 }
 
 /** Renders a lesson body according to the approved content standard. */
-export function LessonText({ body, inPreparation }: { body: LessonBody; inPreparation: boolean }) {
+export function LessonText({ body, inPreparation, kind = "lesson" }: { body: LessonBody; inPreparation: boolean; kind?: "lesson" | "workshop" }) {
   return (
     <article className="prose-academy">
       {inPreparation && (
         <p className="rounded-sm border border-dashed border-stone-deep bg-white p-4 text-[0.9375rem] !text-ink-muted">
-          <strong>Outline only.</strong> The full written lesson, exercise, knowledge check and assignment for this item are in preparation. The summary and module outcomes below show what it will cover.
+          <strong>Outline only.</strong> {kind === "workshop"
+            ? "The briefing, practice rounds, readiness check, workshop pack and final task for this workshop are in preparation."
+            : "The full written lesson, exercise, knowledge check and assignment for this lesson are in preparation."} The summary and module outcomes below show what it will cover.
         </p>
       )}
       <p className="!text-lead !text-ink">{body.intro}</p>

@@ -205,17 +205,24 @@ function Assignment({ page }: { page: LessonPage }) {
   );
 }
 
+/** Tab labels: lessons and workshops share one player; workshops use practice-oriented labels. */
+const LABELS = {
+  lesson: { lesson: "Lesson", exercise: "Exercise", quiz: "Quiz", materials: "Materials", assignment: "Assignment", aria: "Lesson sections" },
+  workshop: { lesson: "Briefing", exercise: "Practice Rounds", quiz: "Readiness Check", materials: "Workshop Pack", assignment: "Final Task", aria: "Workshop sections" },
+} as const;
+
 export function LessonTabs({ page, lessonContent }: { page: LessonPage; lessonContent: React.ReactNode }) {
   const c = page.content!;
   const exDone = Boolean(page.progress?.exercise_done_at);
+  const L = LABELS[page.lesson.kind];
   return (
     <Tabs defaultValue="lesson">
-      <TabsList aria-label="Lesson sections" className="flex-wrap gap-x-6 gap-y-1 overflow-visible sm:flex-nowrap sm:gap-8">
-        <TabsTrigger value="lesson">Lesson</TabsTrigger>
-        {c.exercise && <TabsTrigger value="exercise">Exercise{exDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
-        {page.quiz.length > 0 && <TabsTrigger value="quiz">Quiz{page.passedQuiz && <CheckCircle2 aria-label="passed" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
-        <TabsTrigger value="materials">Materials</TabsTrigger>
-        {c.assignment && <TabsTrigger value="assignment">Assignment{page.submission && <CheckCircle2 aria-label="submitted" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
+      <TabsList aria-label={L.aria} className="flex-wrap gap-x-6 gap-y-1 overflow-visible sm:flex-nowrap sm:gap-8">
+        <TabsTrigger value="lesson">{L.lesson}</TabsTrigger>
+        {c.exercise && <TabsTrigger value="exercise">{L.exercise}{exDone && <CheckCircle2 aria-label="done" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
+        {page.quiz.length > 0 && <TabsTrigger value="quiz">{L.quiz}{page.passedQuiz && <CheckCircle2 aria-label="passed" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
+        <TabsTrigger value="materials">{L.materials}</TabsTrigger>
+        {c.assignment && <TabsTrigger value="assignment">{L.assignment}{page.submission && <CheckCircle2 aria-label="submitted" className="ml-1.5 inline size-3.5 text-success" />}</TabsTrigger>}
       </TabsList>
       <TabsContent value="lesson">{lessonContent}</TabsContent>
       {c.exercise && <TabsContent value="exercise"><Exercise page={page} /></TabsContent>}

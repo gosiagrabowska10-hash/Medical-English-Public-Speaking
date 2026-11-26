@@ -57,7 +57,7 @@ export const L07: LessonSpec = {
         heading: "Stress: putting the weight where the meaning is",
         paragraphs: [
           "English uses stress to signal what matters. The stressed word in a phrase is slightly louder, longer and higher in pitch, and listeners use it to find the new or important information. “Mortality fell by a THIRD” tells the audience what to remember. “It was the DOSE, not the drug” uses contrastive stress to correct an assumption. Placing the stress on the wrong word, or on every word, makes speech harder to follow even when each individual sound is correct.",
-          "Word stress matters too, especially for medical terminology. Many medical terms look similar across languages but are stressed differently in English: car-di-o-my-o-PATH-y, an-aes-THE-si-a, ep-i-DEM-i-ol-o-gy. Misplaced word stress can make a familiar word hard to recognise, particularly for listeners who are themselves non-native speakers. Check the stress of your twenty most frequent technical terms in a good dictionary and practise them in full sentences, not in isolation.",
+          "Word stress matters too, especially for medical terminology. Many medical terms look similar across languages but are stressed differently in English: car-di-o-my-OP-a-thy /ˌkɑː.di.əʊ.maɪˈɒp.ə.θi/, an-aes-THE-si-a /ˌæn.əsˈθiː.zi.ə/, ep-i-de-mi-OL-o-gy /ˌep.ɪ.diː.miˈɒl.ə.dʒi/. Misplaced word stress can make a familiar word hard to recognise, particularly for listeners who are themselves non-native speakers. Check the stress of your twenty most frequent technical terms in a good dictionary and practise them in full sentences, not in isolation.",
         ],
         callout: {
           kind: "evidence",

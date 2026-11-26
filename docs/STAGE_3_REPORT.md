@@ -68,3 +68,10 @@ Security verified: answer keys never reach students; quiz scored on the server; 
 - British English: "Programme" and "Simulation Centre" throughout.
 - Fix: the course-contents sidebar now stays visible while scrolling long lessons.
 - Tests: course E2E 41/41, course security 26/26, all Stage 1–2 suites pass.
+
+## Addendum — 26 November 2026
+- **L07 corrected** (approved): stress of *cardiomyopathy* and *epidemiology*, verified against Cambridge Dictionary and Oxford Learner's Dictionaries; IPA added. Log: `docs/curriculum/pronunciation-verification.md`.
+- **L08 and L09 written** to the approved standard (1,520 and 1,541 words of teaching content) and submitted for review: `docs/curriculum/lesson-review-L08-L09.pdf`. Handouts generated.
+- **Workshop navigation implemented:** Briefing · Practice Rounds · Readiness Check · Workshop Pack · Final Task, with workshop wording in the completion panel and placeholders.
+- **W1 revised structure:** `docs/curriculum/workshop-W1-structure-v2.pdf` (facilitated and independent versions, intelligibility-based criteria with Beginning/Developing/Competent descriptors).
+- Tests: course E2E 43/43 (adds workshop navigation), course security 26/26, Stage 1–2 suites pass.

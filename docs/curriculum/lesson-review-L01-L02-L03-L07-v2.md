@@ -1,5 +1,7 @@
 # Revised Lessons for Review: L01, L02, L03 and L07 (version 2)
 
+> **Correction, 26 November 2026:** in L07 the stress patterns of *cardiomyopathy* and *epidemiology* have been corrected and verified IPA added (see `pronunciation-verification.md`). The teaching-content count for L07 is now 1,357 words. Nothing else has changed since you approved these lessons.
+
 **Purpose.** These are the four lessons rewritten to the content standard you approved. Once you approve them, they will be the educational templates for the remaining 26 lessons. As before, this document is generated from the same source that feeds the platform, so you are reading exactly what students will see. Correct quiz answers are marked with ✓; students never see them before answering.
 
 ---
@@ -774,7 +776,7 @@ The lesson can be marked complete only after the student has save the practical 
 | AI teacher | voice coach |
 | Access | Enrolled students |
 | Video | Sample video only — Sample video for demonstrating the player. The instructor recording for this lesson has not been produced yet. |
-| Teaching content | **1354 words** (introduction, sections, evidence and recommendation notes, examples; excludes quiz, phrase bank, headings and instructions) |
+| Teaching content | **1357 words** (introduction, sections, evidence and recommendation notes, examples; excludes quiz, phrase bank, headings and instructions) |
 | Components | 3 examples · 11 phrases · 6 quiz questions (3 scenario-based) · 4 references |
 
 ### Introduction
@@ -820,7 +822,7 @@ In a formal presentation, however, frequent fillers can distract, and in a secon
 
 English uses stress to signal what matters. The stressed word in a phrase is slightly louder, longer and higher in pitch, and listeners use it to find the new or important information. “Mortality fell by a THIRD” tells the audience what to remember. “It was the DOSE, not the drug” uses contrastive stress to correct an assumption. Placing the stress on the wrong word, or on every word, makes speech harder to follow even when each individual sound is correct.
 
-Word stress matters too, especially for medical terminology. Many medical terms look similar across languages but are stressed differently in English: car-di-o-my-o-PATH-y, an-aes-THE-si-a, ep-i-DEM-i-ol-o-gy. Misplaced word stress can make a familiar word hard to recognise, particularly for listeners who are themselves non-native speakers. Check the stress of your twenty most frequent technical terms in a good dictionary and practise them in full sentences, not in isolation.
+Word stress matters too, especially for medical terminology. Many medical terms look similar across languages but are stressed differently in English: car-di-o-my-OP-a-thy /ˌkɑː.di.əʊ.maɪˈɒp.ə.θi/, an-aes-THE-si-a /ˌæn.əsˈθiː.zi.ə/, ep-i-de-mi-OL-o-gy /ˌep.ɪ.diː.miˈɒl.ə.dʒi/. Misplaced word stress can make a familiar word hard to recognise, particularly for listeners who are themselves non-native speakers. Check the stress of your twenty most frequent technical terms in a good dictionary and practise them in full sentences, not in isolation.
 
 > **Research evidence.** Studies of second-language speech have found that correctly placed sentence stress improved listeners’ recall and their evaluations of the speaker, and that misplaced word stress can reduce intelligibility, especially when the stress shifts to a later syllable. [3, 4]
 

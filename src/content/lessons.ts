@@ -10,6 +10,8 @@ import { L01 } from "./lessons/l01";
 import { L02 } from "./lessons/l02";
 import { L03 } from "./lessons/l03";
 import { L07 } from "./lessons/l07";
+import { L08 } from "./lessons/l08";
+import { L09 } from "./lessons/l09";
 
 export type { LessonSpec, LessonBody, Quiz } from "./lesson-types";
 
@@ -18,8 +20,6 @@ const schedule: { code: string; week: number; minutes: number; aiTeacher: string
   { code: "L04", week: 1, minutes: 60, aiTeacher: "english-speaking-coach" },
   { code: "L05", week: 2, minutes: 65, aiTeacher: "english-speaking-coach" },
   { code: "L06", week: 2, minutes: 60, aiTeacher: "english-speaking-coach" },
-  { code: "L08", week: 3, minutes: 60, aiTeacher: "voice-coach" },
-  { code: "L09", week: 3, minutes: 55, aiTeacher: "voice-coach" },
   { code: "W1", week: 3, minutes: 120, aiTeacher: "voice-coach" },
   { code: "L10", week: 4, minutes: 60, aiTeacher: "presentation-coach" },
   { code: "L11", week: 4, minutes: 60, aiTeacher: "presentation-coach" },
@@ -50,7 +50,7 @@ const schedule: { code: string; week: number; minutes: number; aiTeacher: string
 ];
 
 export const lessonSpecs: LessonSpec[] = [
-  L01, L02, L03, L07,
+  L01, L02, L03, L07, L08, L09,
   ...schedule.map((s) => ({ ...s, status: "in_preparation" as const })),
 ];
 
