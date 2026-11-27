@@ -24,7 +24,7 @@ export const L12: LessonSpec = {
       {
         heading: "What slides are for",
         paragraphs: [
-          "An audience can either read or listen; it does not do both well at the same time. When a slide is full of sentences, listeners start reading, usually faster or slower than you speak, and they stop hearing you. If you then read the same text aloud, the slide and the speech compete for the same attention. The result is a talk that is harder to follow than either the slide or the speech alone.",
+          "Audiences can look at a slide and listen at the same time — that is what a good diagram with a clear explanation achieves. The difficulty arises with dense text. When a slide is full of sentences, many listeners start reading it, usually faster or slower than you speak, and they follow your voice less closely. The most specific problem is redundancy: if you then read the same sentences aloud, identical on-screen text and narration compete for the same attention instead of complementing each other. For many listeners the result is a talk that is harder to follow than either the slide or the speech alone.",
           "Slides are most useful for what speech cannot do well: showing images, data, anatomy, processes and relationships. Text on slides should be limited to what helps the audience to see the point — a headline, labels and a few words of emphasis. Detailed methods, references and the full results belong in a handout, a backup slide or the published paper.",
         ],
         callout: {
@@ -61,7 +61,7 @@ export const L12: LessonSpec = {
       {
         heading: "Readable and accessible slides",
         paragraphs: [
-          "Design for the person in the back row, on a small screen in a hybrid session, and with less-than-perfect vision. As professional guidance, use body text of at least 24 points and headlines of at least 32 points on a standard widescreen slide, a plain sans-serif font, and strong contrast between text and background. Test each slide by viewing it at the size of a laptop screen from two metres away, or by shrinking it to a quarter of the screen: if you cannot read it, neither can your audience.",
+          "Design for the person in the back row, on a small screen in a hybrid session, and with less-than-perfect vision. As a recommended minimum for a standard 16:9 slide — professional guidance, not a universal rule — use body text of at least 24 points and headlines of at least 32 points, a plain sans-serif font, and strong contrast between text and background. Where a congress provides a template or its own size rules, follow them, and let the actual room, screen size and viewing conditions take precedence: a large hall may need larger text. Test each slide by viewing it at the size of a laptop screen from two metres away, or by shrinking it to a quarter of the screen: if you cannot read it, neither can your audience.",
           "Do not rely on colour alone to carry meaning. Red–green colour vision deficiency is common, especially among men, so a graph in which the only difference between groups is red versus green may be unreadable for several people in a large audience. Use colour together with labels, line styles or position, and choose colour pairs such as blue and orange that remain distinguishable.",
           "For international audiences, write abbreviations in full at first use, avoid local acronyms and idioms, and keep the language of slides simple. Never show identifiable patient information, including faces, names, dates of birth or rare combinations of details, without explicit consent and approval under your institution’s policies. Use images and figures only when you have the right to do so, and acknowledge their sources.",
         ],
@@ -122,7 +122,7 @@ export const L12: LessonSpec = {
       { mistake: "Topic headings such as “Results” or “Background”", correction: "Use a sentence headline that states the point of the slide." },
       { mistake: "Pasting complex figures directly from papers", correction: "Redraw to show the one comparison that supports your headline; offer the original in a handout." },
       { mistake: "Using red and green as the only difference between groups", correction: "Use colour-blind-safe pairs and add labels or line styles." },
-      { mistake: "Small text that cannot be read from the back of the room", correction: "Body text of at least 24 points, headlines of at least 32; test at reduced size." },
+      { mistake: "Small text that cannot be read from the back of the room", correction: "Aim for at least 24-point body text and 32-point headlines on a 16:9 slide (recommended minimum; the congress template and the room take precedence); test at reduced size." },
       { mistake: "Showing identifiable patient images without consent", correction: "Use anonymised or consented images only, and say so." },
     ],
     reflection: [

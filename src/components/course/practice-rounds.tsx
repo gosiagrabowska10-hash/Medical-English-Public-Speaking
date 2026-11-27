@@ -233,7 +233,7 @@ export function PracticeRounds({ page }: { page: LessonPage }) {
         <Lock aria-hidden className="mt-1 size-5 shrink-0 text-gold-deep" />
         <div>
           <p className="font-serif text-2xl text-midnight">Pass the Readiness Check to unlock the practice rounds</p>
-          <p className="mt-2 text-sm leading-relaxed text-ink-muted">Five questions on L07–L09 (pass mark 70%). You can retake it as often as you like. Meanwhile, read the Briefing and the Workshop Pack.</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted">Five questions on L07–L09 (pass mark 70%: at least 4 of 5 correct). You can retake it as often as you like. Meanwhile, read the Briefing and the Workshop Pack.</p>
         </div>
       </div>
     );

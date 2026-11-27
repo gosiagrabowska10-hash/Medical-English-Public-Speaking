@@ -25,12 +25,13 @@ export const L11: LessonSpec = {
         heading: "Why beginnings and endings carry so much weight",
         paragraphs: [
           "Audiences pay most attention at the start, when they are deciding whether to listen, and again at the end, when they sense that the important conclusion is coming. In between, attention drifts, especially in long sessions and in a second language. The practical lesson is simple: put your message where attention is highest, and do not spend those moments on administration.",
-          "Endings also shape how the whole experience is remembered. A talk that closes clearly, on its main point, leaves a different impression from one that runs out of time and stops in the middle of a slide. You cannot control everything an audience remembers, but you can make sure that the last thing they hear is the thing you most want them to keep.",
+          "A talk that closes clearly, on its main point, also leaves a different impression from one that runs out of time and stops in the middle of a slide. This is professional experience rather than a research finding. You cannot control everything an audience remembers, but you can make sure that the last thing they hear is the thing you most want them to keep.",
+          "Optional note: in a well-known colonoscopy study (reference 2), patients’ later ratings of discomfort depended strongly on the worst moment and the final minutes. It concerns evaluations of medical procedures, not audience memory of presentations, and is not used as evidence in this lesson.",
         ],
         callout: {
           kind: "evidence",
-          text: "In classic memory research, items at the beginning and end of a list were recalled better than those in the middle (primacy and recency effects). In a study of patients undergoing colonoscopy, retrospective ratings of discomfort were strongly influenced by the worst moment and by the final minutes of the procedure. Neither study concerned presentations; they are cited because they illustrate why the start and the end deserve special care.",
-          refs: [1, 2],
+          text: "In classic memory research, items at the beginning and end of a list were recalled better than those in the middle (primacy and recency effects). The research used word lists, not presentations; it is cited because it illustrates why the start and the end of a talk deserve special care.",
+          refs: [1],
         },
       },
       {
@@ -44,7 +45,7 @@ export const L11: LessonSpec = {
       {
         heading: "Opening devices for medical audiences",
         paragraphs: [
-          "Four devices work reliably with medical audiences. A short, anonymised clinical vignette makes the problem concrete: “A seventy-eight-year-old man is admitted with a hip fracture on a Friday night…” It must be fictional or composite, and never identifiable. A striking, verified number gives scale: “One in five patients over seventy will develop delirium after surgery” — but only if the source supports it and you can cite it. A genuine question engages the audience’s curiosity, provided you answer it. A contrast between what people assume and what is true can be powerful, if it does not caricature colleagues.",
+          "Four devices work reliably with medical audiences. A short clinical vignette makes the problem concrete: “A seventy-eight-year-old man is admitted with a hip fracture on a Friday night…” It must be fictional or composite and contain no identifiable details: calling a case composite does not make a rare diagnosis, an exact date or place, or a recognisable combination of details acceptable. A striking, verified number gives scale — “one in five patients over seventy” is an illustrative figure only, to be replaced in a real talk by a number you have checked and can cite. A genuine question engages the audience’s curiosity, provided you answer it. A contrast between what people assume and what is true can be powerful, if it does not caricature colleagues.",
           "Some devices rarely work, especially across cultures and languages. Jokes depend on shared references and timing, and they are the first thing to fail in a second language. Famous quotations are often misattributed and feel generic. Rhetorical questions that you do not answer frustrate an expert audience. Dictionary definitions waste time on what everyone knows. And opening with the limitations of your study undermines your message before you have stated it.",
         ],
         callout: {
@@ -69,6 +70,7 @@ export const L11: LessonSpec = {
         paragraphs: [
           "A strong closing has three parts. First, a signal that you are concluding: “To conclude…” or “Let me finish with…”. Audiences re-engage at this signal, so make sure what follows is worth it. Second, the message, restated in the same words you used in the opening, with the evidence from your supporting points briefly recalled. Third, a take-home and, where appropriate, a call to action: what the audience should think, check or do differently.",
           "A call to action works best when it is specific and realistic. “We should all improve delirium care” changes nothing. “If your ward does not screen on day one, try the two-minute test for one month and audit what you find” gives listeners something they can actually do. Specific plans that say when, where and how are more likely to be acted on than general intentions.",
+          "How direct to be depends on the audience, the culture and your position. A trainee addressing senior colleagues, or a guest at another institution, may prefer a diplomatic form: “Would it be worth trying the screen on one ward for a month?” or “I’d like to suggest that we review fluid charts at the morning round.” A softer request should still be specific.",
           "Plan your final sentence word for word and end on it. Then thank the audience, and stop. Avoid ending with “That’s all”, with an apology for running over, or with a slide titled “Questions?” that replaces your message. If there is time for questions, many experienced speakers add a brief return to the message after the last answer: “Thank you for the questions. The point I’d like you to take away is still…”",
         ],
         callout: {
@@ -89,17 +91,17 @@ export const L11: LessonSpec = {
       {
         title: "The same opening, rewritten",
         setting: "Cardiology congress, eight-minute oral presentation",
-        text: "First draft (fictional): “Good morning. First of all I would like to thank the organisers for inviting me. My name is Dr K. and I work in the department of cardiology. Today I will talk about heart failure. Here is the outline: introduction, methods, results and conclusions. Heart failure is defined as…” — fifty seconds, and no reason to listen. Rewritten: “Thank you, Chair. Almost half of our patients with heart failure are readmitted within a year, and many of those admissions begin with a weight gain that nobody saw. We asked whether a daily weight message to a nurse could change that. In our pilot, it was associated with fewer readmissions — and I’ll show you the result, the cost, and what we would do differently.” Forty seconds, with relevance, gap, message and route.",
+        text: "First draft (fictional): “Good morning. First of all I would like to thank the organisers for inviting me. My name is Dr K. and I work in the department of cardiology. Today I will talk about heart failure. Here is the outline: introduction, methods, results and conclusions. Heart failure is defined as…” — fifty seconds, and no reason to listen. Rewritten: “Thank you, Chair. Almost half of our patients with heart failure are readmitted within a year, and many of those admissions begin with a weight gain that nobody saw. We asked whether a daily weight message to a nurse could change that. In our pilot, it was associated with fewer readmissions — and I’ll show you the result, the cost, and what we would do differently.” Forty seconds, with relevance, gap, message and route. (Illustrative figures.)",
       },
       {
         title: "A vignette that respects confidentiality",
         setting: "Paediatric grand round, quality-improvement project",
-        text: "A fictional paediatrician opens with: “Imagine a four-year-old with a fever, arriving at 3 a.m. on a night when the department is full. Her parents have waited two hours. She has sepsis, and the first antibiotic dose comes three hours after arrival.” She then adds: “This is a composite of several cases, but every element happened in our department last winter.” The vignette makes the problem real for every clinician in the room, and the explicit statement protects confidentiality and honesty.",
+        text: "A fictional paediatrician opens with: “Imagine a four-year-old with a fever, arriving at 3 a.m. on a night when the department is full. Her parents have waited two hours. She has sepsis, and the first antibiotic dose comes three hours after arrival.” She then adds: “This is a composite case, changed so that no child could be recognised, but the delays are typical of what we saw.” The vignette makes the problem real for every clinician in the room without identifiable details, and the statement keeps the talk honest. (Illustrative times.)",
       },
       {
         title: "A closing that changed practice",
         setting: "Surgical audit meeting, ten-minute presentation",
-        text: "A fictional surgical trainee ends a talk on post-operative fluid prescribing: “To conclude: on our wards, one in three fluid prescriptions after day two was unnecessary, and stopping them did not cause harm. So here is my request: from next Monday, please review every fluid chart at the morning ward round, using the one-line checklist on your handout. We will re-audit in March. Thank you.” The final sentence is a date, the call to action is specific, and the audit lead asks for the checklist after the session.",
+        text: "A fictional surgical trainee ends a talk on post-operative fluid prescribing: “To conclude: on our wards, one in three fluid prescriptions after day two was unnecessary, and stopping them did not cause harm. So here is my request: from next Monday, please review every fluid chart at the morning ward round, using the one-line checklist on your handout. We will re-audit in March. Thank you.” The final sentence is a date, the call to action is specific, and the audit lead asks for the checklist after the session. To a more senior audience, the trainee might instead say: “I’d like to suggest that we try this for three months; I’ll share the re-audit in March.” (Illustrative figures.)",
       },
     ],
     phrase_bank: [
@@ -112,6 +114,8 @@ export const L11: LessonSpec = {
       { phrase: "This is a composite case.", use: "Stating that a vignette is not a real, identifiable patient", register: "Neutral – formal", example: "This is a composite case, but every element is familiar." },
       { phrase: "To conclude, …", use: "Signalling the closing", register: "Neutral – formal", pronunciation: "Pause after “conclude”.", example: "To conclude, // early screening is feasible and finds delirium sooner." },
       { phrase: "So here is my request:", use: "Introducing a specific call to action", register: "Neutral", example: "So here is my request: try the screen for one month on your ward." },
+      { phrase: "Would it be worth trying…?", use: "A diplomatic call to action for senior or unfamiliar audiences", register: "Formal, tentative", pronunciation: "Rising tone at the end of the question.", example: "Would it be worth trying the two-minute screen on one ward for a month?" },
+      { phrase: "I’d like to suggest that we…", use: "A softer but specific request", register: "Formal", example: "I’d like to suggest that we review fluid charts at the morning round and compare results in March." },
       { phrase: "The point I’d like you to take away is…", use: "Restating the message after questions", register: "Neutral", example: "Thank you for the questions. The point I’d like you to take away is still this: screen on day one." },
     ],
     phrase_practice:
@@ -122,9 +126,9 @@ export const L11: LessonSpec = {
       { mistake: "Spending the first minute on thanks, name and outline", correction: "One sentence of thanks; then relevance, gap, message and route." },
       { mistake: "Starting with a joke or a famous quotation", correction: "Use a vignette, a verified number, a genuine question or a contrast." },
       { mistake: "Asking a question and never answering it", correction: "Answer every question you raise in the opening, ideally in the close." },
-      { mistake: "Using a real, recognisable patient story", correction: "Use a fictional or composite case and say so." },
+      { mistake: "Using a real, recognisable patient story", correction: "Use a fictional or composite case with no identifiable details, and say that it is composite." },
       { mistake: "Ending with “That’s all — any questions?”", correction: "End with your message and a planned final sentence; then thank the audience." },
-      { mistake: "A vague call to action", correction: "Say who should do what, where and by when." },
+      { mistake: "A vague call to action", correction: "Say who should do what, where and by when — directly or diplomatically, to suit the audience." },
     ],
     reflection: [
       "How did the last three talks you attended begin and end? Which would you copy?",
@@ -151,7 +155,7 @@ export const L11: LessonSpec = {
     prompt: "Paste your original opening and closing, your rewritten versions, the device you chose and your timings.",
     min_chars: 400,
     model_answer:
-      "Original opening (fictional): “Good afternoon, thank you for having me. I am a nephrologist. My talk is about hyperkalaemia. First a definition…”\nRewritten opening (92 words): “Thank you, Chair. Most of us have been called at night about a potassium of six point five — and most of us have wondered whether the result was real. In our hospital, one in four of those night-time results came from a haemolysed sample. Today I want to show you that a simple change to how we take samples can halve unnecessary night-time calls. I’ll show you the problem, the change we made in the emergency department, and what happened to the calls.” Device: a shared experience plus a verified local number from our audit.\nOriginal closing: “So that’s it. Any questions?”\nRewritten closing (74 words): “To conclude: one in four night-time hyperkalaemia calls came from haemolysed samples, and a change in sampling technique halved them. So here is my request: if you work in the emergency department, use the new sampling checklist from next week, and we will share the call data with you in three months. Fewer false alarms means more time for the patients who really need us at night. Thank you.”\nTimings: opening 38 seconds; closing 31 seconds.",
+      "Original opening (fictional): “Good afternoon, thank you for having me. I am a nephrologist. My talk is about hyperkalaemia. First a definition…”\nRewritten opening (92 words): “Thank you, Chair. Most of us have been called at night about a potassium of six point five — and most of us have wondered whether the result was real. In our hospital, one in four of those night-time results came from a haemolysed sample [illustrative figure]. Today I want to show you that a simple change to how we take samples can halve unnecessary night-time calls. I’ll show you the problem, the change we made in the emergency department, and what happened to the calls.” Device: a shared experience plus a local audit number. (All figures in this model answer are illustrative; in your own talk, use verified data.)\nOriginal closing: “So that’s it. Any questions?”\nRewritten closing (74 words): “To conclude: one in four night-time hyperkalaemia calls came from haemolysed samples, and a change in sampling technique halved them. So here is my request: if you work in the emergency department, use the new sampling checklist from next week, and we will share the call data with you in three months. Fewer false alarms means more time for the patients who really need us at night. Thank you.”\nTimings: opening 38 seconds; closing 31 seconds.",
     self_check: [
       "The opening does all four jobs: relevance, gap, message and route.",
       "The device is fictional or verified, and any question is answered.",
@@ -178,11 +182,11 @@ export const L11: LessonSpec = {
       options: [
         "Use last week’s patient with the date changed",
         "Avoid stories completely in medical talks",
-        "Use a fictional or composite case and say that it is composite",
+        "Use a fictional or composite case with no identifiable details, and say that it is composite",
         "Show the patient’s imaging with the name blurred",
       ],
       correct: 2,
-      explanation: "Vignettes are powerful, but they must never be identifiable. Saying that a case is composite protects both confidentiality and honesty.",
+      explanation: "Vignettes are powerful, but they must never be identifiable — even a composite case must not contain recognisable details. Saying that a case is composite keeps the presentation honest.",
     },
     {
       scenario: true,
@@ -235,8 +239,8 @@ export const L11: LessonSpec = {
   assignment: {
     title: "Scripted opening and closing",
     brief:
-      "Write the complete opening and closing of a real presentation you will give, based on the message map from L10. The opening (about 100–150 words) must establish relevance, open a gap, state your message and give a route; the closing (about 80–120 words) must signal the conclusion, restate the message, include a specific take-home or call to action and end on a planned final sentence. Mark the pauses and the stressed word of your message (L07). Add a short commentary (100–200 words) explaining your choice of opening device, how you made it accurate and non-identifiable, and how you would shorten both for a five-minute slot.",
-    min_words: 250,
+      "Write the complete opening and closing of a real presentation you will give, based on the message map from L10. The opening (about 100–150 words) must establish relevance, open a gap, state your message and give a route; the closing (about 80–120 words) must signal the conclusion, restate the message, include a specific take-home or call to action and end on a planned final sentence. Mark the pauses and the stressed word of your message (L07). Add a short commentary (100–200 words) explaining your choice of opening device, how you made it accurate and non-identifiable, and how you would shorten both for a five-minute slot. The submission must contain at least 280 words in total (the sum of the minimum lengths of the three parts).",
+    min_words: 280,
     required: true,
     criteria: [
       { criterion: "Opening", description: "Relevance, gap, message and route are all present, in about one minute." },

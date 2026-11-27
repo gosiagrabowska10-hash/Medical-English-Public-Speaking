@@ -16,6 +16,9 @@ const codes = args.filter((a) => !a.startsWith("--"));
 const introFile = args.find((a) => a.startsWith("--notes="))?.slice(8) ?? `docs/curriculum/review-notes${version ? "-v" + version : ""}.md`;
 const letters = "ABCDEF";
 
+/** Minimum correct answers for the 70% pass mark, exactly as the database computes it (score × 10 ≥ total × 7). */
+const needed = (n: number) => Math.ceil((n * 7) / 10);
+
 function render(s: LessonSpec): string {
   const m = modules.find((mm) => mm.lessons.some((l) => l.code === s.code) || mm.workshop?.code === s.code)!;
   const meta = m.lessons.find((l) => l.code === s.code) ?? m.workshop!;
@@ -55,7 +58,7 @@ function render(s: LessonSpec): string {
     if (e.model_answer) out.push(`**Model answer** *(fictional example; shown to the student only after they save their own response)*`, "", ...e.model_answer.split("\n").flatMap((l) => [l ? `> ${l}` : ">"]), "");
   }
   if (s.quiz) {
-    out.push(`### Knowledge check (${s.quiz.length} questions · pass mark 70%)`, "");
+    out.push(`### Knowledge check (${s.quiz.length} questions · pass mark 70%: at least ${needed(s.quiz.length)} of ${s.quiz.length} correct)`, "");
     s.quiz.forEach((q, i) => {
       out.push(`**${i + 1}. ${q.scenario ? "[Scenario] " : ""}${q.prompt}**`, "");
       q.options.forEach((o, k) => out.push(`- ${letters[k]}. ${o}${k === q.correct ? " **✓ correct**" : ""}`));
@@ -69,8 +72,9 @@ function render(s: LessonSpec): string {
   }
   out.push(`### Downloadable materials`, "", ...(s.resources?.length ? s.resources.map((r) => `- **${r.title}**${r.is_sample ? " (sample)" : ""} — ${r.description} \`${r.file_url}\``) : ["- None for this lesson yet."]), "");
   if (b.references?.length) out.push(`### References`, "", ...b.references.map((r, i) => `${i + 1}. ${r}`), "");
-  const reqs = [s.exercise && "save the practical exercise", s.quiz && "pass the knowledge check (70%)", s.assignment?.required && "submit the assignment"].filter(Boolean);
-  out.push(`### Completion criteria`, "", `The lesson can be marked complete only after the student has ${reqs.join(", ")}. This is enforced by the database.`, "", "---", "");
+  const reqs = [s.exercise && "saved the practical exercise", s.quiz && `passed the knowledge check (at least ${needed(s.quiz.length)} of ${s.quiz.length} answers correct; pass mark 70%, rounded up to whole questions)`, s.assignment?.required && "submitted the assignment"].filter(Boolean) as string[];
+  const list = reqs.length > 1 ? `${reqs.slice(0, -1).join(", ")} and ${reqs[reqs.length - 1]}` : reqs[0];
+  out.push(`### Completion criteria`, "", `The lesson can be marked complete only after the student has ${list}. This is enforced by the database.`, "", "---", "");
   return out.join("\n");
 }
 
@@ -87,5 +91,7 @@ code{font-size:8.5pt;color:#7A6235}strong{color:#101B2D}em{color:#4a5568}blockqu
 .tag{font:600 8pt Helvetica;letter-spacing:.28em;color:#7A6235;text-transform:uppercase}hr{border:0}`;
 let html = marked.parse(md) as string;
 html = html.replace(/<h2>((?:L\d{2}|W\d) ·)/g, '<h2 class="lesson">$1');
+// A rule directly before a forced page break can spill onto its own page: drop it.
+html = html.replace(/<hr>\s*(<h2 class="lesson">)/g, "$1");
 writeFileSync(`${base}.html`, `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>Lesson review</title><style>${css}</style></head><body><p class="tag">The Medical Speaking Academy · Curriculum review</p>${html}</body></html>`);
 console.log(`Wrote ${base}.md and .html`);

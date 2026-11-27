@@ -65,7 +65,11 @@ export function CompletionPanel({ page }: { page: LessonPage }) {
   const [pending, start] = useTransition();
   const [msg, setMsg] = useState<string | null>(null);
   const done = page.progress?.status === "completed";
-  const labels = page.lesson.kind === "workshop" ? workshopLabels : lessonLabels;
+  const n = page.quiz.length, pass = Math.ceil((n * 7) / 10); // same rule as submit_quiz: score × 10 ≥ total × 7
+  const labels: Record<string, string> = {
+    ...(page.lesson.kind === "workshop" ? workshopLabels : lessonLabels),
+    quiz: `Pass the ${page.lesson.kind === "workshop" ? "readiness" : "knowledge"} check (at least ${pass} of ${n} correct)`,
+  };
   const noun = page.lesson.kind === "workshop" ? "workshop" : "lesson";
   const c = page.content!;
   const reqs = [

@@ -104,7 +104,7 @@ function Quiz({ page }: { page: LessonPage }) {
         <h2 className="font-serif text-3xl text-midnight">Knowledge check</h2>
         {page.passedQuiz ? <Badge tone="success" dot>Passed</Badge> : page.lastAttempt ? <Badge tone="warning" dot>Not yet passed</Badge> : null}
       </div>
-      <p className="text-sm text-ink-muted">{page.quiz.length} questions · pass mark 70% · you may retake the quiz{page.lastAttempt ? ` · last result ${page.lastAttempt.score}/${page.lastAttempt.total}` : ""}</p>
+      <p className="text-sm text-ink-muted">{page.quiz.length} questions · pass mark 70% (at least {Math.ceil((page.quiz.length * 7) / 10)} of {page.quiz.length} correct) · you may retake the quiz{page.lastAttempt ? ` · last result ${page.lastAttempt.score}/${page.lastAttempt.total}` : ""}</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -147,7 +147,7 @@ function Quiz({ page }: { page: LessonPage }) {
           );
         })}
         {error && <Status ok={false}>{error}</Status>}
-        {result && <Status ok={result.passed}>You scored {result.score} of {result.total}. {result.passed ? "Quiz passed." : "The pass mark is 70%. Review the lesson and try again."}</Status>}
+        {result && <Status ok={result.passed}>You scored {result.score} of {result.total}. {result.passed ? "Quiz passed." : `The pass mark is 70%: at least ${Math.ceil((result.total * 7) / 10)} of ${result.total} correct. Review the lesson and try again.`}</Status>}
         {result ? (
           <Button type="button" variant="outline" onClick={() => { setResult(null); setAnswers(page.quiz.map(() => null)); }}>Retake the quiz</Button>
         ) : (
