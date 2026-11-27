@@ -52,7 +52,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "marked": "^18.3.0",
-    "playwright": "^1.63.0",
+    "playwright": "^1.65.1",
     "supabase": "^3.4.0",
     "tailwindcss": "4.3.5",
     "tsx": "^4.23.15",
