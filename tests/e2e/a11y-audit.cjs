@@ -11,7 +11,7 @@ const OUT = process.argv.find((a) => a.startsWith('--out='))?.slice(6);
 const detail = (v) => v.nodes.slice(0, 40).map((n) => ({ target: n.target.join(' '), html: n.html.slice(0, 140), ...(v.id === 'color-contrast' ? { fg: n.any[0]?.data?.fgColor, bg: n.any[0]?.data?.bgColor, ratio: n.any[0]?.data?.contrastRatio, required: n.any[0]?.data?.expectedContrastRatio } : {}) }));
 const mapV = (r) => r.violations.map((v) => ({ id: v.id, impact: v.impact, help: v.help, nodes: v.nodes.length, sample: v.nodes[0]?.target?.join(' '), detail: detail(v) }));
 const pub = ['/', '/about', '/methodology', '/curriculum', '/ai-teachers', '/speaking-studio', '/pricing', '/instructors', '/founder', '/faq', '/blog', '/blog/how-to-present-research-at-an-international-medical-conference', '/contact', '/login', '/register', '/forgot-password', '/privacy', '/terms', '/cookies', '/accessibility', '/verify-mfa'];
-const app = ['/app', '/app/curriculum', '/app/settings', '/app/teachers', '/app/teachers/voice-coach', '/app/learn/L01', '/app/learn/L07', '/app/learn/L08', '/app/learn/W1'];
+const app = ['/app', '/app/curriculum', '/app/settings', '/app/teachers', '/app/teachers/voice-coach', '/app/learn/L01', '/app/learn/L07', '/app/learn/L08', '/app/learn/L10', '/app/learn/L11', '/app/learn/L12', '/app/learn/W1'];
 (async () => {
   const s = await confirmedStudent('Axe', 'Audit');
   sql(`insert into public.enrollments (user_id) values ('${s.id}')`);
