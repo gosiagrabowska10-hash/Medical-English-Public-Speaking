@@ -9,7 +9,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
 (async () => {
   const A = await confirmedStudent('Ana'), B = await confirmedStudent('Ben');
   const id = (code) => sql(`select id from public.lessons where code='${code}'`);
-  const L01 = id('L01'), L02 = id('L02'), L07 = id('L07'), L04 = id('L04');
+  const L01 = id('L01'), L02 = id('L02'), L07 = id('L07'), L04 = id('L04'), L13 = id('L13');
   const anon = anonClient();
 
   // Public syllabus vs protected content
@@ -62,7 +62,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   unlockAllModules(A.id, B.id);
   const { data: c2 } = await A.c.from('lesson_content').select('lesson_id');
   ok(c2.length === 36, 'enrolled student can read all published lesson content');
-  const { data: in4 } = await A.c.rpc('complete_lesson', { _lesson: L04 });
+  const { data: in4 } = await A.c.rpc('complete_lesson', { _lesson: L13 });
   ok(in4.completed === false && in4.missing.includes('content_in_preparation'), 'lessons still in preparation cannot be completed');
   await A.c.rpc('save_exercise', { _lesson: L07, _response: 'x'.repeat(300) });
   await A.c.rpc('submit_assignment', { _lesson: L07, _body: Array(220).fill('word').join(' ') });

@@ -36,3 +36,33 @@ All IPA transcriptions and stress patterns published by the Academy are checked 
 | fifty | /ˈfɪf.ti/ | /ˈfɪfti/ | FIF |
 
 **Note on the dictionaries.** The two dictionaries differ slightly in notation (for example, syllable dots, and /ɪ/ versus /i/ at the start of *oesophagus*). These differences do not affect the primary stress. Academy materials use the Cambridge syllable-dot notation unless stated otherwise.
+
+## L04–L06 terms (verified 27 November 2026)
+
+Checked on Cambridge Dictionary (UK pronunciation) and Oxford Learner's Dictionaries (British English) for L04 and L05. L06 contains no IPA. The lessons use Cambridge notation.
+
+| Term | Cambridge (UK) | Oxford Learner's (BrE) | Primary stress | Used in |
+|---|---|---|---|---|
+| diagnosis | /ˌdaɪ.əɡˈnəʊ.sɪs/ | /ˌdaɪəɡˈnəʊsɪs/ | NO | L05 |
+| diagnostic | /ˌdaɪ.əɡˈnɒs.tɪk/ | /ˌdaɪəɡˈnɒstɪk/ | NOS | L05 |
+| diagnose | /ˌdaɪ.əɡˈnəʊz/ | /ˈdaɪəɡnəʊz/ | **dictionaries differ** (NOSE / DI) | L05, presented as acceptable variation |
+| metastasis | /meˈtæs.tə.sɪs/ | /məˈtæstəsɪs/ | TAS | L05 |
+| metastatic | /ˌmet.əˈstæt.ɪk/ | /ˌmetəˈstætɪk/ | STAT | L05 |
+| anaesthetist | /əˈniːs.θə.tɪst/ | /əˈniːsθətɪst/ | NAES | L05 |
+| anaesthetic | /ˌæn.əsˈθet.ɪk/ | /ˌænəsˈθetɪk/ | THET | L05 |
+| cardiology | /ˌkɑː.diˈɒl.ə.dʒi/ | /ˌkɑːdiˈɒlədʒi/ | OL | L05 |
+| thrombosis | /θrɒmˈbəʊ.sɪs/ | /θrɒmˈbəʊsɪs/ | BO | L05 |
+| arthritis | /ɑːˈθraɪ.tɪs/ | /ɑːˈθraɪtɪs/ | THRI | L05 |
+| tonsillectomy | /ˌtɒn.sɪˈlek.tə.mi/ | /ˌtɒnsəˈlektəmi/ | LEC | L05 |
+| chemotherapy | /ˌkiː.məʊˈθer.ə.pi/ | /ˌkiːməʊˈθerəpi/ | THER | L05 |
+| pneumonia | /njuːˈməʊ.ni.ə/ | /njuːˈməʊniə/ | MO | L04, L05 |
+| haemoglobin | /ˌhiː.məˈɡləʊ.bɪn/ | /ˌhiːməˈɡləʊbɪn/ | GLO | L05 |
+| blood pressure | /ˈblʌd ˌpreʃ.ər/ | /ˈblʌd preʃə(r)/ | BLOOD | L05 |
+| heart attack | /ˈhɑːt əˌtæk/ | /ˈhɑːt ətæk/ | HEART | L05 |
+| biopsy | /ˈbaɪ.ɒp.si/ | /ˈbaɪɒpsi/ | BI | L05 |
+| sixteen | /ˌsɪkˈstiːn/ | /ˌsɪksˈtiːn/ | TEEN (in isolation) | L04 |
+| sixty | /ˈsɪk.sti/ | /ˈsɪksti/ | SIX | L04 |
+
+Analyse, analysis, significant, cohort and paediatric are in the Workshop I table above.
+
+**Not used.** *Bronchiolitis* has no entry in either learner's dictionary, so it was replaced in L04 by *pneumonia*. No unverified stress pattern is given.

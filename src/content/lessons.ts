@@ -9,6 +9,9 @@ import type { LessonSpec } from "./lesson-types";
 import { L01 } from "./lessons/l01";
 import { L02 } from "./lessons/l02";
 import { L03 } from "./lessons/l03";
+import { L04 } from "./lessons/l04";
+import { L05 } from "./lessons/l05";
+import { L06 } from "./lessons/l06";
 import { L07 } from "./lessons/l07";
 import { L08 } from "./lessons/l08";
 import { L09 } from "./lessons/l09";
@@ -21,9 +24,6 @@ export type { LessonSpec, LessonBody, Quiz } from "./lesson-types";
 
 /** Schedule for every lesson and workshop (36 items). */
 const schedule: { code: string; week: number; minutes: number; aiTeacher: string }[] = [
-  { code: "L04", week: 1, minutes: 60, aiTeacher: "english-speaking-coach" },
-  { code: "L05", week: 2, minutes: 65, aiTeacher: "english-speaking-coach" },
-  { code: "L06", week: 2, minutes: 60, aiTeacher: "english-speaking-coach" },
   { code: "W2", week: 4, minutes: 120, aiTeacher: "presentation-coach" },
   { code: "L13", week: 5, minutes: 55, aiTeacher: "presentation-coach" },
   { code: "L14", week: 5, minutes: 60, aiTeacher: "presentation-coach" },
@@ -50,7 +50,7 @@ const schedule: { code: string; week: number; minutes: number; aiTeacher: string
 ];
 
 export const lessonSpecs: LessonSpec[] = [
-  L01, L02, L03, L07, L08, L09, W1, L10, L11, L12,
+  L01, L02, L03, L04, L05, L06, L07, L08, L09, W1, L10, L11, L12,
   ...schedule.map((s) => ({ ...s, status: "in_preparation" as const })),
 ];
 

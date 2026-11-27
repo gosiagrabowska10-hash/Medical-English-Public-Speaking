@@ -115,7 +115,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   await p.waitForURL('**/app/learn/L08'); ok(true, 'sidebar navigates between lessons');
 
   // In-preparation lesson
-  await p.goto(BASE + '/app/learn/L04'); await p.getByText('Outline only.').waitFor();
+  await p.goto(BASE + '/app/learn/L13'); await p.getByText('Outline only.').waitFor();
   ok(await p.getByText('This lesson cannot be completed yet because its full content is still in preparation.').isVisible(), 'in-preparation lesson is labelled and cannot be completed');
 
   // ── Workshop I: complete learner journey ──
