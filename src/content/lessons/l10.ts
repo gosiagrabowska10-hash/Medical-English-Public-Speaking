@@ -237,8 +237,8 @@ export const L10: LessonSpec = {
   assignment: {
     title: "Message map for your next presentation",
     brief:
-      "Prepare a one-page message map for a real presentation you will give in the next three months. Include: (1) the setting, audience and time available; (2) your core message in one sentence; (3) two or three supporting points, each with the evidence that supports it; (4) a list of material you have decided to leave out or keep for questions, with a one-line reason; and (5) a short reflection (150–250 words) on how the message changed during drafting and how you would adapt it for a different audience. This map will be the starting point for Workshop II (Structure Clinic).",
-    min_words: 200,
+      "Prepare a one-page message map for a real presentation you will give in the next three months. Include: (1) the setting, audience and time available; (2) your core message in one sentence; (3) two or three supporting points, each with the evidence that supports it; (4) a list of material you have decided to leave out or keep for questions, with a one-line reason; and (5) a short reflection (150–250 words) on how the message changed during drafting and how you would adapt it for a different audience. The submission must contain at least 250 words in total: the message map (parts 1–4) and the reflection of 150–250 words (part 5). This map will be the starting point for Workshop II (Structure Clinic).",
+    min_words: 250,
     required: true,
     criteria: [
       { criterion: "Message", description: "One complete sentence that makes a specific, defensible claim for this audience." },

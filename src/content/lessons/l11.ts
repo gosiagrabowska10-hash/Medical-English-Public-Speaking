@@ -24,7 +24,7 @@ export const L11: LessonSpec = {
       {
         heading: "Why beginnings and endings carry so much weight",
         paragraphs: [
-          "Audiences pay most attention at the start, when they are deciding whether to listen, and again at the end, when they sense that the important conclusion is coming. In between, attention drifts, especially in long sessions and in a second language. The practical lesson is simple: put your message where attention is highest, and do not spend those moments on administration.",
+          "Many speakers work on the assumption that the start and the end of a talk matter most. The research usually cited for this concerns recall of items in word lists, not attention or memory during presentations (see the evidence note below), so it supports the assumption only by analogy. As a professional recommendation, the conclusion is nevertheless sound: plan a strong opening and a strong closing, put your message in both, and do not spend those moments on administration.",
           "A talk that closes clearly, on its main point, also leaves a different impression from one that runs out of time and stops in the middle of a slide. This is professional experience rather than a research finding. You cannot control everything an audience remembers, but you can make sure that the last thing they hear is the thing you most want them to keep.",
           "Optional note: in a well-known colonoscopy study (reference 2), patients’ later ratings of discomfort depended strongly on the worst moment and the final minutes. It concerns evaluations of medical procedures, not audience memory of presentations, and is not used as evidence in this lesson.",
         ],
