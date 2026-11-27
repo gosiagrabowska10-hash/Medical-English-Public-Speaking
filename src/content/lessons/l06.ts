@@ -36,7 +36,7 @@ export const L06: LessonSpec = {
       {
         heading: "Shorter sentences, clearer order",
         paragraphs: [
-          "The simplest change is sentence length. A sentence that works on a page — “In this retrospective cohort of 412 patients admitted with community-acquired pneumonia between 2019 and 2023, early mobilisation was associated with a significant reduction in length of stay” — is too long to follow by ear. Split it: “We looked back at 412 patients with pneumonia. Those who got out of bed early went home sooner.” Then add the detail the audience needs: “On average, two days sooner.”",
+          "The simplest change is sentence length. A sentence that works on a page — “In this retrospective cohort of 412 patients admitted with community-acquired pneumonia between 2019 and 2023, early mobilisation was associated with a significant reduction in length of stay” — is too long to follow by ear. Split it: “We looked back at 412 patients with pneumonia. Those who got out of bed early had shorter hospital stays.” Then add the detail the audience needs: “A median of five days, compared with seven.”",
           "Information order matters as much as length. Listeners understand best when a sentence starts with something they already know and ends with the new information. Put the subject and verb early, and keep the important new point — the result, the number, the recommendation — near the end, where you can stress it and pause after it. Avoid long introductions before the verb, such as a list of conditions or a full study description: give the main point first, then the conditions.",
         ],
         callout: {
@@ -66,15 +66,15 @@ export const L06: LessonSpec = {
       {
         heading: "Repetition, acronyms and contractions",
         paragraphs: [
-          "In writing, repetition is a fault. In speech, it is a service. Repeat the key message, restate an important number in a second form (“thirty per cent — almost one in three”), and use the same term for the same thing throughout. Listeners who missed a word the first time get a second chance.",
-          "Acronyms are a common barrier in international audiences. Say the full term the first time and only then the acronym, and limit yourself to the few that are truly needed: “non-invasive ventilation — NIV”. Contractions such as “we'll”, “it's” and “don't” are normal in spoken English, including in formal presentations, and they make your speech sound more natural. Use them where they feel comfortable; the full forms are also acceptable, especially when you want to stress a word: “This does not apply to children.”",
+          "In writing, repetition is a fault. In speech, it is a service. Repeat the key message, restate an important number in a second form (“thirty per cent of patients — almost one in three”), and use the same term for the same thing throughout. Listeners who missed a word the first time get a second chance.",
+          "Acronyms are a common barrier in international audiences. Say the full term the first time and only then the acronym, and limit yourself to the few that are truly needed: “non-invasive ventilation — NIV”. Contractions such as “we'll”, “it's” and “don't” are normal in spoken English, including in formal presentations, and they make your speech sound more natural. Use them where they feel comfortable; full forms remain appropriate in some contexts — when you want to stress a word (“This does not apply to children.”) or when you quote a guideline or a formal statement word for word.",
         ],
       },
       {
         heading: "Converting an abstract into a spoken script",
         paragraphs: [
           "A practical way to apply this lesson is to convert your own abstract into a script of about one minute. Read the abstract aloud and mark every place where you need to take a breath in the middle of a sentence or where you lose track. Then rewrite: one idea per sentence, verbs instead of nominalisations, “we” instead of the passive, numbers rounded or restated, acronyms explained, and a signpost before each part — background, what you did, what you found and what it means.",
-          "Finally, read the new version aloud and record it. It should take no longer than the original and will almost always be easier to say. You are not simplifying the science; you are changing the form so that the science reaches the listener.",
+          "Finally, read the new version aloud and record it. It should take no longer than the original and will almost always be easier to say. You are not simplifying the science; you are changing the form so that the science reaches the listener. Keep the study design and the type of result exactly as they are: an association stays an association, a relative measure stays relative, and no finding or recommendation is added.",
         ],
       },
     ],
@@ -92,18 +92,18 @@ export const L06: LessonSpec = {
       {
         title: "Restating a number",
         setting: "Public health meeting, a fictional epidemiologist",
-        text: "A fictional epidemiologist used to say “an adjusted relative risk reduction of 0.31 was observed”. In spoken style she now says: “We found that the risk fell by about thirty per cent. In other words, almost a third fewer infections.” The precise figure stays on the slide; the spoken version is the one the audience remembers.",
+        text: "A fictional epidemiologist used to say “an adjusted relative risk reduction of 0.31 was observed”. In spoken style she now says: “After adjustment, the relative risk of infection was reduced by 31 per cent. That is a relative reduction, compared with the other group — not 31 fewer infections in every hundred patients.” The precise figure stays on the slide; the spoken version is the one the audience remembers, and it keeps the meaning of the measure.",
       },
     ],
     phrase_bank: [
-      { phrase: "We wanted to know whether…", use: "Stating the research question in spoken style", register: "Neutral", example: "We wanted to know whether early mobilisation shortens hospital stay." },
+      { phrase: "We wanted to know whether…", use: "Stating the research question in spoken style", register: "Neutral", example: "We wanted to know whether early mobilisation is linked to a shorter hospital stay." },
       { phrase: "Here's what we did.", use: "Signposting the methods", register: "Neutral, spoken", pronunciation: "Pause after “did”.", example: "Here's what we did. We looked back at 412 patients." },
-      { phrase: "What did we find?", use: "Rhetorical question introducing results", register: "Neutral, spoken", pronunciation: "Falling tone on “find”.", example: "What did we find? Patients who mobilised early went home two days sooner." },
+      { phrase: "What did we find?", use: "Rhetorical question introducing results", register: "Neutral, spoken", pronunciation: "Falling tone on “find”.", example: "What did we find? Patients who mobilised early had a shorter stay: a median of five days instead of seven." },
       { phrase: "This is the key point.", use: "Highlighting the main finding", register: "Neutral", example: "This is the key point: the benefit was greatest in older patients." },
       { phrase: "Let's now turn to…", use: "Moving to a new section", register: "Neutral – formal", example: "Let's now turn to what this means for practice." },
-      { phrase: "In other words, …", use: "Restating a complex point more simply", register: "Neutral", example: "In other words, almost a third fewer infections." },
-      { phrase: "So what does this mean in practice?", use: "Moving from results to implications", register: "Neutral", example: "So what does this mean in practice? We now mobilise on day one." },
-      { phrase: "To sum up, …", use: "Signalling the conclusion", register: "Neutral – formal", example: "To sum up, earlier mobilisation was safe and shortened stay." },
+      { phrase: "In other words, …", use: "Restating a complex point more simply", register: "Neutral", example: "In other words, the relative risk was about a third lower." },
+      { phrase: "So what does this mean in practice?", use: "Moving from results to implications", register: "Neutral", example: "So what does this mean in practice? Because this was an observational study, it shows a link, not cause and effect." },
+      { phrase: "To sum up, …", use: "Signalling the conclusion", register: "Neutral – formal", example: "To sum up, early mobilisation was associated with a shorter hospital stay." },
     ],
     phrase_practice:
       "Take the four sections of your next talk — background, methods, results and implications — and choose one signpost from the phrase bank to introduce each. Say the four signposts in sequence with the first sentence of each section, pausing before and after each signpost, and record the result. It should sound like a map of your talk.",
@@ -142,12 +142,13 @@ export const L06: LessonSpec = {
     prompt: "Paste the original abstract (or its first three sentences), your spoken script and the three changes that helped most.",
     min_chars: 400,
     model_answer:
-      "Original (first sentence): “In this retrospective cohort of 412 patients admitted with community-acquired pneumonia between 2019 and 2023, early mobilisation within 24 hours of admission was associated with a significant reduction in length of stay (median 5 vs 7 days, p<0.01).”\nSpoken script: “We wanted to know whether getting patients with pneumonia out of bed early helps them go home sooner. Here's what we did. We looked back at 412 patients admitted to our hospital over four years. We compared those who got up within the first day with those who did not. What did we find? Patients who mobilised early went home two days sooner — after five days instead of seven. This is the key point: the benefit was clear, and we saw no increase in complications. So what does this mean in practice? We now aim to mobilise every patient with pneumonia on day one.”\nTime: about 55 seconds.\nThree changes that helped most: splitting the first sentence into four; replacing “was associated with a significant reduction in length of stay” with “went home two days sooner”; adding the signposts “Here's what we did” and “What did we find?”.",
+      "Original (first sentence): “In this retrospective cohort of 412 patients admitted with community-acquired pneumonia between 2019 and 2023, early mobilisation within 24 hours of admission was associated with a significant reduction in length of stay (median 5 vs 7 days, p<0.01).”\nSpoken script: “We wanted to know whether getting patients with pneumonia out of bed early is linked to a shorter hospital stay. Here's what we did. We looked back at the records of 412 patients admitted with community-acquired pneumonia between 2019 and 2023. We compared patients who got up within 24 hours of admission with those who did not. What did we find? Patients who mobilised early had a shorter stay: a median of five days, compared with seven. The difference was statistically significant, with a p-value below 0.01. This is the key point: early mobilisation was associated with a shorter stay. Because we looked back at existing records, this shows an association, not cause and effect.”\nTime: about 55 seconds.\nThree changes that helped most: splitting the first sentence into five; replacing “was associated with a significant reduction in length of stay” with “had a shorter stay: a median of five days, compared with seven”; adding the signposts “Here's what we did” and “What did we find?”.\nWhat did not change: the study design (retrospective cohort), the type of result (an association) and the reported figures (median 5 vs 7 days, p<0.01). No finding or recommendation was added.",
     self_check: [
       "Most sentences contain one idea and can be said in one breath.",
       "Nominalisations have been replaced with verbs.",
       "Each part of the script is introduced by a signpost.",
       "Numbers are rounded or restated, and acronyms are explained or removed.",
+      "The study design, the type of result and the reported figures are unchanged, and nothing has been added.",
     ],
   },
   quiz: [
@@ -214,12 +215,12 @@ export const L06: LessonSpec = {
       prompt: "Your key result is “an adjusted relative risk reduction of 0.31”. How should you say it?",
       options: [
         "Read the exact phrase from the slide twice",
-        "Say “the risk fell by about thirty per cent — almost a third fewer infections”, with the exact figure on the slide",
+        "Say “the relative risk was reduced by 31 per cent”, make clear that it is a relative reduction, and keep the exact figure on the slide",
         "Leave the number out",
         "Say only “a significant result”",
       ],
       correct: 1,
-      explanation: "Round and restate key numbers in speech; keep the precise figure on the slide.",
+      explanation: "Restate key numbers clearly in speech without changing what they measure: a relative reduction must not sound like an absolute one. Keep the precise figure on the slide.",
     },
   ],
   assignment: {

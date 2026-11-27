@@ -25,7 +25,7 @@ export const L04: LessonSpec = {
         heading: "Two goals: sounding native or being understood",
         paragraphs: [
           "Pronunciation teaching has long been pulled between two goals. The first is to sound as close as possible to a native speaker of a particular variety. The second is to be understood easily by the people who are actually listening. For a doctor presenting at an international congress, the second goal is both more useful and more achievable. A native-like accent is rarely reached by adults who learned English later in life, and it is not what audiences need. What they need is to recognise your words and follow your argument without effort.",
-          "Choosing intelligibility as your goal is not a lower standard. It is a more precise one. It asks you to work on the features that cause misunderstanding and to stop spending energy on features that do not. It also frees you from a common source of anxiety: the feeling that every trace of your first language is a mistake. Your accent is part of your professional identity; the aim is that it never stands between your audience and your message.",
+          "Choosing intelligibility as your goal is not a lower standard. It is a more precise one. It asks you to work on the features that cause misunderstanding and to stop spending energy on features that do not. It also frees you from a common source of anxiety: the feeling that every trace of your first language is a mistake. Your accent is part of your professional identity; the aim is that it never stands between your audience and your message. If changing aspects of your accent is a personal goal, that is a legitimate choice, but it is not a requirement for professional credibility, and this programme does not assess it.",
         ],
         callout: {
           kind: "evidence",
@@ -71,19 +71,19 @@ export const L04: LessonSpec = {
       {
         heading: "Listeners adapt — help them do it quickly",
         paragraphs: [
-          "Listeners are not fixed. Studies of accented speech show that listeners become better at understanding a particular speaker after a short period of exposure. This has a practical implication for presenters: the first minute of your talk is when your audience is adjusting to your voice, your accent and your rhythm. That is the moment to be most careful with clear speech, a moderate pace and a simple opening sentence.",
+          "Listeners are not fixed. Studies of accented speech show that listeners become better at understanding a particular speaker after a short period of exposure. This has a practical implication for presenters: at the start of your talk, your audience is still adjusting to your voice, your accent and your rhythm. The research does not define a fixed adaptation period, and how quickly listeners adjust varies with the audience, the setting and the speaker. As a practical rule, the Academy recommends treating roughly the first minute as the time to be most careful with clear speech, a moderate pace and a simple opening sentence.",
           "Consistency also helps. If you pronounce a key term the same way each time, listeners learn it quickly. If you vary it, they must work it out again. Choose one pronunciation for each of your key terms, check it in a dictionary, and keep it throughout the talk.",
         ],
         callout: {
           kind: "evidence",
-          text: "In experiments on perceptual adaptation, listeners' understanding of foreign-accented speech improved after brief exposure to it. The studies were laboratory-based, but they support making the first minute of a talk especially clear.",
+          text: "In laboratory experiments on perceptual adaptation, listeners' understanding of foreign-accented speech improved after brief exposure to it. The studies show that adaptation happens; they do not establish how long it takes for a particular audience in a real lecture hall. The advice about the first minute is an Academy recommendation based on these findings.",
           refs: [6],
         },
       },
       {
         heading: "Finding your own priorities",
         paragraphs: [
-          "General guidance is useful, but your own priorities come from your own speech. Record a two-minute extract of a real talk on your phone. Then use two simple listeners. The first is a colleague, ideally one whose first language differs from yours: ask them to write down the key message and every number, and to mark any word they were unsure of. The second is an automatic transcript, which many phones and video platforms can produce. Automatic transcription is not the same as a human listener, but repeated errors on the same word are a useful signal that something in its pronunciation is unclear.",
+          "General guidance is useful, but your own priorities come from your own speech. Record a two-minute extract of a real talk on your phone. Then use two simple listeners. The first is a colleague, ideally one whose first language differs from yours: ask them to write down the key message and every number, and to mark any word they were unsure of. The second is an automatic transcript, which many phones and video platforms can produce. Automatic transcription is not the same as a human listener and is not an assessment of your pronunciation, but repeated errors on the same word are a useful signal that something in its pronunciation is unclear. Privacy: do not upload patient-identifiable information, confidential clinical material or recordings containing sensitive data to an external transcription service unless its use has been explicitly approved under your institution's policies and data-protection requirements. For this practice, use an extract that contains no patient data.",
           "Collect the words that caused problems into a personal risk list: usually five to ten terms, numbers or phrases from your own field. For each, decide which of the three priorities is involved — an ending, a word stress or a phrase stress — and practise that feature in full sentences. Repeat the recording after two weeks and compare. This is the same evidence-based method you will use throughout the programme: measure, choose one priority, practise, measure again.",
         ],
       },
@@ -102,7 +102,7 @@ export const L04: LessonSpec = {
       {
         title: "Using a transcript as a second listener",
         setting: "Paediatric research meeting, preparation by a fictional fellow",
-        text: "A fictional paediatric research fellow records her five-minute talk and switches on the automatic captions of her video platform. The same three words are transcribed wrongly each time: “pneumonia”, “sixty” and “cohort”. She checks each in a dictionary, finds that she stresses “pneumonia” on the first syllable instead of the second (pneu-MO-ni-a) and that “sixty” loses its final syllable when she speaks fast, and practises those words in full sentences. She treats the transcript as a signal, not a verdict, and asks a colleague to confirm the changes.",
+        text: "A fictional paediatric research fellow records her five-minute talk, from which she has removed all patient details, and switches on the automatic captions of her video platform. The same three words are transcribed wrongly each time: “pneumonia”, “sixty” and “cohort”. She checks each in a dictionary, finds that she stresses “pneumonia” on the first syllable instead of the second (pneu-MO-ni-a) and that “sixty” loses its final syllable when she speaks fast, and practises those words in full sentences. She treats the transcript as a signal, not a verdict, and asks a colleague to confirm the changes.",
       },
     ],
     phrase_bank: [
@@ -146,7 +146,7 @@ export const L04: LessonSpec = {
     instructions: "Find your own top three intelligibility priorities from a short recording.",
     steps: [
       "Record a two-minute extract of a real talk: your opening and one results slide.",
-      "Ask a colleague to listen once and write down the key message, every number and any word they were unsure of. If no one is available, use an automatic transcript of the recording.",
+      "Ask a colleague to listen once and write down the key message, every number and any word they were unsure of. If no one is available, use an automatic transcript of the recording — but only for an extract with no patient-identifiable or confidential clinical information, unless the transcription service has been explicitly approved under your institution's policies and data-protection requirements.",
       "List every word or number that was misheard or mis-transcribed, and add the five technical terms you use most.",
       "For each item, note the likely cause: a word ending, a word stress or a phrase stress (or another cause you can name).",
       "Choose your top three priorities and write the sentence from your talk in which you will practise each.",

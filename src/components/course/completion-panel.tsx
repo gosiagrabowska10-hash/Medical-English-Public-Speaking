@@ -9,7 +9,7 @@ import type { LessonPage } from "@/lib/course";
 
 const lessonLabels: Record<string, string> = {
   exercise: "Save the practical exercise",
-  quiz: "Pass the knowledge check (70%)",
+  quiz: "Pass the knowledge check (at least 5 of 6 questions correct)",
   assignment: "Submit the assignment",
   content_in_preparation: "Lesson content is still in preparation",
   unavailable: "Requirements could not be checked. Please reload the page.",

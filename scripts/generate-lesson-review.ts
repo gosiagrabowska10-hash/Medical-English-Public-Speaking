@@ -15,8 +15,10 @@ const version = args.find((a) => a.startsWith("--v="))?.slice(4) ?? "";
 const codes = args.filter((a) => !a.startsWith("--"));
 const introFile = args.find((a) => a.startsWith("--notes="))?.slice(8) ?? `docs/curriculum/review-notes${version ? "-v" + version : ""}.md`;
 const letters = "ABCDEF";
+/** Optional review status shown in each lesson table, e.g. --status="Ready for instructor review — awaiting approval". */
+const reviewStatus = args.find((a) => a.startsWith("--status="))?.slice(9);
 
-/** Minimum correct answers for the 70% pass mark, exactly as the database computes it (score × 10 ≥ total × 7). */
+/** Minimum correct answers to pass (at least 70%, i.e. 5 of 6), exactly as the database computes it (score × 10 ≥ total × 7). */
 const needed = (n: number) => Math.ceil((n * 7) / 10);
 
 function render(s: LessonSpec): string {
@@ -26,6 +28,7 @@ function render(s: LessonSpec): string {
   const out: string[] = [];
   out.push(`## ${s.code} · ${meta.title}`, "");
   out.push(`| | |`, `|---|---|`,
+    ...(reviewStatus ? [`| Review status | ${reviewStatus} |`] : []),
     `| Module | ${String(m.number).padStart(2, "0")} · ${m.title} |`,
     `| Week · duration | Week ${s.week} · ${s.minutes} minutes (video, reading, exercise, quiz and assignment) |`,
     `| AI teacher | ${s.aiTeacher.replace(/-/g, " ")} |`,
@@ -58,7 +61,7 @@ function render(s: LessonSpec): string {
     if (e.model_answer) out.push(`**Model answer** *(fictional example; shown to the student only after they save their own response)*`, "", ...e.model_answer.split("\n").flatMap((l) => [l ? `> ${l}` : ">"]), "");
   }
   if (s.quiz) {
-    out.push(`### Knowledge check (${s.quiz.length} questions · pass mark 70%: at least ${needed(s.quiz.length)} of ${s.quiz.length} correct)`, "");
+    out.push(`### Knowledge check (${s.quiz.length} questions · Pass: at least ${needed(s.quiz.length)} of ${s.quiz.length} questions correct)`, "");
     s.quiz.forEach((q, i) => {
       out.push(`**${i + 1}. ${q.scenario ? "[Scenario] " : ""}${q.prompt}**`, "");
       q.options.forEach((o, k) => out.push(`- ${letters[k]}. ${o}${k === q.correct ? " **✓ correct**" : ""}`));
@@ -72,7 +75,7 @@ function render(s: LessonSpec): string {
   }
   out.push(`### Downloadable materials`, "", ...(s.resources?.length ? s.resources.map((r) => `- **${r.title}**${r.is_sample ? " (sample)" : ""} — ${r.description} \`${r.file_url}\``) : ["- None for this lesson yet."]), "");
   if (b.references?.length) out.push(`### References`, "", ...b.references.map((r, i) => `${i + 1}. ${r}`), "");
-  const reqs = [s.exercise && "saved the practical exercise", s.quiz && `passed the knowledge check (at least ${needed(s.quiz.length)} of ${s.quiz.length} answers correct; pass mark 70%, rounded up to whole questions)`, s.assignment?.required && "submitted the assignment"].filter(Boolean) as string[];
+  const reqs = [s.exercise && "saved the practical exercise", s.quiz && `passed the knowledge check (Pass: at least ${needed(s.quiz.length)} of ${s.quiz.length} questions correct)`, s.assignment?.required && "submitted the assignment"].filter(Boolean) as string[];
   const list = reqs.length > 1 ? `${reqs.slice(0, -1).join(", ")} and ${reqs[reqs.length - 1]}` : reqs[0];
   out.push(`### Completion criteria`, "", `The lesson can be marked complete only after the student has ${list}. This is enforced by the database.`, "", "---", "");
   return out.join("\n");

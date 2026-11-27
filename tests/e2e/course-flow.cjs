@@ -58,7 +58,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
   ok(firstIdx.some((x) => x !== '0'), 'quiz options are displayed in shuffled order (scored by original index): ' + firstIdx.join(','));
   for (let i = 0; i < 6; i++) await qs.nth(i).locator('input[data-option-index="3"]').check();
   await p.getByRole('button', { name: 'Submit answers' }).click(); await p.getByText(/You scored/).waitFor();
-  ok(await p.getByText(/The pass mark is 70%/).isVisible(), 'wrong answers are scored on the server and do not pass');
+  ok(await p.getByRole("alert").filter({ hasText: /You scored \d+ of \d+\. Pass: at least \d+ of \d+ questions correct/ }).isVisible(), 'wrong answers are scored on the server and do not pass');
   await p.screenshot({ path: `${out}/s3-quiz-feedback.png`, fullPage: false });
   await p.getByRole('button', { name: 'Retake the quiz' }).click();
   for (const [i, k] of [[0, 1], [1, 2], [2, 2], [3, 1], [4, 2], [5, 1]]) await qs.nth(i).locator(`input[data-option-index="${k}"]`).check();
