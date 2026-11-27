@@ -75,8 +75,8 @@ export const modules: Module[] = [
     workshop: {
       code: "W1",
       title: "Workshop I — Voice and Presence Lab",
-      summary: "Record a two-minute opening, receive AI delivery analysis, and refine pace, pausing and projection across three attempts.",
-      format: "Speaking Studio practice with AI Voice Coach",
+      summary: "Deliver an extract of your own presentation three times — as a baseline, after focused practice on pace, voice and presence, and under a realistic disruption — and measure the difference with a listener comprehension check.",
+      format: "Facilitated live workshop or independent version; Competent status confirmed by an instructor",
     },
   },
   {
@@ -100,7 +100,7 @@ export const modules: Module[] = [
       code: "W2",
       title: "Workshop II — Structure Clinic",
       summary: "Rebuild one of your own presentations using the Academy structure, then deliver the new opening and conclusion.",
-      format: "Assignment with AI Presentation Coach feedback",
+      format: "Facilitated or independent workshop with peer role cards; instructor feedback",
     },
   },
   {
@@ -155,8 +155,8 @@ export const modules: Module[] = [
     workshop: {
       code: "W3",
       title: "Workshop III — Conference Simulation",
-      summary: "Deliver a timed research presentation to the AI Conference Audience and respond to a moderated question round.",
-      format: "Simulation Centre",
+      summary: "Deliver a timed research presentation in a simulated conference session and respond to a moderated question round from participants playing the chair, a reviewer and a sceptical peer.",
+      format: "Facilitated simulation with role cards; intermediate practical assessment",
     },
   },
   {
@@ -180,7 +180,7 @@ export const modules: Module[] = [
       code: "W4",
       title: "Workshop IV — Unexpected Questions",
       summary: "A rapid-fire question round with escalating difficulty, followed by structured feedback on clarity and composure.",
-      format: "Simulation Centre",
+      format: "Facilitated simulation with question decks and role cards",
     },
   },
   {
@@ -201,8 +201,8 @@ export const modules: Module[] = [
     workshop: {
       code: "W5",
       title: "Workshop V — Media Interview Simulation",
-      summary: "A recorded mock interview with the AI Media Interviewer, including a bridging exercise for difficult questions.",
-      format: "Simulation Centre",
+      summary: "A mock interview, recorded on your own device, with a fellow participant or instructor as the journalist, including a bridging exercise for difficult questions.",
+      format: "Facilitated simulation with interviewer briefs and role cards",
     },
   },
   {
