@@ -7,7 +7,7 @@
 const { chromium } = require('playwright');
 const { AxeBuilder } = require('@axe-core/playwright');
 const axe = async (page, label) => { const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze(); ok(r.violations.length === 0, `accessibility (axe, WCAG 2.2 AA): ${label}${r.violations.length ? ' — ' + r.violations.map((v) => v.id + '×' + v.nodes.length).join(', ') : ''}`); };
-const { confirmedStudent, sql, anonClient, totp } = require('./helpers.cjs');
+const { confirmedStudent, sql, anonClient, totp, unlockAllModules } = require('./helpers.cjs');
 const BASE = process.env.BASE_URL ?? 'http://localhost:3000';
 let n = 0, fails = 0;
 const ok = (c, m) => { n++; if (!c) fails++; console.log(`${c ? 'PASS' : 'FAIL'} ${m}`); };
@@ -46,6 +46,7 @@ const words = (k) => Array.from({ length: k }, (_, i) => ['round', 'pause', 'lis
   const L = await confirmedStudent('Lena', 'Learner' + tag);
   const O = await confirmedStudent('Omar', 'Other');
   sql(`insert into public.enrollments (user_id) values ('${L.id}'), ('${O.id}')`);
+  unlockAllModules(L.id, O.id);
   const { data: p1 } = await I.c.from('profiles').select('id');
   ok(p1.length === 1, 'instructor without MFA sees only their own profile (staff access locked)');
   const { data: en } = await I.c.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'Test authenticator' });

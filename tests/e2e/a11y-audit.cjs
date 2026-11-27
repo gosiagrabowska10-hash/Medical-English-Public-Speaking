@@ -5,7 +5,7 @@
  */
 const { chromium } = require('playwright');
 const { AxeBuilder } = require('@axe-core/playwright');
-const { confirmedStudent, sql } = require('./helpers.cjs');
+const { confirmedStudent, sql, unlockAllModules } = require('./helpers.cjs');
 const BASE = process.env.BASE_URL ?? 'http://localhost:3000';
 const OUT = process.argv.find((a) => a.startsWith('--out='))?.slice(6);
 const detail = (v) => v.nodes.slice(0, 40).map((n) => ({ target: n.target.join(' '), html: n.html.slice(0, 140), ...(v.id === 'color-contrast' ? { fg: n.any[0]?.data?.fgColor, bg: n.any[0]?.data?.bgColor, ratio: n.any[0]?.data?.contrastRatio, required: n.any[0]?.data?.expectedContrastRatio } : {}) }));
@@ -15,6 +15,7 @@ const app = ['/app', '/app/curriculum', '/app/settings', '/app/teachers', '/app/
 (async () => {
   const s = await confirmedStudent('Axe', 'Audit');
   sql(`insert into public.enrollments (user_id) values ('${s.id}')`);
+  unlockAllModules(s.id);
   const W1 = sql(`select id from public.lessons where code='W1'`);
   await s.c.rpc('submit_quiz', { _lesson: W1, _answers: [1, 3, 0, 2, 3] });
   const b = await chromium.launch();

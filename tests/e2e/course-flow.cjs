@@ -3,7 +3,7 @@
  * Run with the app on BASE_URL:  npm run test:course
  */
 const { chromium } = require('playwright');
-const { confirmedStudent, sql } = require('./helpers.cjs');
+const { confirmedStudent, sql, unlockAllModules } = require('./helpers.cjs');
 const BASE = process.env.BASE_URL ?? 'http://localhost:3000';
 const out = process.env.SCREENSHOT_DIR ?? require('os').tmpdir();
 let n = 0, fails = 0;
@@ -84,6 +84,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
 
   // ── Enrol (staff action; Stripe in Stage 7) ──
   sql(`insert into public.enrollments (user_id, cohort) values ('${s.id}', 'Test cohort')`);
+  unlockAllModules(s.id);
   await p.goto(BASE + '/app/curriculum'); await p.getByText('Continue learning').waitFor();
   ok(await p.getByText(/^1\s*\/ 36$/).isVisible() || (await p.locator('text=/ 36').count()) > 0, 'curriculum progress shows 1 of 36 after completing L01');
   await p.screenshot({ path: `${out}/s3-curriculum.png`, fullPage: false });

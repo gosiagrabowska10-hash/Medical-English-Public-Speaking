@@ -55,7 +55,9 @@ async function Lesson({ params }: { params: PageProps<"/app/learn/[code]">["para
           <div className="mt-5"><CurriculumSidebarMobile modules={modules} code={lesson.code} enrolled={enrolled} completed={totals.completed} total={totals.mandatory} /></div>
         </div>
 
-        {!page.access ? (
+        {!page.access && page.accessState.state === "locked" ? (
+          <LockedModule modules={modules} requires={page.accessState.requires_module ?? null} summary={lesson.summary} />
+        ) : !page.access ? (
           <div className="rounded-sm bg-white p-8 text-center shadow-hairline md:p-12">
             <Lock aria-hidden className="mx-auto size-8 text-gold-deep" strokeWidth={1.3} />
             <h2 className="mt-5 font-serif text-3xl text-midnight">This lesson is part of the full programme</h2>
@@ -112,3 +114,32 @@ function CurriculumSidebarDesktop(p: SidebarProps) {
 function CurriculumSidebarMobile(p: SidebarProps) {
   return <div className="xl:hidden"><CurriculumSidebar modules={p.modules} currentCode={p.code} enrolled={p.enrolled} completed={p.completed} total={p.total} /></div>;
 }
+
+/** Shown when the learner is enrolled but has not yet completed the earlier module(s). */
+function LockedModule({ modules, requires, summary }: { modules: Awaited<ReturnType<typeof getCurriculum>>["modules"]; requires: number | null; summary: string }) {
+  const prev = modules.find((m) => m.number === requires);
+  const firstOpenIncomplete = modules.find((m) => m.unlocked && !m.completed);
+  const todo = firstOpenIncomplete?.lessons.filter((l) => l.is_mandatory && l.content_status !== "in_preparation" && l.status !== "completed") ?? [];
+  return (
+    <div className="rounded-sm bg-white p-8 text-center shadow-hairline md:p-12">
+      <Lock aria-hidden className="mx-auto size-8 text-gold-deep" strokeWidth={1.3} />
+      <h2 className="mt-5 font-serif text-3xl text-midnight">This lesson opens after the previous module</h2>
+      <p className="mx-auto mt-3 max-w-lg text-ink-muted">{summary}</p>
+      <p className="mx-auto mt-3 max-w-lg text-sm text-ink-subtle">
+        Modules open in order, so that each one builds on the last.{prev ? ` Complete Module ${String(prev.number).padStart(2, "0")} · ${prev.title} to continue.` : ""} Lessons you have already started always stay open for revision.
+      </p>
+      {firstOpenIncomplete && todo.length > 0 && (
+        <div className="mx-auto mt-6 max-w-md text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-subtle">Still to complete in Module {String(firstOpenIncomplete.number).padStart(2, "0")}</p>
+          <ul className="mt-2 space-y-1.5 text-sm">
+            {todo.map((l) => <li key={l.id}><Link href={`/app/learn/${l.code}`} className="text-midnight underline decoration-gold underline-offset-4">{l.code} · {l.title}</Link></li>)}
+          </ul>
+        </div>
+      )}
+      <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <Button asChild><Link href="/app/curriculum">View your curriculum</Link></Button>
+      </div>
+    </div>
+  );
+}
+

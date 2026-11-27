@@ -56,4 +56,14 @@ async function withMfa(c) {
   return data.totp.secret;
 }
 
-module.exports = { mailLink, confirmedStudent, sql, anonClient, totp, withMfa };
+/**
+ * Test fixture equivalent to an administrator override: opens every module for the given
+ * learners (modules otherwise open in order as each is completed; see migration 0006).
+ */
+function unlockAllModules(...userIds) {
+  for (const id of userIds) {
+    sql(`insert into public.module_unlocks (user_id, module_id, reason) select '${id}', m.id, 'Test fixture: all modules unlocked' from public.modules m where m.number > 1 on conflict do nothing`);
+  }
+}
+
+module.exports = { mailLink, confirmedStudent, sql, anonClient, totp, withMfa, unlockAllModules };

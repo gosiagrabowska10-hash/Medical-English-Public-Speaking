@@ -40,7 +40,7 @@ function Contents({ modules, currentCode, enrolled, onNavigate }: { modules: Mod
               <ul id={`mod-${m.number}`} className="bg-ivory/60 pb-2">
                 {m.lessons.map((l) => {
                   const current = l.code === currentCode;
-                  const locked = !enrolled && !l.is_preview;
+                  const locked = (!enrolled && !l.is_preview) || l.locked;
                   return (
                     <li key={l.id}>
                       <Link

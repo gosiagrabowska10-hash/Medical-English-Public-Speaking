@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Eyebrow, Rule } from "@/components/ui/typography";
 import { aiTeachers } from "@/content/teachers";
 import { TeacherGlyph } from "@/components/marketing/teacher-card";
-import { requireUser } from "@/lib/auth";
+import { LEARNER_ADMIN_ROLES, requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getCurriculum } from "@/lib/course";
 import { Progress } from "@/components/ui/progress";
@@ -28,7 +28,7 @@ async function Dashboard() {
   const supabase = (await createClient())!;
   const [{ data: consents }, course] = await Promise.all([supabase.from("current_consents").select("kind,granted").eq("user_id", user.id), getCurriculum()]);
   const lessons = course.modules.flatMap((m) => m.lessons);
-  const next = lessons.find((l) => l.status === "in_progress") ?? lessons.find((l) => l.status === "not_started" && (course.enrolled || l.is_preview));
+  const next = lessons.find((l) => l.status === "in_progress") ?? lessons.find((l) => l.status === "not_started" && !l.locked && (course.enrolled || l.is_preview));
   const recordingConsent = consents?.some((c) => c.kind === "recording" && c.granted) ?? false;
   const profileComplete = Boolean(user.profile.country && user.profile.specialty);
   const salutation = user.profile.title === "Dr" || user.profile.title === "Prof." ? `${user.profile.title} ${user.profile.last_name}` : user.profile.first_name;
@@ -63,9 +63,14 @@ async function Dashboard() {
                   : "Staff access to learner data requires two-factor authentication. Set it up in Account Settings, then sign in again with your code."}
               </p>
             </div>
-            <Button asChild variant={user.aal === "aal2" ? "gold" : "outline-light"}>
-              <Link href={user.aal === "aal2" ? "/app/staff/assessments" : "/app/settings#security"}>{user.aal === "aal2" ? "Workshop assessments" : "Set up two-factor authentication"}</Link>
-            </Button>
+            <div className="flex flex-wrap gap-3">
+              {user.aal === "aal2" && user.roles.some((r) => LEARNER_ADMIN_ROLES.includes(r)) && (
+                <Button asChild variant="outline-light"><Link href="/app/admin/learners">Learners and enrolment</Link></Button>
+              )}
+              <Button asChild variant={user.aal === "aal2" ? "gold" : "outline-light"}>
+                <Link href={user.aal === "aal2" ? "/app/staff/assessments" : "/app/settings#security"}>{user.aal === "aal2" ? "Workshop assessments" : "Set up two-factor authentication"}</Link>
+              </Button>
+            </div>
           </div>
         </Card>
       )}

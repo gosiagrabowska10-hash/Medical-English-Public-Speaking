@@ -2,7 +2,7 @@
  * Stage 3 security: course content, answer keys and learning records,
  * attacked directly through the Supabase API. Run: npm run test:course-security
  */
-const { confirmedStudent, sql, anonClient, withMfa } = require('./helpers.cjs');
+const { confirmedStudent, sql, anonClient, withMfa, unlockAllModules } = require('./helpers.cjs');
 let n = 0, fails = 0;
 const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++; console.log('FAIL', name); } };
 
@@ -59,6 +59,7 @@ const ok = (c, name) => { n++; if (c) console.log('PASS', name); else { fails++;
 
   // Enrolled
   sql(`insert into public.enrollments (user_id) values ('${A.id}'), ('${B.id}')`);
+  unlockAllModules(A.id, B.id);
   const { data: c2 } = await A.c.from('lesson_content').select('lesson_id');
   ok(c2.length === 36, 'enrolled student can read all published lesson content');
   const { data: in4 } = await A.c.rpc('complete_lesson', { _lesson: L04 });

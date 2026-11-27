@@ -25,7 +25,7 @@ async function Curriculum() {
   await requireUser("/app/curriculum");
   const { modules, enrolled, totals } = await getCurriculum();
   const all = modules.flatMap((m) => m.lessons);
-  const next = all.find((l) => l.status === "in_progress") ?? all.find((l) => l.status === "not_started" && (enrolled || l.is_preview));
+  const next = all.find((l) => l.status === "in_progress") ?? all.find((l) => l.status === "not_started" && !l.locked && (enrolled || l.is_preview));
 
   return (
     <div className="space-y-10">
@@ -70,13 +70,17 @@ async function Curriculum() {
                     <span className="font-serif text-4xl text-gold-muted lining-nums">{String(m.number).padStart(2, "0")}</span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-serif text-2xl leading-tight text-midnight">{m.title}</span>
-                      <span className="mt-1 flex flex-wrap gap-x-3 text-sm text-ink-subtle"><span>{m.weeks_label}</span><span>{m.lessons.length} items</span><span>{formatDuration(minutes)}</span></span>
+                      <span className="mt-1 flex flex-wrap items-center gap-x-3 text-sm text-ink-subtle"><span>{m.weeks_label}</span><span>{m.lessons.length} items</span><span>{formatDuration(minutes)}</span>
+                        {enrolled && (m.completed && done > 0 ? <Badge tone="success">Module completed</Badge>
+                          : m.overridden ? <Badge tone="info">Unlocked by the Academy</Badge>
+                          : !m.unlocked ? <span className="inline-flex items-center gap-1"><Lock aria-hidden className="size-3.5" /> Opens when the previous module is completed</span> : null)}
+                      </span>
                     </span>
                     <span className="hidden w-40 sm:block"><Progress value={(done / m.lessons.length) * 100} label={`${done}/${m.lessons.length}`} /></span>
                   </summary>
                   <ul className="divide-y divide-stone border-t border-stone">
                     {m.lessons.map((l) => {
-                      const locked = !enrolled && !l.is_preview;
+                      const locked = (!enrolled && !l.is_preview) || l.locked;
                       return (
                         <li key={l.id}>
                           <Link href={`/app/learn/${l.code}`} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-6 py-4 hover:bg-ivory/50 md:px-7">
@@ -89,7 +93,7 @@ async function Curriculum() {
                               {l.content_status === "in_preparation" && <Badge>In preparation</Badge>}
                               {l.video_status === "sample" && <Badge tone="warning">Sample video</Badge>}
                               <span className="flex items-center gap-1 text-xs text-ink-subtle lining-nums"><Clock aria-hidden className="size-3.5" />{l.duration_minutes} min · Week {l.week}</span>
-                              {locked && <Lock aria-hidden className="size-3.5 text-ink-subtle" />}
+                              {locked && <><Lock aria-hidden className="size-3.5 text-ink-subtle" /><span className="sr-only">Locked</span></>}
                             </span>
                           </Link>
                         </li>

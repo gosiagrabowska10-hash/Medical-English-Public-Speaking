@@ -15,7 +15,7 @@ export async function GET() {
   if (!user) return Response.json({ error: "unauthorized" }, { status: 401 });
 
   const own = <T extends string>(t: T, cols = "*") => supabase.from(t).select(cols).eq(t === "profiles" ? "id" : "user_id", user.id);
-  const [profile, roles, consents, deletion, enrollments, progress, quizzes, submissions, workshop, assessments, mfa] = await Promise.all([
+  const [profile, roles, consents, deletion, enrollments, progress, quizzes, submissions, workshop, assessments, unlocks, mfa] = await Promise.all([
     own("profiles").single(),
     own("user_roles", "role,created_at"),
     supabase.from("consents").select("kind,granted,version,created_at").eq("user_id", user.id).order("created_at"),
@@ -26,9 +26,10 @@ export async function GET() {
     own("assignment_submissions", `body,status,feedback,submitted_at,reviewed_at,${lessonCode}`),
     own("workshop_progress", `step_key,data,completed_at,updated_at,${lessonCode}`),
     own("workshop_assessments", `levels,competent,comment,assessed_at,${lessonCode}`),
+    own("module_unlocks", "reason,created_at,revoked_at,module:modules(number,title)"),
     supabase.auth.mfa.listFactors(),
   ]);
-  const failed = [profile, roles, consents, deletion, enrollments, progress, quizzes, submissions, workshop, assessments].find((r) => r.error);
+  const failed = [profile, roles, consents, deletion, enrollments, progress, quizzes, submissions, workshop, assessments, unlocks].find((r) => r.error);
   // Never hand over a partial export as if it were complete.
   if (failed) return Response.json({ error: "export_failed" }, { status: 500 });
   await supabase.rpc("log_event", { _action: "privacy.data_exported", _entity: "profile", _entity_id: user.id });
@@ -49,6 +50,7 @@ export async function GET() {
       assignment_submissions: submissions.data,
       workshop_progress: workshop.data,
       workshop_assessments: assessments.data,
+      module_unlocks: unlocks.data,
     },
   };
   return new Response(JSON.stringify(body, null, 2), {

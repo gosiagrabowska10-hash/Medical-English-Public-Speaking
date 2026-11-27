@@ -28,6 +28,8 @@ export type CurrentUser = {
 
 export const STAFF_ROLES: AppRole[] = ["instructor", "assessor", "content_editor", "student_support", "academic_director", "academy_owner"];
 export const ASSESSOR_ROLES: AppRole[] = ["instructor", "assessor", "academic_director", "academy_owner"];
+/** Roles that manage enrolments, cohorts and module unlocks (MFA required, enforced in the database). */
+export const LEARNER_ADMIN_ROLES: AppRole[] = ["student_support", "academic_director", "academy_owner"];
 
 /**
  * Data Access Layer: the single place the app reads the signed-in user.

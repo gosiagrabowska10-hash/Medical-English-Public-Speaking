@@ -8,7 +8,12 @@ export type LessonRow = {
   video_status: "not_recorded" | "sample" | "published"; content_status: "in_preparation" | "sample" | "ready"; ai_teacher: string | null;
 };
 export type ModuleRow = { id: string; number: number; slug: string; title: string; weeks_label: string; summary: string; outcomes: string[] };
-export type ModuleWithLessons = ModuleRow & { lessons: (LessonRow & { status: ProgressStatus })[] };
+/** Module progression for the signed-in learner (see migration 0006). */
+export type ModuleState = { unlocked: boolean; completed: boolean; overridden: boolean };
+export type ModuleWithLessons = ModuleRow & ModuleState & {
+  /** `locked`: in a module the learner has not unlocked yet, and never started (started lessons stay open). */
+  lessons: (LessonRow & { status: ProgressStatus; locked: boolean })[];
+};
 
 import type { Assignment, Exercise, LessonBody } from "@/content/lesson-types";
 export type { LessonBody };
@@ -47,16 +52,27 @@ export async function isEnrolled() {
 export async function getCurriculum(): Promise<{ modules: ModuleWithLessons[]; enrolled: boolean; totals: { minutes: number; lessons: number; workshops: number; completed: number; mandatory: number } }> {
   const supabase = await db();
   const uid = await me(supabase);
-  const [{ data: mods, error: e1 }, { data: lessons, error: e2 }, { data: progress }, enrolled] = await Promise.all([
+  const [{ data: mods, error: e1 }, { data: lessons, error: e2 }, { data: progress }, enrolled, { data: states, error: e3 }] = await Promise.all([
     supabase.from("modules").select("id,number,slug,title,weeks_label,summary,outcomes").order("number"),
     supabase.from("lessons").select(LESSON_COLS).order("position"),
     supabase.from("lesson_progress").select("lesson_id,status").eq("user_id", uid),
     isEnrolled(),
+    supabase.rpc("module_states"),
   ]);
-  if (e1 || e2) throw new Error("The curriculum could not be loaded.");
+  if (e1 || e2 || e3) throw new Error("The curriculum could not be loaded.");
   const status = new Map((progress ?? []).map((p) => [p.lesson_id as string, p.status as ProgressStatus]));
-  const withStatus = (lessons as LessonRow[]).map((l) => ({ ...l, status: status.get(l.id) ?? ("not_started" as const) }));
-  const modules = (mods as ModuleRow[]).map((m) => ({ ...m, lessons: withStatus.filter((l) => l.module_id === m.id) }));
+  const stateOf = new Map(((states ?? []) as { module_id: string; unlocked: boolean; completed: boolean; unlocked_by_override: boolean }[])
+    .map((x) => [x.module_id, { unlocked: x.unlocked, completed: x.completed, overridden: x.unlocked_by_override }]));
+  const withStatus = (lessons as LessonRow[]).map((l) => {
+    const st = status.get(l.id) ?? ("not_started" as const);
+    // Fail closed: a module without a known state is treated as locked for enrolled learners.
+    const open = stateOf.get(l.module_id)?.unlocked ?? false;
+    return { ...l, status: st, locked: enrolled && !l.is_preview && !open && !status.has(l.id) };
+  });
+  const modules = (mods as ModuleRow[]).map((m) => ({
+    ...m, ...(stateOf.get(m.id) ?? { unlocked: false, completed: false, overridden: false }),
+    lessons: withStatus.filter((l) => l.module_id === m.id),
+  }));
   const mandatory = withStatus.filter((l) => l.is_mandatory);
   return {
     modules,
@@ -73,6 +89,8 @@ export async function getCurriculum(): Promise<{ modules: ModuleWithLessons[]; e
 
 export type LessonPage = {
   lesson: LessonRow; module: ModuleRow; access: boolean; enrolled: boolean;
+  /** Why the lesson is or is not available: open, not enrolled, or locked until an earlier module is completed. */
+  accessState: { state: "open" | "not_enrolled" | "locked" | "unavailable"; requires_module?: number };
   content: LessonContent | null;
   quiz: { id: string; position: number; prompt: string; options: string[] }[];
   resources: { id: string; title: string; description: string | null; file_url: string; file_type: string; is_sample: boolean }[];
@@ -96,9 +114,11 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
     supabase.rpc("can_access_lesson", { _lesson: l.id }),
     isEnrolled(),
   ]);
-  const base = { lesson: l, module: mod as ModuleRow, access: access === true, enrolled };
+  const openState = { state: "open" as const };
   if (access !== true) {
-    return { ...base, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [], workshopSteps: [], assessment: null };
+    const { data: st } = await supabase.rpc("lesson_access_state", { _lesson: l.id });
+    const accessState = (st as LessonPage["accessState"]) ?? { state: "unavailable" };
+    return { lesson: l, module: mod as ModuleRow, access: false, enrolled, accessState, content: null, quiz: [], resources: [], progress: null, lastAttempt: null, passedQuiz: false, submission: null, missing: [], workshopSteps: [], assessment: null };
   }
   // Opening a lesson marks it as started (idempotent, validated in the database).
   await supabase.rpc("start_lesson", { _lesson: l.id });
@@ -119,7 +139,7 @@ export async function getLesson(code: string): Promise<LessonPage | null> {
       : Promise.resolve({ data: [] as never[] }),
   ]);
   return {
-    ...base,
+    lesson: l, module: mod as ModuleRow, access: true, enrolled, accessState: openState,
     content: (content.data as LessonContent) ?? null,
     quiz: quiz.data ?? [],
     resources: resources.data ?? [],

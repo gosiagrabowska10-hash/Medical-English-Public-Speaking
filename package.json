@@ -11,7 +11,9 @@
     "db:start": "supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,storage-api,postgres-meta,supavisor",
     "db:reset": "supabase db reset",
     "test:rls": "bash supabase/tests/run_local.sh",
-    "test:rls:supabase": "(echo 'begin;'; cat supabase/tests/rls_test.sql; echo 'rollback;') | psql \"$(npx supabase status -o env | grep '^DB_URL=' | cut -d= -f2- | tr -d '\\\"')\" -v ON_ERROR_STOP=1 -q -tA 2>&1 | grep -oE '(PASS|FAIL): .*|ERROR.*|ALL RLS TESTS COMPLETED'",
+    "test:rls:supabase": "npm run -s test:rls:supabase:rls && npm run -s test:rls:supabase:progression",
+    "test:rls:supabase:rls": "(echo 'begin;'; cat supabase/tests/rls_test.sql; echo 'rollback;') | psql \"$(npx supabase status -o env | grep '^DB_URL=' | cut -d= -f2- | tr -d '\\\"')\" -v ON_ERROR_STOP=1 -q -tA 2>&1 | grep -oE '(PASS|FAIL): .*|ERROR.*|ALL RLS TESTS COMPLETED'",
+    "test:rls:supabase:progression": "(echo 'begin;'; cat supabase/tests/progression_test.sql; echo 'rollback;') | psql \"$(npx supabase status -o env | grep '^DB_URL=' | cut -d= -f2- | tr -d '\\\"')\" -v ON_ERROR_STOP=1 -q -tA 2>&1 | grep -oE '(PASS|FAIL): .*|ERROR.*|ALL PROGRESSION TESTS COMPLETED'",
     "test:e2e": "node tests/e2e/auth-flow.cjs",
     "test:security": "node tests/e2e/api-security.cjs",
     "test:site": "node tests/e2e/site-qa.cjs",
@@ -27,7 +29,8 @@
     "check:register": "tsx scripts/build-compliance-register.ts",
     "content:workshop": "tsx scripts/generate-workshop-pack.ts",
     "test:a11y": "node tests/e2e/a11y-audit.cjs",
-    "test:priority1": "node tests/e2e/priority1.cjs"
+    "test:priority1": "node tests/e2e/priority1.cjs",
+    "test:stage1": "node tests/e2e/stage1.cjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

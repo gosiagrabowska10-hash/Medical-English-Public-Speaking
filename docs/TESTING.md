@@ -35,3 +35,9 @@ Credentials for the local stack are read at runtime from `npx supabase status`; 
 ## Compliance register
 
 `npx tsx scripts/build-compliance-register.ts` regenerates `docs/compliance/COMPLIANCE_REGISTER.md` and `.csv` from `register.json` and fails if an item uses a status outside the five permitted statuses, or is marked Compliant or Not applicable without evidence.
+
+## Stage 1: enrolment and progression
+
+- `npm run test:rls` also runs `supabase/tests/progression_test.sql` (27 checks), on plain PostgreSQL 16. `npm run test:rls:supabase` runs both files against the local Supabase stack. The checks cover enrolment administration (roles, MFA), progressive module unlocking, administrator override with reason, revisit after revocation, paused enrolments and the audit trail.
+- `BASE_URL=http://localhost:3100 npm run test:stage1` runs 37 browser and API checks: cohort and enrolment through the admin UI, locked-module screens, unlocking by completion, override and revocation through the learner record, reliable progress storage (idempotent completion, no direct edits, persistence across sessions), paused enrolment, access control, and axe checks of the new screens.
+- Other browser suites open all modules with the test fixture `unlockAllModules()` (equivalent to an administrator override), so that they keep testing lesson features independently of progression.
