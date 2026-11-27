@@ -198,7 +198,7 @@ export const L11: LessonSpec = {
         "Move the definition to the end",
       ],
       correct: 1,
-      explanation: "The opening is when attention is highest; it should carry your message, not administration.",
+      explanation: "The opening is your first opportunity to establish relevance and give the audience a reason to listen. Use that time for your message, not administration.",
     },
     {
       prompt: "Why are signposts especially important in spoken presentations?",

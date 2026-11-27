@@ -123,7 +123,7 @@ export const L12: LessonSpec = {
       { mistake: "Pasting complex figures directly from papers", correction: "Redraw to show the one comparison that supports your headline; offer the original in a handout." },
       { mistake: "Using red and green as the only difference between groups", correction: "Use colour-blind-safe pairs and add labels or line styles." },
       { mistake: "Small text that cannot be read from the back of the room", correction: "Aim for at least 24-point body text and 32-point headlines on a 16:9 slide (recommended minimum; the congress template and the room take precedence); test at reduced size." },
-      { mistake: "Showing identifiable patient images without consent", correction: "Use only anonymised images, or identifiable images with the patient’s explicit consent and all approvals required by your institution’s policies, and say so." },
+      { mistake: "Showing identifiable patient images without consent", correction: "Use only anonymised images, or identifiable images with the patient’s explicit consent and all approvals required by your institution’s policies. Follow your institution’s requirements for documenting and presenting such consent." },
     ],
     reflection: [
       "Which of your current slides could you not present if the projector failed — and what does that tell you about it?",
