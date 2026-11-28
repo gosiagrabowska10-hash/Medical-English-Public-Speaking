@@ -66,7 +66,7 @@ export const L06: LessonSpec = {
       {
         heading: "Repetition, acronyms and contractions",
         paragraphs: [
-          "In writing, repetition is a fault. In speech, it is a service. Repeat the key message, restate an important number in a second form (“thirty per cent of patients — almost one in three”), and use the same term for the same thing throughout. Listeners who missed a word the first time get a second chance.",
+          "In writing, repetition is a fault. In speech, it is a service. Repeat the key message, restate an important number in a second form (“thirty per cent of patients — almost one in three”), and use the same term for the same thing throughout. A restatement like this works for a proportion of patients. It does not work for a relative risk reduction: a relative reduction of 30 per cent does not mean that one patient in three benefited, so say that the measure is relative and keep the precise figure on the slide, as in the example of the epidemiologist below. Listeners who missed a word the first time get a second chance.",
           "Acronyms are a common barrier in international audiences. Say the full term the first time and only then the acronym, and limit yourself to the few that are truly needed: “non-invasive ventilation — NIV”. Contractions such as “we'll”, “it's” and “don't” are normal in spoken English, including in formal presentations, and they make your speech sound more natural. Use them where they feel comfortable; full forms remain appropriate in some contexts — when you want to stress a word (“This does not apply to children.”) or when you quote a guideline or a formal statement word for word.",
         ],
       },
@@ -99,7 +99,7 @@ export const L06: LessonSpec = {
       { phrase: "We wanted to know whether…", use: "Stating the research question in spoken style", register: "Neutral", example: "We wanted to know whether early mobilisation is linked to a shorter hospital stay." },
       { phrase: "Here's what we did.", use: "Signposting the methods", register: "Neutral, spoken", pronunciation: "Pause after “did”.", example: "Here's what we did. We looked back at 412 patients." },
       { phrase: "What did we find?", use: "Rhetorical question introducing results", register: "Neutral, spoken", pronunciation: "Falling tone on “find”.", example: "What did we find? Patients who mobilised early had a shorter stay: a median of five days instead of seven." },
-      { phrase: "This is the key point.", use: "Highlighting the main finding", register: "Neutral", example: "This is the key point: the benefit was greatest in older patients." },
+      { phrase: "This is the key point.", use: "Highlighting the main finding", register: "Neutral", example: "This is the key point: early mobilisation was associated with a shorter hospital stay." },
       { phrase: "Let's now turn to…", use: "Moving to a new section", register: "Neutral – formal", example: "Let's now turn to what this means for practice." },
       { phrase: "In other words, …", use: "Restating a complex point more simply", register: "Neutral", example: "In other words, the relative risk was about a third lower." },
       { phrase: "So what does this mean in practice?", use: "Moving from results to implications", register: "Neutral", example: "So what does this mean in practice? Because this was an observational study, it shows a link, not cause and effect." },

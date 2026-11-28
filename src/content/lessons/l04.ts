@@ -192,7 +192,7 @@ export const L04: LessonSpec = {
         "How tiring a talk is for the speaker",
         "How many slides a talk contains",
         "How loudly a sound is produced",
-        "How many words a sound contrast distinguishes, and so how much confusing it matters",
+        "How many words a sound contrast distinguishes, and therefore how much confusion it can cause",
       ],
       correct: 3,
       explanation: "Contrasts that separate many words carry a high functional load; errors in them are more likely to affect understanding.",
